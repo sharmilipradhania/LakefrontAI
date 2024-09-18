@@ -40,7 +40,11 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Tatooine</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra tund polis sola tarpals.</p>
+
+              
+
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -55,7 +59,10 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Cantonica</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi lek tund polis gendai sola tarpals.</p>
+
+               
+
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -70,7 +77,10 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Yavin 4</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+
+
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi lek tund polis gen dai sola tarpals.</p>
+
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -85,7 +95,8 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Alderaan</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi lek tund polis gen dai sola tarpals.</p>
+
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -109,7 +120,9 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Tatooine</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi lek tund polis gen dai sola tarpals.</p>
+
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -124,7 +137,9 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Cantonica</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi lek tund polis gen dai sola tarpals.</p>
+
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -139,7 +154,9 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Yavin 4</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi lek tund polis gen dai sola tarpals.</p>
+
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -154,7 +171,8 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Alderaan</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi lek tund polis gen dai sola tarpals.</p>
+
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -178,7 +196,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Tatooine</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi  lek tund polis gen  dai sola tarpals.</p>
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -193,7 +211,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Cantonica</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi  lek tund polis gen  dai sola tarpals.</p>
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -208,7 +226,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Yavin 4</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi  lek tund polis gen  dai sola tarpals.</p>
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -223,7 +241,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Alderaan</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi  lek tund polis gen  dai sola tarpals.</p>
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -247,7 +265,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Tatooine</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi  lek tund polis gen  dai sola tarpals.</p>
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -262,7 +280,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Cantonica</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi  lek tund polis gen  dai sola tarpals.</p>
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -277,7 +295,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Yavin 4</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi  lek tund polis gen  dai sola tarpals.</p>
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
@@ -292,7 +310,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   </svg>
                   <h3 className="font-bold text-xl text-white text-bold mb-2">Alderaan</h3>
                 </div>
-                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi'lek tund polis gen'dai sola tarpals.</p>
+                <p className="text-gray-100 text-sm">Thul klivian doldur thisspiasian calrissian. Garindan d8 aurra twi  lek tund polis gendai sola tarpals.</p>
                 <div className="flex items-center py-3">
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />

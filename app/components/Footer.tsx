@@ -95,7 +95,7 @@ const Footer = () => {
            All Rights Reserved.
           </div>
           <div className="px-4 w-full text-center sm:w-auto sm:text-left">
-            Made By Sanjana Pradhania.
+            Made By Sanjana Bhumiwal.
           </div>
         </div>
       </div>

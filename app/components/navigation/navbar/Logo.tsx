@@ -38,7 +38,7 @@ const Logo = () => {
       <Link href="/" style={{ display: showButton ? "none" : "block" }}>
      
         <Image
-          src="/lakeai.png"
+          src="/logo.png"
           alt="Logo"
           width={width < 1024 ? "40" : "40"}
           height={width < 200 ? "15" : "14"}

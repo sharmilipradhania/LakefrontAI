@@ -36,8 +36,7 @@ const Midsection = () => {
 
             <h1 className='text-3xl mt-40 text-orange-600'>What powers us?</h1>
             
-            <h2 className='text-white mt-5 text-base mb-10'>At LakeFrontAI, our exceptional teams inherently excel at unraveling complexities and conquering the most formidable challenges. We cultivate an ownership mindset in all we undertake, apply a visionary and future-focused approach to problem-solving, harness our broad and profound expertise, and courageously experiment with unconventional methods—all to ultimately deliver unparalleled value.
-            </h2>
+            <h2 className='text-white mt-5 text-base mb-10'>An attribute intrinsic to the exceptional teams at LakefrontAI, this helps us unravel complexity and solve some of the toughest problems out there. An ownership mindset in all we do, a future-focused approach to solving problems, bringing the breadth and depth of expertise, and daring to experiment with unconventional methods to ultimately deliver value.</h2>
           </div>
           <div>
             <button className="bg-white hover:bg-gray-700 border border-white-700 text-black py-3 px-10 rounded mb-5">

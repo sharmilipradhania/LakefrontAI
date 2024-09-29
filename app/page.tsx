@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
    <main className="block w-auto min-h-screen mx-auto place-items-center overflow: hidden;">
-    <Navigation />
+   
     <Slider/>
     <Midsection/>
    

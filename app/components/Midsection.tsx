@@ -26,16 +26,18 @@ const Midsection = () => {
         <div className='flex-1 mt-10 ml-10'>
 
           <h1 className='text-orange-600'>WHAT WE DO</h1>
-          <h2 className='text-4xl font-bold text-white mr-5 mt-5'>We provide certainty by</h2>
-          <h2 className='text-4xl font-bold text-white mr-5 mt-2'> solving your toughest </h2>
-          <h2 className='text-4xl font-bold text-white mr-5 mt-2'>challenges</h2>
+          <h2 className='text-4xl font-bold text-white mr-5 mt-5'>We deliver confidence by</h2>
+          <h2 className='text-4xl font-bold text-white mr-5 mt-2'> resolving your most </h2>
+          <h2 className='text-4xl font-bold text-white mr-5 mt-2'> challenging problems</h2>
 
-          <p className="mt-2 text-white mt-5 text-base">Problem-solving is not just about finding answers, but also about asking more questions until we know what will determine success and how to get there. Our focus is on helping you drive the right course of action, dispel ambiguity, and move ahead with confidence by bringing the best of AI and analytics together.</p>
+          <p className="mt-2 text-white mt-5 text-base">Effective problem-solving isn’t solely about arriving at answers; it’s about persistently inquiring until we understand what defines success and how to attain it. Our mission is to assist you in steering the optimal course of action, eliminating uncertainty, and advancing with confidence by uniting the strengths of Data Engineering, Business Intellingence and Gen AI .
+          </p>
           <div>
 
             <h1 className='text-3xl mt-40 text-orange-600'>What powers us?</h1>
-            <h1 className='text-3xl  mt-2 text-orange-600'> The Tiger Gene</h1>
-            <h2 className='text-white mt-5 text-base mb-10'>An attribute intrinsic to the exceptional teams at Tiger Analytics, this helps us unravel complexity and solve some of the toughest problems out there. An ownership mindset in all we do, a future-focused approach to solving problems, bringing the breadth and depth of expertise, and daring to experiment with unconventional methods to ultimately deliver value.</h2>
+            
+            <h2 className='text-white mt-5 text-base mb-10'>At LakeFrontAI, our exceptional teams inherently excel at unraveling complexities and conquering the most formidable challenges. We cultivate an ownership mindset in all we undertake, apply a visionary and future-focused approach to problem-solving, harness our broad and profound expertise, and courageously experiment with unconventional methods—all to ultimately deliver unparalleled value.
+            </h2>
           </div>
           <div>
             <button className="bg-white hover:bg-gray-700 border border-white-700 text-black py-3 px-10 rounded mb-5">
@@ -67,30 +69,29 @@ const Midsection = () => {
           <div className="content bg-white p-2 pt-8 md:p-12 pb-12 lg:max-w-lg w-full lg:absolute top-48 left-5 rounded-md">
             <div className="flex justify-between font-bold text-sm">
               <p>Product Review</p>
-              <p className="text-gray-400">17th March, 2021</p>
+              <p className="text-gray-100">17th March, 2021</p>
             </div>
-            <h2 className="text-3xl font-semibold mt-4 md:mt-10">Coffee From Heaven</h2>
-            <p className="my-3 text-justify font-medium text-gray-700 leading-relaxed">Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Autem aperiam nulla cupiditate saepe sed quis veritatis minus rem adipisci
-              aliquid.</p>
+            <h2 className="text-3xl font-semibold mt-4 md:mt-10">For the products</h2>
+            <p className="my-3 text-justify font-medium text-gray-700 leading-relaxed">Welcome to the future of innovation with our cutting-edge AI products! Designed to enhance efficiency, drive insights, and elevate user experiences, our AI solutions leverage advanced algorithms and machine learning to solve real-world challenges. Whether you're looking to automate processes, gain deeper analytics, or personalize interactions, our products are tailored to meet your needs. Discover how our AI technology can transform your business and empower you to achieve more.</p>
             <button className="mt-2 md:mt-5 p-3 px-5 bg-black text-white font-bold text-sm hover:bg-purple-800">Read
               More</button>
           </div>
         </section>
       </section>
       <section className=" bg-white-700 h-screen mb-10">
-        <h1 className='text-3xl font-semibold mt-10 ml-20 mb-8'>Transform your enterprise data into intelligent action</h1>
+        <h1 className='text-3xl font-semibold mt-10 ml-20 mb-8'>Transform your enterprise data into Actionable Insights
+        </h1>
         <div className="flex items-stretch h-80 ml-20 -mr-40">
-          <div className="flex-relative bg-orange-100 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>STRATEGY AND ADVISORY</h1>
+          <div className="flex-relative bg-orange-100 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>STRATEGY AND CONSULTING</h1>
             <h2 className='mt-5 mb-10'>Analytics Roadmap Data Strategy Platform Strategy</h2>
             <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a></div>
-          <div className="bg-amber-200 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>ENGINEER YOUR DATA</h1>
+          <div className="bg-amber-200 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>DATA MANAGEMENT AND ENGINEERING</h1>
             <h2 className='mt-5 mb-10'>Analytics Roadmap Data Strategy Platform Strategy</h2>
             <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a></div>
-          <div className="bg-emerald-200 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>DIFFERENTIATE WITH AI/ML</h1>
+          <div className="bg-emerald-200 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>DRIVE INNOVATION WITH AI AND ML</h1>
             <h2 className='mt-5 mb-10'>Analytics Roadmap Data Strategy Platform Strategy</h2>
             <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a></div>
-          <div className="bg-orange-100 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>OPERATIONALIZE INSIGHTS</h1>
+          <div className="bg-orange-100 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>ACTIONABLE INSIGHTS DEPLOYMENT</h1>
             <h2 className='mt-5 mb-10'>Analytics Roadmap Data Strategy Platform Strategy</h2>
             <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a></div>
         </div>
@@ -117,11 +118,13 @@ const Midsection = () => {
         <div className='flex-1 mt-10 ml-10 mb-40'>
 
 
-          <h2 className='text-4xl font-bold text-white mr-5 mt-5'>We provide certainty by</h2>
-          <h2 className='text-4xl font-bold text-white mr-5 mt-2'> solving your toughest </h2>
-          <h2 className='text-4xl font-bold text-white mr-5 mt-2'>challenges</h2>
+          <h2 className='text-4xl font-bold text-white mr-5 mt-5'>Through resolving your most </h2>
+          <h2 className='text-4xl font-bold text-white mr-5 mt-2'>  formidable challenges </h2>
+          <h2 className='text-4xl font-bold text-white mr-5 mt-2'>we brings you cofidence</h2>
 
-          <p className="mt-2 text-white mt-5 text-base">Problem-solving is not just about finding answers, but also about asking more questions until we know what will determine success and how to get there. Our focus is on helping you drive the right course of action, dispel ambiguity, and move ahead with confidence by bringing the best of AI and analytics together.</p>
+          <p className="mt-2 text-white mt-5 text-base">Effective problem-solving extends beyond simply finding answers; it requires the persistent pursuit of insightful questions to fully comprehend what defines success and how to attain it. Our commitment is to guide you in navigating the optimal course of action, dispelling ambiguity, and progressing with assurance. By seamlessly integrating the cutting-edge capabilities of artificial intelligence and advanced analytics, we empower you to make informed decisions with confidence. Our holistic approach ensures that you not only overcome immediate challenges but also build a solid foundation for sustained success in the future.
+          .
+          .</p>
           <button className="mt-2 md:mt-5 p-3 px-5 bg-white text-black font-bold text-sm hover:bg-purple-800 rounded-lg">Read
             More</button>
         </div>
@@ -180,9 +183,11 @@ const Midsection = () => {
         <div className='flex-1 mt-10 ml-10 mb-40'>
 
 
-          <h2 className='text-4xl font-bold text-black mr-20 mt-20'>Unleash your full potential for a future of infinite possibilities</h2>
+          <h2 className='text-4xl font-bold text-black mr-20 mt-20'>Harness your complete potential for a future filled with infinite opportunities.
+          </h2>
          
-          <p className="mt-2 text-black mt-5 text-base mb-5">Discover a meaningful career path in a collaborative environment.</p>
+          <p className="mt-2 text-black mt-5 text-base mb-5">Experience a gratifying career in an environment that values teamwork and collaboration.
+          </p>
           <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a>
         </div>
         <div className='mr-1 mt-20 ml-1 '>

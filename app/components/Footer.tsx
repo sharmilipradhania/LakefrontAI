@@ -19,14 +19,14 @@ const Footer = () => {
                       <circle cx="369" cy="286" r="40" fill="#2962FF"></circle>
                     </g>
                     <text fill="white" font-family="Nunito-Bold, Nunito" font-size="512" font-weight="bold">
-                      <tspan x="654" y="518">Tailwind</tspan>
+                      <tspan x="654" y="518">LakefrontAI</tspan>
                     </text>
                   </g>
                 </g>
               </svg>
             </a>
             <p className="text-justify">
-              Tailwind is a collection of UI Components created using Tailwind CSS Framework. The UI Components gives you all of the building blocks you need to build any designs without any annoying opinionated styles you have to fight to override.
+            At LAKEFRONTAI, we are dedicated to harnessing the power of artificial intelligence (AI) and machine learning (ML) to drive innovation and transform industries. Our mission is to empower businesses with cutting-edge technology that enhances decision-making, automates processes, and provides deep insights into data.
             </p>
           </div>
 

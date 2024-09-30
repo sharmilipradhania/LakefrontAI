@@ -10,23 +10,8 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
         <div className="container mx-auto px-4 h-full text-black w-full">
           <div className="flex justify-between items-center h-full">
             <Logo />
-            <button
-              type="button"
-              className="inline-flex items-center md:hidden"
-              onClick={toggle}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="#000"
-                  d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"
-                />
-              </svg>
-            </button>
+            
+          
             <ul className="hidden md:flex box gap-x-6 text-black">
             {/* !--Hoverable Link-- */}
             <li className="hoverable hover:bg-gray-100 hover:text-white">
@@ -45,7 +30,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                   <svg className="h-6 pr-3 fill-current text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
                   </svg>
-                  <a href="/blog" className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-gray-100 hover:border-transparent hover:text-red-900 hover:bg-white mt-4 lg:mt-0">Find more</a>
+                  <a href="/services" className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-gray-100 hover:border-transparent hover:text-red-900 hover:bg-white mt-4 lg:mt-0">Find more</a>
                 </div>
               </ul>
               <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r-0 lg:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
@@ -237,8 +222,26 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
        
         {/* forth */}
             </ul>
-            <div className="hidden md:block">
+            <div className=" md:block">
               <Button />
+              <button
+              type="button"
+              className="inline-flex items-center md:hidden"
+              onClick={toggle}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#000"
+                  d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"
+                />
+              </svg>
+              
+            </button>
             </div>
           </div>
         </div>

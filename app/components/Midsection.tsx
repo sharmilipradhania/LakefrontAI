@@ -19,7 +19,7 @@ const Midsection = () => {
         <li></li>
         <li></li>
       </ul>
-      
+
       {/* ,,,,,, */}
       <div className="flex bg-gray-700 ">
 
@@ -35,14 +35,14 @@ const Midsection = () => {
           <div>
 
             <h1 className='text-3xl mt-40 text-orange-600'>What powers us?</h1>
-            
+
             <h2 className='text-white mt-5 text-base mb-10'>An attribute intrinsic to the exceptional teams at LakefrontAI, this helps us unravel complexity and solve some of the toughest problems out there. An ownership mindset in all we do, a future-focused approach to solving problems, bringing the breadth and depth of expertise, and daring to experiment with unconventional methods to ultimately deliver value.</h2>
           </div>
           <div>
-            <button className="bg-white hover:bg-gray-700 border border-white-700 text-black py-3 px-10 rounded mb-5">
+            <button className="bg-white hover:bg-gray-700 border border-white-700 text-black py-3 px-10 rounded mb-5 ml-2">
               See how we work
             </button>
-            <button className="bg-white hover:bg-gray-700 border border-white-700 text-black py-3 px-10 rounded mb-5 ml-10">
+            <button className="bg-white hover:bg-gray-700 border border-white-700 text-black py-3 px-10 rounded mb-5 ml-2">
               See how we work
             </button>
           </div>
@@ -77,24 +77,21 @@ const Midsection = () => {
           </div>
         </section>
       </section>
-      <section className=" bg-white-700 h-screen mb-10">
-        <h1 className='text-3xl font-semibold mt-10 ml-20 mb-8'>Transform your enterprise data into Actionable Insights
+
+      <div className="container mx-auto mt-20 mb-40">
+        <h1 className=" mb-10 ml-5 text-2xl font-bold">Transform your enterprise data into Actionable Insights
         </h1>
-        <div className="flex items-stretch h-80 ml-20 -mr-40">
-          <div className="flex-relative bg-orange-100 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>STRATEGY AND CONSULTING</h1>
-            <h2 className='mt-5 mb-10'>Analytics Roadmap Data Strategy Platform Strategy</h2>
-            <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a></div>
-          <div className="bg-amber-200 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>DATA MANAGEMENT AND ENGINEERING</h1>
-            <h2 className='mt-5 mb-10'>Analytics Roadmap Data Strategy Platform Strategy</h2>
-            <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a></div>
-          <div className="bg-emerald-200 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>DRIVE INNOVATION WITH AI AND ML</h1>
-            <h2 className='mt-5 mb-10'>Analytics Roadmap Data Strategy Platform Strategy</h2>
-            <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a></div>
-          <div className="bg-orange-100 p-10 md:w-1/5 mr-4 rounded-lg"><h1 className='text-xl'>ACTIONABLE INSIGHTS DEPLOYMENT</h1>
-            <h2 className='mt-5 mb-10'>Analytics Roadmap Data Strategy Platform Strategy</h2>
-            <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-64 ml-4 mr-4">
+          <div className="flex justify-center text-xl border-2 border-gray-300 rounded-xl p-6 text-center bg-gray-100">Strategy and Consulting
+          </div>
+          <div className="flex justify-center text-xl border-2 border-gray-300 rounded-xl p-6 text-center bg-gray-100">Data Management and Engineering
+          </div>
+          <div className="flex justify-center text-xl border-2 border-gray-300 rounded-xl p-6  text-center bg-gray-100">Drive Innovation with GenAI and ML
+          </div>
+          <div className="flex justify-center text-xl border-2 border-gray-300 rounded-xl p-6 text-center bg-gray-100">Actionable Insights Deployment
+          </div>
         </div>
-      </section>
+      </div>
       <section className="container mx-auto p-10 md:py-0 px-0 md:p-0 md:px-0">
         <section className="relative px-10 md:p-0 transform duration-500 hover:shadow-2xl cursor-pointer hover:-translate-y-1 ">
           <Image className=" h-screen w-full object-cover rounded-md" src="/boston.jpg" alt="Random image"
@@ -122,8 +119,8 @@ const Midsection = () => {
           <h2 className='text-4xl font-bold text-white mr-5 mt-2'>we brings you cofidence</h2>
 
           <p className="mt-2 text-white mt-5 text-base">Effective problem-solving extends beyond simply finding answers; it requires the persistent pursuit of insightful questions to fully comprehend what defines success and how to attain it. Our commitment is to guide you in navigating the optimal course of action, dispelling ambiguity, and progressing with assurance. By seamlessly integrating the cutting-edge capabilities of artificial intelligence and advanced analytics, we empower you to make informed decisions with confidence. Our holistic approach ensures that you not only overcome immediate challenges but also build a solid foundation for sustained success in the future.
-          .
-          .</p>
+            .
+            .</p>
           <button className="mt-2 md:mt-5 p-3 px-5 bg-white text-black font-bold text-sm hover:bg-purple-800 rounded-lg">Read
             More</button>
         </div>
@@ -140,12 +137,12 @@ const Midsection = () => {
 
       <div className="flex bg-white mt-1">
         <div className='flex-1 mt-10 ml-10'>
-          
+
           <p className="text-black mt-1 text-3xl mr-40">We’ve partnered with the best to bring you the latest</p>
 
           <div>
             <button className="bg-white hover:bg-gray-700 border border-white-700 text-black py-3 px-10 rounded mb-5 mt-6">
-             Read about our partners
+              Read about our partners
             </button>
           </div>
         </div>
@@ -157,7 +154,7 @@ const Midsection = () => {
             height={"30"}
             className="relative "
           />
-           <Image
+          <Image
             src="/icn_home_databricks.webp"
             alt="Logo"
             width={"100"}
@@ -166,7 +163,7 @@ const Midsection = () => {
           />
         </div>
         <div className='mr-20 mt-20 ml-1'>
-        <Image
+          <Image
             src="/icn_home_microsoft.webp"
             alt="Logo"
             width={"100"}
@@ -176,7 +173,7 @@ const Midsection = () => {
         </div>
       </div>
 
-      <Imageslider/>
+      <Imageslider />
       <div className="flex bg-gray-100 mb-20">
 
         <div className='flex-1 mt-10 ml-10 mb-40'>
@@ -184,7 +181,7 @@ const Midsection = () => {
 
           <h2 className='text-4xl font-bold text-black mr-20 mt-20'>Harness your complete potential for a future filled with infinite opportunities.
           </h2>
-         
+
           <p className="mt-2 text-black mt-5 text-base mb-5">Experience a gratifying career in an environment that values teamwork and collaboration.
           </p>
           <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a>
@@ -199,8 +196,8 @@ const Midsection = () => {
           />
         </div>
       </div>
-      <Footer/>
-</div>
+      <Footer />
+    </div>
 
 
   )

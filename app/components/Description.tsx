@@ -11,7 +11,7 @@ type Props = {
 
 const Description = ({ activeImage, clickNext, clickPrev }: Props) => {
   return (
-    <div className="gap-y-1 overflow-hidden text-sm leading-6 ">
+    <div className="gap-y-1 overflow-hidden text-xl leading-6 ">
       
       {images.map((elem, idx) => (
         <div
@@ -38,8 +38,8 @@ const Description = ({ activeImage, clickNext, clickPrev }: Props) => {
             }}
             className=""
           >
-            <div className="py-16 text-5xl font-extrabold">{elem.title}</div>
-            <div className="leading-relaxed font-medium text-base tracking-wide italic text-gray-600">
+            <div className="py-16 text-5xl font-extrabold text-white">{elem.title}</div>
+            <div className="leading-relaxed font-bold text-l tracking-wide italic text-white">
               {" "}
               {elem.desc}
             </div>

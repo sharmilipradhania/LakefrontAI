@@ -49,7 +49,7 @@ const Midsection = () => {
         </div>
         <div className='mr-1 mt-20 ml-1'>
           <Image
-            src="/tg.jpg"
+            src="/aiblock.jpeg"
             alt="Logo"
             width={"600"}
             height={"300"}
@@ -61,7 +61,7 @@ const Midsection = () => {
 
       <section className="container mx-auto p-10 md:py-0 px-0 md:p-0 md:px-0">
         <section className="relative px-10 md:p-0 transform duration-500 hover:shadow-2xl cursor-pointer hover:-translate-y-1 ">
-          <Image className=" h-screen w-full object-cover rounded-md" src="/homeimg.jpeg" alt="Random image"
+          <Image className=" h-screen w-full object-cover rounded-md" src="/mblock.avif" alt="Random image"
             width={"600"}
             height={"300"}
           />
@@ -79,31 +79,31 @@ const Midsection = () => {
       </section>
 
       <div className="container mx-auto mt-20 mb-40">
-        <h1 className=" mb-10 ml-5 text-2xl font-bold">Transform your enterprise data into Actionable Insights
+        <h1 className=" mb-10 ml-5 text-4xl font-bold">Transform your enterprise data into Actionable Insights
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-64 ml-4 mr-4">
-          <div className="flex justify-center text-xl border-2 border-gray-300 rounded-xl p-6 text-center bg-gray-100">Strategy and Consulting
+          <div className="flex justify-center text-2xl font-m border-2 border-gray-300 rounded-xl p-6 text-center bg-green-100">Strategy and Consulting
           </div>
-          <div className="flex justify-center text-xl border-2 border-gray-300 rounded-xl p-6 text-center bg-gray-100">Data Management and Engineering
+          <div className="flex justify-center text-2xl font-m border-2 border-gray-300 rounded-xl p-6 text-center bg-orange-100">Data Management and Engineering
           </div>
-          <div className="flex justify-center text-xl border-2 border-gray-300 rounded-xl p-6  text-center bg-gray-100">Drive Innovation with GenAI and ML
+          <div className="flex justify-center text-2xl font-m border-2 border-gray-300 rounded-xl p-6  text-center bg-red-100">Drive Innovation with GenAI and ML
           </div>
-          <div className="flex justify-center text-xl border-2 border-gray-300 rounded-xl p-6 text-center bg-gray-100">Actionable Insights Deployment
+          <div className="flex justify-center text-2xl font-m border-2 border-gray-300 rounded-xl p-6 text-center bg-yellow-100">Actionable Insights Deployment
           </div>
         </div>
       </div>
       <section className="container mx-auto p-10 md:py-0 px-0 md:p-0 md:px-0">
         <section className="relative px-10 md:p-0 transform duration-500 hover:shadow-2xl cursor-pointer hover:-translate-y-1 ">
-          <Image className=" h-screen w-full object-cover rounded-md" src="/boston.jpg" alt="Random image"
+          <Image className=" h-screen w-full object-cover rounded-md" src="/building.jpeg" alt="Random image"
             width={"600"}
             height={"300"}
           />
           <div className="content bg-transparent p-2 pt-8 md:p-12 pb-12 lg:max-w-lg w-full lg:absolute top-48 left-5">
             <div className="flex justify-between font-bold text-sm">
             </div>
-            <h2 className="text-4xl font-bold mt-1 md:mt-1">Augmenting industry best practices with AI and analytics</h2>
-            <p className="my-3 text-justify text-xl font-base text-gray-700 leading-relaxed">Every industry has its specific challenges, and there are no playbooks for many pressing ones. Balancing best practices and fundamental grounds-up thinking is needed to solve these.</p>
-            <button className="mt-2 md:mt-5 p-3 px-5 bg-black text-white font-bold text-sm hover:bg-purple-800">Read
+            <h2 className="text-4xl font-bold text-orange-300 mt-1 md:mt-1">Augmenting industry best practices with AI and analytics</h2>
+            <p className="my-3 text-justify text-xl font-base text-orange-300 leading-relaxed">Every industry has its specific challenges, and there are no playbooks for many pressing ones. Balancing best practices and fundamental grounds-up thinking is needed to solve these.</p>
+            <button className="mt-2 md:mt-5 p-3 px-5 bg-black text-orange-300 font-bold text-sm hover:bg-purple-800">Read
               More</button>
           </div>
         </section>
@@ -126,7 +126,7 @@ const Midsection = () => {
         </div>
         <div className='mr-1 mt-20 ml-1 '>
           <Image
-            src="/tiger-stack.jpg"
+            src="/block.jpeg"
             alt="Logo"
             width={"600"}
             height={"300"}

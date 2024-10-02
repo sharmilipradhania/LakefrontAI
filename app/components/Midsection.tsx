@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-import Imageslider from "./Imageslider"
 import { CSSProperties } from "react";
 import Footer from './Footer';
 const Midsection = () => {
@@ -173,7 +172,7 @@ const Midsection = () => {
         </div>
       </div>
 
-      <Imageslider />
+   
       <div className="flex bg-gray-100 mb-20">
 
         <div className='flex-1 mt-10 ml-10 mb-40'>

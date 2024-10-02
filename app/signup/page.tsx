@@ -8,6 +8,11 @@ import toast from 'react-hot-toast';
 
 
 const SignupPage = () => {
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const router = useRouter();
   const [ disable, setDisable] = useState(true);
   const [user, setUser] = useState({
@@ -19,10 +24,20 @@ const SignupPage = () => {
 
   const submitHandler = async () => {
     try {
-      const res = await axios.post("/api/users/signup", user);
-      router.push("/login");
-      console.log(res);
-      toast.success(res.data.message)
+
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({name, email, password}),
+    });
+    const data = await res.json();
+
+
+
+      // const res = await axios.post("/api/users/signup", user);
+      // router.push("/login");
+      // console.log(res);
+      // toast.success(res.data.message)
     } catch (error: any) {
       console.log(error);
       toast.error(error.response.data.message);

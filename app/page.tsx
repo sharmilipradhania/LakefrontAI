@@ -10,7 +10,6 @@ export default function Home() {
    <main className="block w-auto min-h-screen mx-auto place-items-center overflow: hidden;">
     <Slider/>
     <Midsection/>
- 
    </main>
   );
 }

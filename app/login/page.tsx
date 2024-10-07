@@ -14,7 +14,7 @@ const LoginPage = () => {
   const [disable, setDisable] = useState(true);
   const submitHandler = async() =>{
   try {
-    const res  = await axios.post ("/api/users/login", user)
+    const res  = await axios.post ("api/users", user)
     router.push("/");
     console.log(res);
     toast.success(res.data.message)
@@ -34,9 +34,9 @@ const LoginPage = () => {
     }
   }, [user])
   return (
-    <div className='flex bg-gray-700 min-h-screen justify-center items-center'>
+    <div className='flex bg-[#669bbc] min-h-screen justify-center items-center'>
       <div className='bg-white p-12 rounded-lg shadow-lg'>
-        <h1 className='font-extrabold '>Login</h1>
+        <h1 className='font-extrabold '>LOGIN</h1>
         <div className='flex flex-col my-3'>
           <label>Email</label>
           <input
@@ -53,11 +53,8 @@ const LoginPage = () => {
             onChange={(e) => setUser({ ...user, password: e.target.value })}
             className='border-2 outline-none border-gray-500 rounded-md px-1 py-1' />
         </div>
-        <div className="text-right mt-2">
-            <a href="#" className="text-sm  mt-2 font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">Forgot Password?</a>
-          </div>
         <button onClick={submitHandler}  className={`${disable ? "bg-gray-400 cursor-not-allowed" : "bg-blue-400"} w-full py-1 my-2 rounded-lg text-white`}>Login</button>
-        <p className='mt-3'>Don't have an account? <Link href={"signup"} className='font-bold'>Signup</Link></p>
+        <p className='mt-3'>Don't have an account? <Link href={"signup"} className='font-bold'>SIGNUP</Link></p>
       </div>
 
     </div>

@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/HeroImage.js", "app/components/Imageslider.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/HeroImage.js", "app/components/Imageslider.tsx", "app/pages/index.js", "app/lib/db.js", "app/lib/db.js", "app/pages/login.tsx", "app/lib/db.js", "app/lib/models/user.js", "app/pages/_app.js"],
   "exclude": ["node_modules"]
 }

@@ -8,11 +8,6 @@ import toast from 'react-hot-toast';
 
 
 const SignupPage = () => {
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const router = useRouter();
   const [ disable, setDisable] = useState(true);
   const [user, setUser] = useState({
@@ -24,20 +19,10 @@ const SignupPage = () => {
 
   const submitHandler = async () => {
     try {
-
-      const res = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({name, email, password}),
-    });
-    const data = await res.json();
-
-
-
-      // const res = await axios.post("/api/users/signup", user);
-      // router.push("/login");
-      // console.log(res);
-      // toast.success(res.data.message)
+      const res = await axios.post("/api/users/signup", user);
+      router.push("/login");
+      console.log(res);
+      toast.success(res.data.message)
     } catch (error: any) {
       console.log(error);
       toast.error(error.response.data.message);
@@ -52,9 +37,9 @@ const SignupPage = () => {
     }
   }, [user])
   return (
-    <div className='flex bg-gray-700 min-h-screen justify-center items-center'>
+    <div className='flex bg-[#669bbc] min-h-screen justify-center items-center'>
       <div className='bg-white p-12 rounded-lg shadow-lg'>
-        <h1 className='font-extrabold'>Sign Up</h1>
+        <h1 className='font-extrabold'>SIGN UP</h1>
         <div className='flex flex-col my-3'>
           <label>Username</label>
           <input type="text"
@@ -77,7 +62,7 @@ const SignupPage = () => {
             className='border-2 outline-none border-gray-500 rounded-md px-2 py-1' />
         </div>
         <button onClick={submitHandler}  className={`${disable ? "bg-gray-400 cursor-not-allowed" : "bg-blue-400"} w-full py-1 my-2 rounded-lg text-white`}>Signup</button>
-        <p className='mt-4'>ALready have an account? <Link href={"/components/login"} className='font-bold'>Login</Link></p>
+        <p className='mt-4'>ALready have an account? <Link href={"/login"} className='font-bold'>LOGIN</Link></p>
       </div>
 
     </div>

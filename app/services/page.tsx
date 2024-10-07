@@ -1,14 +1,14 @@
 import React from 'react'
 import Image from 'next/image'
-
+import Footer from '../components/Footer'
 const Services = () => {
   return (
-    <div className="container mx-auto mt-10">
-      <div className=' ml-20 mr-20'>
-        <a href="#" className="pb-4 text-3xl font-serif font-bold hover:text-gray-700 ">STRATEGY AND CONSULTING
-        </a>
+    <div className="container mx-auto mt-5">
+      <div className=' ml-20 mr-20 bg-orange-100 rounded-lg'>
+        <p className="pb-4 text-3xl font-serif font-bold hover:text-gray-700 ml-10 mr-10 p-6 ">STRATEGY AND CONSULTING
+        </p>
 
-        <p className="pb-6 mt-5">At LakeFrontAI, we provide comprehensive Strategy and Consulting services that empower organizations to navigate the complexities of the digital age. Our mission is to align your business objectives with cutting-edge technological solutions, ensuring sustainable growth and a competitive edge in your industry.</p>
+        <p className="ml-9 text-xl font-light p-6">At LakeFrontAI, we provide comprehensive Strategy and Consulting services that empower organizations to navigate the complexities of the digital age. Our mission is to align your business objectives with cutting-edge technological solutions, ensuring sustainable growth and a competitive edge in your industry.</p>
       </div>
 
       <section className="px-2 py-32 bg-white md:px-0">
@@ -52,18 +52,9 @@ const Services = () => {
           </div>
         </div>
       </section>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-64 ml-4 mr-4 mb-10">
-        <div className="flex justify-center text-2xl font-m border-2 border-gray-300 rounded-xl p-6 text-center bg-green-100">Strategy and Consulting
-        </div>
-        <div className="flex justify-center text-2xl font-m border-2 border-gray-300 rounded-xl p-6 text-center bg-orange-100">Data Management and Engineering
-        </div>
-        <div className="flex justify-center text-2xl font-m border-2 border-gray-300 rounded-xl p-6  text-center bg-red-100">Drive Innovation with GenAI and ML
-        </div>
-        <div className="flex justify-center text-2xl font-m border-2 border-gray-300 rounded-xl p-6 text-center bg-yellow-100">Actionable Insights Deployment
-        </div>
-      </div>
-      <div className=' mt-40 ml-20 mr-20 mb-10'>
-        <a href="#" className="pb-4 text-3xl font-serif font-bold hover:text-gray-700 ">Strategic Planning and Roadmapping:
+      
+      <div className=' ml-20 mr-20'>
+        <a href="#" className="mt-40 pb-4 text-3xl font-serif font-bold hover:text-gray-700 ">Strategic Planning and Roadmapping:
         </a>
         <p className="pb-6 mt-5 text-xl font-light">We collaborate closely with your leadership team to develop actionable strategies that address your unique challenges and goals. By conducting thorough market analyses and leveraging insights from data analytics, we help you identify opportunities for innovation and expansion. Our roadmaps are designed to be flexible yet focused, adapting to changing market conditions while keeping your objectives at the forefront.</p>
       </div>
@@ -74,9 +65,39 @@ const Services = () => {
         <p className="pb-6 mt-5 text-xl font-light">Embracing digital transformation is crucial for staying relevant in today’s fast-paced environment. Our experts guide you through this journey by assessing your current technological landscape and recommending tailored solutions. Whether it’s integrating artificial intelligence, machine learning, or advanced data management systems, we ensure that technology becomes a catalyst for your business success</p>
 
       </div>
+      <div className=' mt-10 ml-20 mr-20 mb-10'>
+        <a href="#" className="pb-4 text-3xl font-serif font-bold hover:text-gray-700 ">Technology Assessment and Optimization:
+        </a>
+       
+        <p className="pb-6 mt-5 text-xl font-light">We evaluate your existing IT infrastructure to identify areas for improvement and optimization. Our goal is to enhance efficiency, reduce costs, and improve performance. By recommending the right mix of technologies and platforms, we help you build a robust and scalable foundation that supports your long-term objectives.</p>
 
+      </div>
+      <div className=' mt-10 ml-20 mr-20 mb-10'>
+        <a href="#" className="pb-4 text-3xl font-serif font-bold hover:text-gray-700 ">Organizational Change Management:
+        </a>
+       
+        <p className="pb-6 mt-5 text-xl font-light">Implementing new strategies and technologies often requires cultural and operational shifts. We provide change management services that include training programs, stakeholder engagement, and communication plans. Our approach minimizes disruption and ensures that your team is prepared to adopt new processes and systems effectively.</p>
 
+      </div>
+      <div className=' mt-10 ml-20 mr-20 mb-10'>
+        <a href="#" className="pb-4 text-3xl font-serif font-bold hover:text-gray-700 ">Risk Management and Compliance:
+        </a>
+       
+        <p className="pb-6 mt-5 text-xl font-light">Navigating the regulatory landscape is essential for protecting your business. We offer risk assessment services to identify potential vulnerabilities in your operations. Our consultants develop strategies to mitigate these risks, ensuring compliance with industry standards and legal requirements while safeguarding your assets and reputation.</p>
 
+      </div>
+      <div className=' mt-10 ml-20 mr-20 mb-10'>
+        <a href="#" className="pb-4 text-3xl font-serif font-bold hover:text-gray-700 ">Innovation Workshops and Thought Leadership:
+        </a>
+       
+        <p className="pb-6 mt-5 text-xl font-light">To foster a culture of continuous improvement, we conduct workshops and seminars that encourage innovative thinking. By staying abreast of the latest industry trends and technological advancements, we provide you with insights that can be leveraged for strategic advantage.</p>
+
+      </div>
+      <div className='mt-10 ml-20 mr-20 mb-10'>
+      <p className="pb-6 mt-5 text-2xl font-bold ">By partnering with LakeFrontAI for your Strategy and Consulting needs, you gain access to a wealth of knowledge and expertise dedicated to propelling your organization forward. We help you make informed decisions, implement effective strategies, and ultimately achieve your vision for the future.
+      </p>
+      </div>
+      <Footer/>
     </div>
 
   )

@@ -78,8 +78,8 @@ const Midsection = () => {
         </section>
       </section>
 
-      <div className="container mx-auto mt-20 mb-40">
-        <h1 className=" mb-10 ml-5 text-4xl font-bold">Transform your enterprise data into Actionable Insights
+      <div className="container mx-auto mt-20 mb-80">
+        <h1 className=" mb-5 ml-5 text-4xl font-bold">Transform your enterprise data into Actionable Insights
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-64 ml-4 mr-4">
           <div className="flex justify-center text-2xl font-m border-2 border-gray-300 rounded-xl p-6 text-center bg-green-100">Strategy and Consulting

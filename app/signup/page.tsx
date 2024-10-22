@@ -99,7 +99,7 @@ const SignupPage = () => {
   const submitHandler = async () => {
     validateForm();
     if(!isFormValid){
-      console.log("retturn");
+      console.log("return");
       return;
     }
       
@@ -136,27 +136,27 @@ const SignupPage = () => {
             className='border-2 outline-none border-gray-500 rounded-md px-2 py-1' />
         </div> */}
         <div className='flex flex-col my-4'>
-          <label className='text-xs font-bold'>Email Address</label>
+          <label className='text-xs font-semibold mb-2'>Email address</label>
           <input type="email"
             value={user.email}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
-            className='border-2 outline-blue border-black rounded-md px-2 py-1' />
+            className='border-2 outline-indigo-600 border-gray-200 rounded-md px-2 py-1' />
              <p className='color: blue'>{errmsg.emailerrmsg}</p>
         </div>
         <div className='flex flex-col my-4'>
-          <label className='text-xs font-bold'>Password</label>
+          <label className='text-xs font-semibold mb-2'>Password</label>
           <input type="password"
             value={user.password}
             onChange={(e) => setUser({ ...user, password: e.target.value })}
-            className='border-2 outline-blue border-black rounded-md px-2 py-1' />
+            className='border-2 outline-indigo-600 border-gray-200 rounded-md px-2 py-1' />
             <p className='color: blue'>{errmsg.passerrmsg}</p>
         </div>
         <div className='flex flex-col my-4'>
-          <label className='text-xs font-bold'>Confirm Password</label>
+          <label className='text-xs font-semibold mb-2'>Confirm Password</label>
           <input type="password"
             value={user.confirmpassword}
             onChange={(e) => setUser({ ...user, confirmpassword: e.target.value })}
-            className='border-2 outline-blue border-black rounded-md px-2 py-1' /> 
+            className='border-2 outline-indigo-600 border-gray-200 rounded-md px-2 py-1' /> 
             <p className='color: blue'>{errmsg.confirmpasserrmsg}</p>
         </div>
        

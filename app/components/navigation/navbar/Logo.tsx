@@ -42,7 +42,7 @@ const Logo = () => {
           alt="Logo"
           width={width < 1024 ? "40" : "40"}
           height={width < 200 ? "15" : "14"}
-          className="relative "
+          className="relative bg-blue"
         />
       
       </Link>

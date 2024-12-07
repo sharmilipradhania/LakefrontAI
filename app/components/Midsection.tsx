@@ -3,6 +3,8 @@ import React from 'react'
 
 import { CSSProperties } from "react";
 import Footer from './Footer';
+import NewsLetterSection from './NewsLetterSection';
+
 const Midsection = () => {
   return (
     // animation section
@@ -135,67 +137,7 @@ const Midsection = () => {
         </div>
       </div>
 
-      <div className="flex bg-white mt-1">
-        <div className='flex-1 mt-10 ml-10'>
-
-          <p className="text-black mt-1 text-3xl mr-40">We’ve partnered with the best to bring you the latest</p>
-
-          <div>
-            <button className="bg-white hover:bg-gray-700 border border-white-700 text-black py-3 px-10 rounded mb-5 mt-6">
-              Read about our partners
-            </button>
-          </div>
-        </div>
-        <div className='mr-1 mt-20 ml-1'>
-          <Image
-            src="/icn_home_aws.webp"
-            alt="Logo"
-            width={"60"}
-            height={"30"}
-            className="relative "
-          />
-          <Image
-            src="/icn_home_databricks.webp"
-            alt="Logo"
-            width={"100"}
-            height={"50"}
-            className="relative "
-          />
-        </div>
-        <div className='mr-20 mt-20 ml-1'>
-          <Image
-            src="/icn_home_microsoft.webp"
-            alt="Logo"
-            width={"100"}
-            height={"90"}
-            className="relative "
-          />
-        </div>
-      </div>
-
-   
-      <div className="flex bg-gray-100 mb-20">
-
-        <div className='flex-1 mt-10 ml-10 mb-40'>
-
-
-          <h2 className='text-4xl font-bold text-black mr-20 mt-20'>Harness your complete potential for a future filled with infinite opportunities.
-          </h2>
-
-          <p className="mt-2 text-black mt-5 text-base mb-5">Experience a gratifying career in an environment that values teamwork and collaboration.
-          </p>
-          <a href="#" className="text-black bold border-b-2 border-black hover:text-teal-900 mt-10">Know more...</a>
-        </div>
-        <div className='mr-1 mt-20 ml-1 '>
-          <Image
-            src="/why_joinus.webp"
-            alt="Logo"
-            width={"400"}
-            height={"200"}
-            className="relative "
-          />
-        </div>
-      </div>
+      <NewsLetterSection />
       <Footer />
     </div>
 

@@ -49,9 +49,7 @@ const Slider = () => {
             />
 
             <Description
-        activeImage={activeImage}
-        clickNext={clickNext}
-        clickPrev={clickPrev}
+
           />
           </div>
         ))}

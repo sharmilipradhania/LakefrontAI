@@ -4,12 +4,12 @@ import Link from "next/link";
 const Button = () => {
     return (
       <> 
-        <a href="/contacts" className="inline-block text-sm px-4 py-2 leading-none border rounded-xl text-black border-gray-100 hover:border-transparent  hover:bg-blue-400 mt-4 lg:mt-3">
-          Contact Us
+        <a href="/login" className="rounded-full bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          Log in
         </a>
 
-        <a href="/login" className="inline-block text-sm px-4 py-2 leading-none  rounded-xl text-black  hover:border-transparent hover:bg-blue-400 mt-4 lg:mt-3 rounded-lg">
-          Log in
+        <a href="/signup" className="rounded-full bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          Get Started
         </a>
       </>
     )

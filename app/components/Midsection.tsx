@@ -7,6 +7,7 @@ import NewsLetterSection from './NewsLetterSection';
 import Testimonial from './Testimonial';
 import Services from './Services';
 import FeatureSection from './FeatureSection';
+import Description from './Description';
 
 const Midsection = () => {
   return (
@@ -26,7 +27,7 @@ const Midsection = () => {
       </ul>
 
       {/* ,,,,,, */}
-
+      <Description />
       <FeatureSection />
       <Services />
 

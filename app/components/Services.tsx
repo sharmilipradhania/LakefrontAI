@@ -4,10 +4,10 @@ import React from 'react'
 
 const Services = () => {
   const cards: { id: number; title: string; bgColor: string }[] = [
-    { id: 1, title: 'Strategic Advisory and Data Solutions', bgColor: 'bg-green-50' },
-    { id: 2, title: 'Data Engineering and Business Intelligence', bgColor: 'bg-orange-50' },
-    { id: 3, title: 'Fuel the Future: Transform Ideas into Reality with GenAI and Machine Learning', bgColor: 'bg-red-50' },
-    { id: 4, title: 'Actionable Intelligence to Drive Business Growth', bgColor: 'bg-yellow-50' },
+    { id: 1, title: 'Strategic Advisory and Data Solutions', bgColor: 'bg-purple-50' },
+    { id: 2, title: 'Data Engineering and Business Intelligence', bgColor: 'bg-purple-100' },
+    { id: 3, title: 'Fuel the Future: Transform Ideas into Reality with GenAI and Machine Learning', bgColor: 'bg-purple-250' },
+    { id: 4, title: 'Actionable Intelligence to Drive Business Growth', bgColor: 'bg-purple-300' },
   ];
 
   return (

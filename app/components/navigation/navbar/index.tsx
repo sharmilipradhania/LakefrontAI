@@ -50,7 +50,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                     <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r-0 lg:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
                       <div className="flex items-center">
 
-                        <h3 className="font-bold text-l text-black text-bold mb-2">Data Management and Engineering
+                        <h3 className="font-bold text-l text-black text-bold mb-2">Data Engineering and Data Management
                         </h3>
                       </div>
                       <div className="flex items-center py-3">
@@ -63,7 +63,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                     <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-b-0 sm:border-r md:border-b-0 pb-6 pt-6 lg:pt-3">
                       <div className="flex items-center">
 
-                        <h3 className="font-bold text-l text-black text-bold mb-2">Drive Innovation with GenAI and ML
+                        <h3 className="font-bold text-l text-black text-bold mb-2">Drive Innovation with GenAI and Machine learning
                         </h3>
                       </div>
 
@@ -80,7 +80,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                     <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 pb-6 pt-6 lg:pt-3">
                       <div className="flex items-center">
 
-                        <h3 className="font-bold text-l text-black text-bold mb-2">Actionable Insights Deployment
+                        <h3 className="font-bold text-l text-black text-bold mb-2">Actionable Insights
                         </h3>
                       </div>
 

@@ -35,13 +35,6 @@ const SignupPage = () => {
   const validateForm = () => {
       let errors = {};
       setIsFormValid(true);
-    //   if (!user.firstname) {
-    //       errors = 'Fisrt Name is required.';
-    //   }
-    //   if (!user.lastname) {
-    //     errors = ' Last Name is required.';
-    // }
-    // console.log(user.email + "   -------");
       if (!user.email) {
         setIsFormValid(false);
         errors = 'Email is required.';
@@ -68,21 +61,6 @@ const SignupPage = () => {
       }  else {
         setErrmsg({emailerrmsg:"",passerrmsg:"", confirmpasserrmsg:""});
       }
-//       if (!user.country) {
-//         errors = 'country is required.';
-//       } 
-//      if (!user.state) {
-//       errors = 'State is required.';
-//      }
-//   if (!user.city) {
-//     errors = 'city name  is required.';
-// }
-// if (!user.street) {
-//   errors = 'street is required.';
-// }
-// if (!user.zip) {
-//   errors = 'zipcode is required.';
-// }
    
 
       setErrors(errors);
@@ -117,90 +95,93 @@ const SignupPage = () => {
   }
   
   return (
-    <div className='flex bg-gray-100 min-h-screen justify-center items-center'>
-      <div className='bg-white p-12 rounded-lg shadow-lg'>
-        <h1 className='font-extrabold text-3xl text-center mb-4'>Create a free account</h1>
-        <h1 className='font-extrabold text-xl text-center'>SIGN UP</h1>
-        {/* <div className='flex flex-col my-3'>
-          <label>firstname</label>
-          <input type="text"
-            value={user.firstname}
-            onChange={(e) => setUser({ ...user, firstname: e.target.value })}
-            className='border-2 outline-none border-gray-500 rounded-md px-2 py-1' />
-        </div> */}
-        {/* <div className='flex flex-col my-3'>
-          <label>lastname</label>
-          <input type="text"
-            value={user.lastname}
-            onChange={(e) => setUser({ ...user, lastname: e.target.value })}
-            className='border-2 outline-none border-gray-500 rounded-md px-2 py-1' />
-        </div> */}
-        <div className='flex flex-col my-4'>
-          <label className='text-xs font-semibold mb-2'>Email address</label>
-          <input type="email"
-            value={user.email}
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
-            className='border-2 outline-indigo-600 border-gray-200 rounded-md px-2 py-1' />
-             <p className='color: blue'>{errmsg.emailerrmsg}</p>
-        </div>
-        <div className='flex flex-col my-4'>
-          <label className='text-xs font-semibold mb-2'>Password</label>
-          <input type="password"
-            value={user.password}
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-            className='border-2 outline-indigo-600 border-gray-200 rounded-md px-2 py-1' />
-            <p className='color: blue'>{errmsg.passerrmsg}</p>
-        </div>
-        <div className='flex flex-col my-4'>
-          <label className='text-xs font-semibold mb-2'>Confirm Password</label>
-          <input type="password"
-            value={user.confirmpassword}
-            onChange={(e) => setUser({ ...user, confirmpassword: e.target.value })}
-            className='border-2 outline-indigo-600 border-gray-200 rounded-md px-2 py-1' /> 
-            <p className='color: blue'>{errmsg.confirmpasserrmsg}</p>
-        </div>
-       
-        {/* <div className='flex flex-col my-3'>
-          <label>country</label>
-          <input type="text"
-            value={user.country}
-            onChange={(e) => setUser({ ...user, country: e.target.value })}
-            className='border-2 outline-none border-gray-500 rounded-md px-2 py-1' />
-        </div>
-        <div className='flex flex-col my-3'>
-          <label>State</label>
-          <input type="text"
-            value={user.state}
-            onChange={(e) => setUser({ ...user, state: e.target.value })}
-            className='border-2 outline-none border-gray-500 rounded-md px-2 py-1' />
-        </div>
-        <div className='flex flex-col my-3'>
-          <label>City</label>
-          <input type="text"
-            value={user.city}
-            onChange={(e) => setUser({ ...user, city: e.target.value })}
-            className='border-2 outline-none border-gray-500 rounded-md px-2 py-1' />
-        </div>
-        <div className='flex flex-col my-3'>
-          <label>Street</label>
-          <input type="text"
-            value={user.street}
-            onChange={(e) => setUser({ ...user, street: e.target.value })}
-            className='border-2 outline-none border-gray-500 rounded-md px-2 py-1' />
-        </div>
-        <div className='flex flex-col my-3'>
-          <label>Zip</label>
-          <input type="text"
-            value={user.zip}
-            onChange={(e) => setUser({ ...user, zip: e.target.value })}
-            className='border-2 outline-none border-gray-500 rounded-md px-2 py-1' />
-        </div> */}
-        <button onClick={submitHandler}  className={`${disable ? "bg-blue-700 cursor-not-allowed" : "bg-blue-700"} w-full py-1 my-2 rounded-lg text-white mt-4`}>Signup</button>
-        <p className='mt-4 text-blue'>Already have an account? <Link href={"/login"} className='font-bold'>LOGIN</Link></p>  
+    <>
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img
+            alt="Your Company"
+            src="/logo.png"
+          className="mx-auto h-10 w-auto"
+        />
+        <h2 className="mt-2 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
+          Sign in to your account
+        </h2>
       </div>
-    
-           
+
+      <div className="mt-1 sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-gray-50 px-6 py-6 shadow sm:rounded-lg sm:px-12">
+          <form action="#" method="POST" className="space-y-6">
+            <div>
+              <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
+                Email address
+              </label>
+              <div className="mt-2">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  value={user.email}
+                  onChange={(e) => setUser({ ...user, email: e.target.value })}
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                />
+                <p className='block text-sm/6 font-medium text-gray-900'>{errmsg.emailerrmsg}</p>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between">
+                <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
+                  Password
+                </label>
+              </div>
+              <div className="mt-2">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  value={user.password}
+                  onChange={(e) => setUser({ ...user, password: e.target.value })}
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                />
+                <p className='block text-sm/6 font-medium text-gray-900'>{errmsg.passerrmsg}</p>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between">
+                <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
+                  Confirm Password
+                </label>
+              </div>
+              <div className="mt-2">
+                <input
+                  id="confirmpassword"
+                  name="confirmpassword"
+                  type="password"
+                  required
+                  value={user.confirmpassword}
+                  onChange={(e) => setUser({ ...user, confirmpassword: e.target.value })}
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                />
+                <p className='block text-sm/6 font-medium text-gray-900'>{errmsg.passerrmsg}</p>
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Sign up
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </>
   )
 }
 

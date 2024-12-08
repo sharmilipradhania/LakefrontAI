@@ -1,6 +1,5 @@
 "use client"; 
 import React from "react";
-import { useRouter } from "next/navigation";
 const lakefrontaiServices = [
     "Document Summarization",
     "Data",
@@ -10,16 +9,6 @@ const lakefrontaiServices = [
   ];
 
 const Outline = () => {
-    const router = useRouter();
-    const handleClick = (service: string) => {
-        console.log(`You clicked on ${service}`);
-        // You can perform actions like navigation or API calls here
-        const formattedService = service.replace(/\s+/g, "-").toLowerCase();
-        // Navigate to the dynamic route
-        router.push(`/dashboard/services/${formattedService}`);
-
-        };
-
         
   return (
     <main className="py-10">
@@ -36,7 +25,6 @@ const Outline = () => {
             {lakefrontaiServices.map((service, index) => (
                 <button
                     key={index}
-                    onClick={() => handleClick(service)}
                     className="p-4 w-full border border-gray-200 rounded-lg shadow-md bg-purple-100 text-gray-800 font-medium text-center hover:bg-blue-50 hover:text-grey transition duration-300"
                 >
                     {service}

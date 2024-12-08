@@ -307,7 +307,7 @@ export default function page() {
             </div>
           </div>
 
-          <Outline />
+          hello
         </div>
       </div>
     </>

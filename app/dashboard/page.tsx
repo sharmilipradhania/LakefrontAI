@@ -1,17 +1,3 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 'use client'
 
 import { useState } from 'react'
@@ -38,30 +24,30 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import Outline from '../product/Outline'
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
+  { name: 'Products', href: '#', icon: UsersIcon, current: false },
   { name: 'Projects', href: '#', icon: FolderIcon, current: false },
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ]
-const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+const Activity = [
+  { id: 1, name: 'Recent Work', href: '#', initial: 'H', current: false },
+
 ]
 const userNavigation = [
   { name: 'Your profile', href: '#' },
   { name: 'Sign out', href: '#' },
 ]
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+function classNames(...classes: (string | boolean | null | undefined)[]): string {
+  return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function page() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -90,14 +76,18 @@ export default function Example() {
                 <div className="absolute left-full top-0 flex w-16 justify-center pt-5 duration-300 ease-in-out data-[closed]:opacity-0">
                   <button type="button" onClick={() => setSidebarOpen(false)} className="-m-2.5 p-2.5">
                     <span className="sr-only">Close sidebar</span>
-                    <XMarkIcon aria-hidden="true" className="h-6 w-6 text-white" />
+                    <XMarkIcon aria-hidden="true" className="size-6 text-white" />
                   </button>
                 </div>
               </TransitionChild>
               {/* Sidebar component, swap this element with another sidebar if you like */}
-              <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray px-6 pb-4">
+              <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
                 <div className="flex h-16 shrink-0 items-center">
-                 
+                  <img
+                    alt="Your Company"
+                    src="https://tailwindui.com/plus/img/logos/mark.svg?color=white"
+                    className="h-8 w-auto"
+                  />
                 </div>
                 <nav className="flex flex-1 flex-col">
                   <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -109,16 +99,16 @@ export default function Example() {
                               href={item.href}
                               className={classNames(
                                 item.current
-                                  ? 'bg-white text-black'
-                                  : 'text-blacl hover:bg-white hover:text-black',
-                                'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
+                                  ? 'bg-indigo-700 text-white'
+                                  : 'text-indigo-200 hover:bg-indigo-700 hover:text-white',
+                                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                               )}
                             >
                               <item.icon
                                 aria-hidden="true"
                                 className={classNames(
-                                  item.current ? 'text-white' : 'text-black group-hover:text-black',
-                                  'h-6 w-6 shrink-0',
+                                  item.current ? 'text-white' : 'text-indigo-200 group-hover:text-white',
+                                  'size-6 shrink-0',
                                 )}
                               />
                               {item.name}
@@ -128,23 +118,23 @@ export default function Example() {
                       </ul>
                     </li>
                     <li>
-                      <div className="text-xs font-semibold leading-6 text-black">Your teams</div>
+                      <div className="text-xs/6 font-semibold text-indigo-200">Your Activity</div>
                       <ul role="list" className="-mx-2 mt-2 space-y-1">
-                        {teams.map((team) => (
-                          <li key={team.name}>
+                        {Activity.map((Activity) => (
+                          <li key={Activity.name}>
                             <a
-                              href={team.href}
+                              href={Activity.href}
                               className={classNames(
-                                team.current
-                                  ? 'bg-gray text-black'
-                                  : 'text-black hover:bg-gray hover:text-black',
-                                'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
+                                Activity.current
+                                  ? 'bg-indigo-700 text-white'
+                                  : 'text-indigo-200 hover:bg-indigo-700 hover:text-white',
+                                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                               )}
                             >
-                              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray bg-gray text-[0.625rem] font-medium text-black">
-                                {team.initial}
+                              <span className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
+                                {Activity.initial}
                               </span>
-                              <span className="truncate">{team.name}</span>
+                              <span className="truncate">{Activity.name}</span>
                             </a>
                           </li>
                         ))}
@@ -153,9 +143,12 @@ export default function Example() {
                     <li className="mt-auto">
                       <a
                         href="#"
-                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-black hover:bg-gray hover:text-black"
+                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-indigo-200 hover:bg-indigo-700 hover:text-white"
                       >
-                      
+                        <Cog6ToothIcon
+                          aria-hidden="true"
+                          className="size-6 shrink-0 text-indigo-200 group-hover:text-white"
+                        />
                         Settings
                       </a>
                     </li>
@@ -169,7 +162,7 @@ export default function Example() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray px-6 pb-4">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
                 alt="Your Company"
@@ -187,16 +180,16 @@ export default function Example() {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? 'bg-gray text-white'
-                              : 'text-black hover:bg-gray hover:text-black',
-                            'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
+                              ? 'bg-indigo-700 text-white'
+                              : 'text-indigo-200 hover:bg-indigo-700 hover:text-white',
+                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                           )}
                         >
                           <item.icon
                             aria-hidden="true"
                             className={classNames(
-                              item.current ? 'text-black' : 'text-black group-hover:text-black',
-                              'h-6 w-6 shrink-0',
+                              item.current ? 'text-white' : 'text-indigo-200 group-hover:text-white',
+                              'size-6 shrink-0',
                             )}
                           />
                           {item.name}
@@ -206,23 +199,23 @@ export default function Example() {
                   </ul>
                 </li>
                 <li>
-                  <div className="text-xs font-semibold leading-6 text-black">Your teams</div>
+                  <div className="text-xs/6 font-semibold text-indigo-200">Your Activities</div>
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
-                    {teams.map((team) => (
-                      <li key={team.name}>
+                    {Activity.map((Activity) => (
+                      <li key={Activity.name}>
                         <a
-                          href={team.href}
+                          href={Activity.href}
                           className={classNames(
-                            team.current
+                            Activity.current
                               ? 'bg-indigo-700 text-white'
                               : 'text-indigo-200 hover:bg-indigo-700 hover:text-white',
-                            'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
+                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                           )}
                         >
-                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
-                            {team.initial}
+                          <span className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
+                            {Activity.initial}
                           </span>
-                          <span className="truncate">{team.name}</span>
+                          <span className="truncate">{Activity.name}</span>
                         </a>
                       </li>
                     ))}
@@ -231,11 +224,11 @@ export default function Example() {
                 <li className="mt-auto">
                   <a
                     href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
+                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-indigo-200 hover:bg-indigo-700 hover:text-white"
                   >
                     <Cog6ToothIcon
                       aria-hidden="true"
-                      className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
+                      className="size-6 shrink-0 text-indigo-200 group-hover:text-white"
                     />
                     Settings
                   </a>
@@ -249,33 +242,30 @@ export default function Example() {
           <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button type="button" onClick={() => setSidebarOpen(true)} className="-m-2.5 p-2.5 text-gray-700 lg:hidden">
               <span className="sr-only">Open sidebar</span>
-              <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+              <Bars3Icon aria-hidden="true" className="size-6" />
             </button>
 
             {/* Separator */}
-            <div aria-hidden="true" className="h-3 w-px bg-gray-900/5 lg:hidden" />
+            <div aria-hidden="true" className="h-6 w-px bg-gray-900/10 lg:hidden" />
 
             <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-              <form action="#" method="GET" className="relative flex flex-1">
-                <label htmlFor="search-field" className="sr-only">
-                  Search
-                </label>
-                <MagnifyingGlassIcon
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
-                />
+              <form action="#" method="GET" className="grid flex-1 grid-cols-1">
                 <input
-                  id="search-field"
                   name="search"
                   type="search"
-                  placeholder="Search..."
-                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+                  placeholder="Search"
+                  aria-label="Search"
+                  className="col-start-1 row-start-1 block size-full bg-white pl-8 text-base text-gray-900 outline-none placeholder:text-gray-400 sm:text-sm/6"
+                />
+                <MagnifyingGlassIcon
+                  aria-hidden="true"
+                  className="pointer-events-none col-start-1 row-start-1 size-5 self-center text-gray-400"
                 />
               </form>
               <div className="flex items-center gap-x-4 lg:gap-x-6">
                 <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
                   <span className="sr-only">View notifications</span>
-                  <BellIcon aria-hidden="true" className="h-6 w-6" />
+                  <BellIcon aria-hidden="true" className="size-6" />
                 </button>
 
                 {/* Separator */}
@@ -285,12 +275,16 @@ export default function Example() {
                 <Menu as="div" className="relative">
                   <MenuButton className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
-                    
+                    <img
+                      alt=""
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      className="size-8 rounded-full bg-gray-50"
+                    />
                     <span className="hidden lg:flex lg:items-center">
-                      <span aria-hidden="true" className="ml-4 text-sm font-semibold leading-6 text-gray-900">
+                      <span aria-hidden="true" className="ml-4 text-sm/6 font-semibold text-gray-900">
                         Tom Cook
                       </span>
-                      <ChevronDownIcon aria-hidden="true" className="ml-2 h-5 w-5 text-gray-400" />
+                      <ChevronDownIcon aria-hidden="true" className="ml-2 size-5 text-gray-400" />
                     </span>
                   </MenuButton>
                   <MenuItems
@@ -301,7 +295,7 @@ export default function Example() {
                       <MenuItem key={item.name}>
                         <a
                           href={item.href}
-                          className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50"
+                          className="block px-3 py-1 text-sm/6 text-gray-900 data-[focus]:bg-gray-50 data-[focus]:outline-none"
                         >
                           {item.name}
                         </a>
@@ -313,9 +307,7 @@ export default function Example() {
             </div>
           </div>
 
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
-          </main>
+          <Outline />
         </div>
       </div>
     </>

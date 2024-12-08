@@ -1,5 +1,7 @@
-
+"use client"
 import React from "react";
+import { useRouter } from "next/navigation";
+
 
 const lakefrontaiServices = [
   "Data",
@@ -9,16 +11,23 @@ const lakefrontaiServices = [
 ];
 
 export default function Outline() {
-
+  const router = useRouter();
   const handleClick = (service: string) => {
     console.log(`You clicked on ${service}`);
+
+    const formattedService = service.replace(/\s+/g, "-").toLowerCase();
+    router.push(`/datacatelog`);
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-10">
       <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center text-indigo-600 mb-8">
-          AWS Services
+        <h1
+                className="text-4xl sm:text-5xl font-extrabold text-center text-transparent 
+                            bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 
+                            drop-shadow-md tracking-wide mb-8"
+                >
+                Lake Front <span className="text-purple-500">AI</span>
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

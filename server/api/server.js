@@ -2,17 +2,25 @@ const mysql = require('mysql2');
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const cors = require('cors');
 
 const connection = mysql.createConnection({
 	host     : 'localhost',
     port     : '3306',
 	user     : 'root',
-	password : '12345678',
+	password : 'A#kash1987',
 	database : 'LakefrontAIDB'
+});
+connection.connect((err) => {
+    if (err) {
+        console.error('Error connecting to MySQL:', err.message);
+    } else {
+        console.log('Connected to MySQL successfully!');
+    }
 });
 
 const app = express();
-
+app.use(cors());
 app.use(session({
 	secret: 'secret',
 	resave: true,
@@ -43,8 +51,8 @@ app.get('/', function (request, res) {
       message: 'New user was added to the list ',
     });
   });
-// http://localhost:3000/auth
-app.post('/auth1', (request, response)=> {
+
+app.post('/auth', (request, response)=> {
 	// Capture the input fields
 	let username = request.body.username;
 	let password = request.body.password;
@@ -52,7 +60,7 @@ app.post('/auth1', (request, response)=> {
 	// Ensure the input fields exists and are not empty
 	if (username && password) {
 		// Execute SQL query that'll select the account from the database based on the specified username and password
-		connection.query('SELECT * FROM users WHERE name = ? AND password = ?', [username, password], function(error, results, fields) {
+		connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [username, password], function(error, results, fields) {
 			// If there is an issue with the query, output the error
 			if (error) {
                 console.log(error);
@@ -60,13 +68,12 @@ app.post('/auth1', (request, response)=> {
 			// If the account exists
 			if (results.length > 0) {
 				// Authenticate the user
+				console.log("Authetication successful");
 				request.session.loggedin = true;
 				request.session.username = username;
-				// Redirect to home page
-				//response.redirect('/home');
-				response.json({ result: 'sucess',msg: 'Login successfullly' });
+				return response.status(200).json({ result: 'success', msg: 'Login successfully' });
 			} else {
-                response.json({ result: 'error',msg: 'Incorrect Username and/or Password!' });
+                return response.status(500).json({ result: 'error',msg: 'Incorrect Username and/or Password!' });
 				
 			}			
 			
@@ -78,47 +85,30 @@ app.post('/auth1', (request, response)=> {
 });
 
 app.post('/register', (request, response)=> {
-	// Capture the input fields
-	//let firstname = request.body.firstname;
-//	let lastname = request.body.lastname;
+
 	let email = request.body.email;
 	let password = request.body.password;
-	// let country = request.body.country;
-	// let state = request.body.state;
-	// let city = request.body.city;
-	// let street = request.body.street;
-	// let zip = request.body.zip;
-	console.log("---tttt----");
-	console.log(password);
-	if ( password && password ) {
-		connection.query('INSERT INTO `users` ( `first_name`, `last_name`, `email`,`country`, `state`, `city`,`street`, `zip_code`, `password`) VALUES (?, ?, ?,?, ?, ?,?,?,?)', [firstname,lastname,email,country,state,city,street,zip , password], function(error, results, fields) {
-			if (error) {
-                console.log(error);
-                throw error;}
-			// If the account exists
-			if (results.length > 0) {
-				// Authenticate the user
-				// request.session.loggedin = true;
-				// request.session.username = username;
-				// // Redirect to home page
-				console.log("surcsss");
-				//response.redirect('/home');
-				response.json({ result: 'sucess',msg: 'Register successfullly' });
-			} else {
-                response.json({ result: 'error',msg: 'Some error while register' });
-				
-			}	
 
+    console.log("Register request received with:", email, password);
 
-		});
-	} else {
-		response.send('Please enter All required field');
-		response.end();
-	}
-	//INSERT INTO `users` ( `first_name`, `last_name`, `email`,`country`, `state`, `city`,`street`, `zip_code`, `password`) VALUES ('jitu', 'jitutest', 'test@test.com','IND', 'UK', 'Doon','stree1', '232323', 'test!12@');
+    // Validate input fields
+    if (!email || !password) {
+        return response.status(400).json({ result: 'error', msg: 'Please provide email and password' });
+    }
 
-    console.log(email);
+    // Insert into database
+    const query = 'INSERT INTO `users` (`email`, `password`) VALUES (?, ?)';
+    connection.query(query, [email, password], (error, results) => {
+        if (error) {
+            console.error("Database error:", error.message);
+            return response.status(500).json({ result: 'error', msg: 'Error while registering user' });
+        }
+        // Registration successful
+        console.log("User registered successfully");
+        return response.status(200).json({ result: 'success', msg: 'Registered successfully' });
+    });
 });
+
 // http://localhost:3000/home
 app.get('/home', function(request, response) {
 	// If the user is loggedin
@@ -132,4 +122,6 @@ app.get('/home', function(request, response) {
 	response.end();
 });
 
-app.listen(3000);
+app.listen(4000, () => {
+	console.log('Server is running on http://localhost:4000');
+  });

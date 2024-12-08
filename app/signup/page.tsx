@@ -4,8 +4,11 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import {useRouter} from 'next/navigation';
-import toast from 'react-hot-toast';
 
+
+function sleep(ms:any) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 const SignupPage = () => {
   const router = useRouter();
@@ -66,32 +69,37 @@ const SignupPage = () => {
       setErrors(errors);
       setIsFormValid(Object.keys(errors).length === 0);
   };
-  useEffect(() => {
-    if (user.firstname.length >0 && user.email.length > 0 && user.password.length > 0) {
-      setDisable(false);
-    }
-    else {
-      setDisable(true);
-    }
-  }, [user])
-  const submitHandler = async () => {
+  const submitHandler = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent default form submission
     validateForm();
     if(!isFormValid){
       console.log("return");
       return;
     }
-      
-
+    const data = {
+      email: user.email,
+      password: user.password
+    };
+    console.log(data);
     try {
-      const res = await axios.post("http://localhost:3000/register", user);
-      router.push("/login");
-      console.log(res);
-      toast.success(res.data.message)
-    } catch (error: any) {
-      console.log(error);
-      toast.error(error.response.data.message);
-    }
-    
+      const res = await axios.post("http://localhost:4000/register", data, {
+        headers: {
+            "Content-Type": "application/json" // Explicitly set content type
+        }
+        });
+      console.log(res)
+      // Check the server response
+      if (res.data.result === "success") {
+          console.log("Registration Successful:", res.data.msg);
+          router.push("/login");
+          // Perform further actions like redirecting or showing a success message
+      } else {
+          console.log("Registration Failed:", res.data.msg);
+          // Handle failure, such as showing an error notification
+      }
+  } catch (error: any) {
+      console.error("Error during registration:", error.response ? error.response.data : error.message);
+  }
   }
   
   return (
@@ -172,6 +180,7 @@ const SignupPage = () => {
             <div>
               <button
                 type="submit"
+                onClick={submitHandler}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign up

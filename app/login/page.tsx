@@ -13,10 +13,7 @@ const LoginPage = () => {
   })
   const [errors, setErrors] = useState({});
   const [apiResponse, setApiResponse] = useState();
-  const data = {
-    username: user.email,
-    password: user.password
-  }
+ 
   const response = {
     msg: "checking.."
   }
@@ -53,27 +50,32 @@ const LoginPage = () => {
     setErrors(errors);
       setIsFormValid(Object.keys(errors).length === 0);
   }
-    const submitHandler = async () => {
-      validateForm();
-      if(!isFormValid){
-        console.log("return");
-        return;
+    const submitHandler = async (e: React.FormEvent) => {
+      e.preventDefault();
+      const data = {
+        username: user.email,
+        password: user.password
       }
       try {
-        console.log(data.username);
-        const res = await axios.post("http://localhost:3000/auth", data)
-        if (res.data.result == "sucess") {
+        console.log("Sending username:", data.username);
+  
+        const res = await axios.post("http://localhost:4000/auth", data, {
+          headers: {
+            "Content-Type": "application/json", // Explicitly set content type
+          },
+        });
+  
+        console.log("Server Response:", res.data);
+  
+        if (res.data.result === "success") { 
+          console.log("Authentication successful. Redirecting...");
           router.push("/dashboard");
         } else {
           setApiResponse(res.data.msg);
-          console.log(res.data.msg);
-          console.log(apiResponse + "  ----");
+          console.log("Error:", res.data.msg);
         }
-        //  return response; 
-
       } catch (error: any) {
-        console.log(error);
-
+        console.error("An error occurred:", error.response?.data || error.message);
       }
 
 

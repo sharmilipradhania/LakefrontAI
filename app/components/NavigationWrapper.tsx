@@ -7,7 +7,7 @@ export default function NavigationWrapper() {
   const pathname = usePathname();
 
   // Define routes where the Navbar should be hidden
-  const hiddenNavbarRoutes = ["/dashboard"];
+  const hiddenNavbarRoutes = ["/dashboard",'/datacatelog'];
 
   // Conditionally render the Navbar
   if (hiddenNavbarRoutes.includes(pathname)) {

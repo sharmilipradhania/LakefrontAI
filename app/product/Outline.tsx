@@ -16,7 +16,7 @@ const Outline = () => {
         // You can perform actions like navigation or API calls here
         const formattedService = service.replace(/\s+/g, "-").toLowerCase();
         // Navigate to the dynamic route
-        router.push(`/dashboard/services/${formattedService}`);
+//        router.push(`/dashboard/services/${formattedService}`);
 
         };
   return (

@@ -55,13 +55,7 @@ db.connect((err) => {
   }
 });
 
-// OpenAI Configuration
-const OPENAI_API_KEY =  dbConfig.OPENAI_API_KEY;
 
-console.log("OpenAI API Key:", OPENAI_API_KEY);
-const openai = new OpenAI({
-  apiKey: OPENAI_API_KEY, // Make sure OPENAI_API_KEY exists in .env
-});
 
 
 // Unified Response Format
@@ -103,7 +97,14 @@ app.post("/register", async (req, res) => {
 // OpenAI Integration: Prompt Endpoint
 app.post("/openai", async (req, res) => {
   const { prompt } = req.body;
+  // OpenAI Configuration
+  const OPENAI_API_KEY =  dbConfig.OPENAI_API_KEY;
 
+  console.log("OpenAI API Key:", OPENAI_API_KEY);
+  const openai = new OpenAI({
+    apiKey: OPENAI_API_KEY, // Make sure OPENAI_API_KEY exists in .env
+  });
+  
   if (!prompt) {
     return sendResponse(res, 400, "error", "Prompt is required");
   }

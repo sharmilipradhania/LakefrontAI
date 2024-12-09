@@ -34,6 +34,17 @@ export default function ChatWindow() {
   const [keyValue, setKeyValue] = useState("");
   const [secrets, setSecrets] = useState<Secret[]>([]);
 
+  const [selectedModels, setSelectedModels] = useState<string[]>([]);
+
+  // Handle checkbox toggle
+  const handleCheckboxChange = (model: string) => {
+    setSelectedModels((prev) =>
+      prev.includes(model)
+        ? prev.filter((item) => item !== model) // Uncheck model
+        : [...prev, model] // Check model
+    );
+  };
+
   // Add Secret Key-Value Pair
   const handleAddSecret = () => {
     if (keyName.trim() && keyValue.trim()) {
@@ -76,41 +87,90 @@ export default function ChatWindow() {
         } bg-gray-50 border-r border-gray-300 h-full transition-all duration-300 flex flex-col shadow`}
       >
         {/* Toggle Button */}
-        <button
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="p-3 hover:bg-gray-200 transition text-center"
+
+      {/* Toggle Sidebar Button */}
+      <button
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        className="p-3 hover:bg-gray-200 transition text-center"
+      >
+        <ChevronDoubleRightIcon
+          className={`h-5 w-5 mx-auto transform ${
+            isSidebarOpen ? "" : "rotate-180"
+          } transition-transform`}
+        />
+      </button>
+
+      {/* Navigation Links */}
+      <ul className="mt-4 space-y-1">
+        <li className="flex items-center p-3 hover:bg-gray-200 cursor-pointer">
+          <HomeIcon className="h-5 w-5" />
+          {isSidebarOpen && <span className="ml-3">Home</span>}
+        </li>
+
+        <li
+          onClick={() => setShowSecretInput(!showSecretInput)}
+          className="flex items-center p-3 hover:bg-gray-200 cursor-pointer"
         >
-          <ChevronDoubleRightIcon
-            className={`h-5 w-5 mx-auto transform ${
-              isSidebarOpen ? "" : "rotate-180"
-            } transition-transform`}
-          />
-        </button>
+          <KeyIcon className="h-5 w-5" />
+          {isSidebarOpen && <span className="ml-3">Secrets</span>}
+        </li>
 
-        {/* Navigation Links */}
-        <ul className="mt-4 space-y-1">
-          <li className="flex items-center p-3 hover:bg-gray-200 cursor-pointer">
-            <HomeIcon className="h-5 w-5" />
-            {isSidebarOpen && <span className="ml-3">Home</span>}
-          </li>
-          <li
-            onClick={() => setShowSecretInput(!showSecretInput)}
-            className="flex items-center p-3 hover:bg-gray-200 cursor-pointer"
-          >
-            <KeyIcon className="h-5 w-5" />
-            {isSidebarOpen && <span className="ml-3">Secrets</span>}
-          </li>
-          <li className="flex items-center p-3 hover:bg-gray-200 cursor-pointer">
-            <ChatBubbleLeftIcon className="h-5 w-5" />
-            {isSidebarOpen && <span className="ml-3">Chat History</span>}
-          </li>
-          <li className="flex items-center p-3 hover:bg-gray-200 cursor-pointer">
-            <Cog6ToothIcon className="h-5 w-5" />
-            {isSidebarOpen && <span className="ml-3">Settings</span>}
-          </li>
-        </ul>
+        <li className="flex items-center p-3 hover:bg-gray-200 cursor-pointer">
+          <ChatBubbleLeftIcon className="h-5 w-5" />
+          {isSidebarOpen && <span className="ml-3">Chat History</span>}
+        </li>
+
+        <li className="p-3 hover:bg-gray-200">
+          {/* Top Section: Icon and Title on One Line */}
+          <div className="flex items-center justify-start space-x-2">
+            <Cog6ToothIcon className="h-5 w-5 text-gray-600" />
+            {isSidebarOpen && (
+              <h3 className="text-sm font-semibold text-gray-700">Select LLM Models</h3>
+            )}
+          </div>
+
+          {/* Bottom Section: Checkboxes */}
+          {isSidebarOpen && (
+            <div className="mt-2 space-y-1 ml-7">
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={selectedModels.includes("OpenAI")}
+                  onChange={() => handleCheckboxChange("OpenAI")}
+                  className="mr-2"
+                />
+                <span className="text-sm text-gray-600">OpenAI</span>
+              </label>
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={selectedModels.includes("Gemini")}
+                  onChange={() => handleCheckboxChange("Gemini")}
+                  className="mr-2"
+                />
+                <span className="text-sm text-gray-600">Gemini</span>
+              </label>
+            </div>
+          )}
+        </li>
+      </ul>
+
+        {/* Display Selected Models */}
+        <div className="p-4 mt-auto border-t border-gray-200">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">
+            Selected Models:
+          </h3>
+          {selectedModels.length > 0 ? (
+            <ul className="list-disc list-inside text-gray-600">
+              {selectedModels.map((model, index) => (
+                <li key={index}>{model}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-500 text-sm italic">No models selected</p>
+          )}
+        </div>
       </div>
-
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
@@ -191,7 +251,7 @@ export default function ChatWindow() {
 
       {/* Display Saved Secrets */}
       {isSidebarOpen && secrets.length > 0 && (
-        <div className="absolute bottom-10 left-10 bg-white border p-4 rounded-lg shadow-lg w-64">
+        <div className="absolute bottom-36 left-0 bg-white border p-4 rounded-lg shadow-lg w-64">
           <h3 className="text-sm font-semibold mb-2">Saved Secrets</h3>
           <ul className="space-y-2">
             {secrets.map((secret, index) => (

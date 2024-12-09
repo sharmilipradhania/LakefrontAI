@@ -1,56 +1,130 @@
-const mysql = require('mysql2');
-const express = require('express');
-const session = require('express-session');
-const path = require('path');
-const cors = require('cors');
+const express = require("express");
+const mysql = require("mysql2");
+const session = require("express-session");
+const bcrypt = require("bcrypt");
+const path = require("path");
+const cors = require("cors");
+const chalk = require("chalk");
+const fs = require("fs");
+const ini = require("ini");
+const { OpenAI } = require("openai");
+require("dotenv").config();
 
-const connection = mysql.createConnection({
-	host     : 'localhost',
-    port     : '3306',
-	user     : 'root',
-	password : 'A#kash1987',
-	database : 'LakefrontAIDB'
-});
-connection.connect((err) => {
-    if (err) {
-        console.error('Error connecting to MySQL:', err.message);
-    } else {
-        console.log('Connected to MySQL successfully!');
-    }
-});
+// Load environment variables
 
 const app = express();
+const PORT = 4000;
+
+// Middleware
 app.use(cors());
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'static')));
 
-// http://localhost:3000/
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+// Load Database Configuration from config.ini
+const configPath = path.resolve(__dirname, "config.ini"); // Dynamically resolve the file path
+if (!fs.existsSync(configPath)) {
+  console.error(chalk.red(`❌ Configuration file not found at: ${configPath}`));
+  process.exit(1);
+}
+
+const config = ini.parse(fs.readFileSync(configPath, "utf-8"));
+const dbConfig = config.database;
+
+// MySQL Connection
+const db = mysql.createConnection({
+  host: dbConfig.host,
+  port: dbConfig.port,
+  user: dbConfig.user,
+  password: dbConfig.password,
+  database: dbConfig.database,
+});
+
+db.connect((err) => {
+  if (err) {
+    console.error(chalk.red("❌ Database connection failed:"), err.message);
+  } else {
+    console.log(chalk.green("✅ Connected to MySQL successfully!"));
+  }
+});
+
+// OpenAI Configuration
+const OPENAI_API_KEY =  dbConfig.OPENAI_API_KEY;
+
+console.log("OpenAI API Key:", OPENAI_API_KEY);
+const openai = new OpenAI({
+  apiKey: OPENAI_API_KEY, // Make sure OPENAI_API_KEY exists in .env
+});
 
 
-app.get('/', function (request, res) {
-    let username = request.query.username;
-	//let password = request.body.password;
-    res.send('Hello World! '+username);
-  });
+// Unified Response Format
+const sendResponse = (res, status, result, msg, data = null) => {
+  return res.status(status).json({ result, msg, data });
+};
 
 
-  app.post('/userslist', (req, res) => {
-    var json = req.body;
-    // const obj = JSON.parse(json);
-    console.log(json.username);
-    // Save the data of user that was sent by the client
-  
-    // Send a response to client that will show that the request was successfull.
-    res.send({
-      message: 'New user was added to the list ',
+// Routes
+app.get("/", (req, res) => {
+  const username = req.query.username || "Guest";
+  res.send(`Hello World! Welcome, ${username}`);
+});
+
+// Example Registration Endpoint
+app.post("/register", async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return sendResponse(res, 400, "error", "Please provide email and password");
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const query = "INSERT INTO `users` (`email`, `password`) VALUES (?, ?)";
+    db.query(query, [email, hashedPassword], (err) => {
+      if (err) {
+        console.error(chalk.red("❌ Registration error:"), err.message);
+        return sendResponse(res, 500, "error", "Error while registering user");
+      }
+      console.log(chalk.green("✅ User registered successfully"));
+      return sendResponse(res, 201, "success", "Registered successfully");
     });
-  });
+  } catch (err) {
+    console.error(chalk.red("❌ Error:"), err.message);
+    return sendResponse(res, 500, "error", "Internal server error");
+  }
+});
+
+// OpenAI Integration: Prompt Endpoint
+app.post("/openai", async (req, res) => {
+  const { prompt } = req.body;
+
+  if (!prompt) {
+    return sendResponse(res, 400, "error", "Prompt is required");
+  }
+
+  try {
+    // Send request to OpenAI API
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo", // Specify the model
+      messages: [{ role: "user", content: prompt }],
+      max_tokens: 150,
+    });
+
+    const reply = response.choices[0]?.message?.content || "No response";
+    console.log(chalk.blue("🔹 OpenAI Response:"), reply);
+
+    return sendResponse(res, 200, "success", "Prompt processed successfully", { reply });
+  } catch (error) {
+    console.error(chalk.red("❌ OpenAI API Error:"), error.message);
+    return sendResponse(res, 500, "error", "Error processing OpenAI prompt");
+  }
+});
 
 app.post('/auth', (request, response)=> {
 	// Capture the input fields
@@ -60,7 +134,7 @@ app.post('/auth', (request, response)=> {
 	// Ensure the input fields exists and are not empty
 	if (username && password) {
 		// Execute SQL query that'll select the account from the database based on the specified username and password
-		connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [username, password], function(error, results, fields) {
+		db.query('SELECT * FROM users WHERE email = ? AND password = ?', [username, password], function(error, results, fields) {
 			// If there is an issue with the query, output the error
 			if (error) {
                 console.log(error);
@@ -84,44 +158,7 @@ app.post('/auth', (request, response)=> {
 	}
 });
 
-app.post('/register', (request, response)=> {
-
-	let email = request.body.email;
-	let password = request.body.password;
-
-    console.log("Register request received with:", email, password);
-
-    // Validate input fields
-    if (!email || !password) {
-        return response.status(400).json({ result: 'error', msg: 'Please provide email and password' });
-    }
-
-    // Insert into database
-    const query = 'INSERT INTO `users` (`email`, `password`) VALUES (?, ?)';
-    connection.query(query, [email, password], (error, results) => {
-        if (error) {
-            console.error("Database error:", error.message);
-            return response.status(500).json({ result: 'error', msg: 'Error while registering user' });
-        }
-        // Registration successful
-        console.log("User registered successfully");
-        return response.status(200).json({ result: 'success', msg: 'Registered successfully' });
-    });
+// Start the Server
+app.listen(PORT, () => {
+  console.log(chalk.cyan(`🚀 Server running on http://localhost:${PORT}`));
 });
-
-// http://localhost:3000/home
-app.get('/home', function(request, response) {
-	// If the user is loggedin
-	if (request.session.loggedin) {
-		// Output username
-		response.send('Welcome back, ' + request.session.username + '!');
-	} else {
-		// Not logged in
-		response.send('Please login to view this page!');
-	}
-	response.end();
-});
-
-app.listen(4000, () => {
-	console.log('Server is running on http://localhost:4000');
-  });

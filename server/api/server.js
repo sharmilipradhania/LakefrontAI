@@ -104,7 +104,7 @@ app.post("/openai", async (req, res) => {
   const openai = new OpenAI({
     apiKey: OPENAI_API_KEY, // Make sure OPENAI_API_KEY exists in .env
   });
-  
+
   if (!prompt) {
     return sendResponse(res, 400, "error", "Prompt is required");
   }
@@ -127,36 +127,62 @@ app.post("/openai", async (req, res) => {
   }
 });
 
-app.post('/auth', (request, response)=> {
-	// Capture the input fields
-	let username = request.body.username;
-	let password = request.body.password;
-    console.log(username);
-	// Ensure the input fields exists and are not empty
-	if (username && password) {
-		// Execute SQL query that'll select the account from the database based on the specified username and password
-		db.query('SELECT * FROM users WHERE email = ? AND password = ?', [username, password], function(error, results, fields) {
-			// If there is an issue with the query, output the error
-			if (error) {
-                console.log(error);
-                throw error;}
-			// If the account exists
-			if (results.length > 0) {
-				// Authenticate the user
-				console.log("Authetication successful");
-				request.session.loggedin = true;
-				request.session.username = username;
-				return response.status(200).json({ result: 'success', msg: 'Login successfully' });
-			} else {
-                return response.status(500).json({ result: 'error',msg: 'Incorrect Username and/or Password!' });
-				
-			}			
-			
-		});
-	} else {
-		response.send('Please enter Username and Password!');
-		response.end();
-	}
+app.post("/auth", (request, response) => {
+  const { username, password } = request.body;
+
+  console.log("Username:", username);
+
+  // Ensure the input fields exist and are not empty
+  if (!username || !password) {
+    return response
+      .status(400)
+      .json({ result: "error", msg: "Please enter Username and Password!" });
+  }
+
+  // Fetch the user from the database
+  const query = "SELECT * FROM users WHERE email = ?";
+  db.query(query, [username], async (error, results) => {
+    if (error) {
+      console.error("❌ Database error:", error.message);
+      return response
+        .status(500)
+        .json({ result: "error", msg: "Internal server error" });
+    }
+
+    // Check if the user exists
+    if (results.length === 0) {
+      return response
+        .status(401)
+        .json({ result: "error", msg: "Incorrect Username and/or Password!" });
+    }
+
+    const user = results[0]; // Retrieved user details
+    const storedHashedPassword = user.password;
+
+    try {
+      // Compare entered password with stored hashed password
+      const isMatch = await bcrypt.compare(password, storedHashedPassword);
+
+      if (isMatch) {
+        console.log("✅ Authentication successful");
+        request.session.loggedin = true;
+        request.session.username = username;
+
+        return response
+          .status(200)
+          .json({ result: "success", msg: "Login successfully" });
+      } else {
+        return response
+          .status(401)
+          .json({ result: "error", msg: "Incorrect Username and/or Password!" });
+      }
+    } catch (compareError) {
+      console.error("❌ Error during password comparison:", compareError.message);
+      return response
+        .status(500)
+        .json({ result: "error", msg: "Internal server error" });
+    }
+  });
 });
 
 // Start the Server

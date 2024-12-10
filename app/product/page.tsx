@@ -10,7 +10,7 @@ const lakefrontaiServices = [
   "Any any Question",
 ];
 
-export default function Outline() {
+export default function productPage() {
   const router = useRouter();
   const handleClick = (service: string) => {
     console.log(`You clicked on ${service}`);

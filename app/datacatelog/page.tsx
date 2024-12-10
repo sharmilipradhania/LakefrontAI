@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 import {
   HomeIcon,
   ChatBubbleLeftIcon,
@@ -58,24 +59,69 @@ export default function ChatWindow() {
     }
   };
 
-  const handleSendMessage = () => {
-    if (!input.trim()) return;
+  const [isLoading, setIsLoading] = useState(false);
 
-    const newMessage: Message = {
+  const handleSendMessage = async () => {
+    if (!input.trim()) return;
+  
+    // Add the user's message to the chat
+    const userMessage: Message = {
       id: messages.length + 1,
       text: input,
       sender: "user",
     };
-
-    setMessages([...messages, newMessage]);
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+  
+    // Reset the input field
     setInput("");
-
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { id: prev.length + 1, text: "I'm a bot, and I'll respond soon!", sender: "bot" },
-      ]);
-    }, 1000);
+  
+    // Show a loading indicator
+    setIsLoading(true);
+  
+    const promptData = { prompt: input };
+  
+    try {
+      // Send the message to the backend server
+      const response = await axios.post("http://127.0.0.1:4000/openai", promptData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      console.log("Full Response:", response.data);
+      console.log("Full Response data:", response.data.data);
+      // Ensure response is JSON and extract the reply
+      const botResponseJ = JSON.stringify(response.data);
+      const parsedResponse = JSON.parse(botResponseJ);
+      console.log(' parsedResponse.reply',  parsedResponse.data.reply)
+  
+      const reply = parsedResponse.data.reply || "No response received.";
+  
+      // Add the bot's response to the chat
+      const botMessage: Message = {
+        id: messages.length + 2,
+        text: reply,
+        sender: "bot",
+      };
+  
+      setMessages((prevMessages) => {
+        const updatedMessages = [...prevMessages, botMessage];
+        console.log("Updated Messages State:", updatedMessages);
+        return updatedMessages;
+      });
+    } catch (error) {
+      console.error("Error:", error);
+  
+      // Fallback error message
+      const errorMessage: Message = {
+        id: messages.length + 2,
+        text: "Sorry, something went wrong. Please try again later.",
+        sender: "bot",
+      };
+      setMessages((prevMessages) => [...prevMessages, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -172,55 +218,60 @@ export default function ChatWindow() {
         </div>
       </div>
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-500 to-blue-600 shadow-md px-6 py-4 border-b-2 border-indigo-700 flex items-center justify-between rounded-b-lg">
-          <h1 className="text-2xl font-extrabold text-white tracking-wide">
-            Gen AI - Ask me anything you need
-          </h1>
-          <span className="text-sm text-indigo-200 italic">Empowering Conversations</span>
-        </div>
-
-        {/* Chat Messages */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
-          {messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`flex ${
-                msg.sender === "user" ? "justify-end" : "justify-start"
-              }`}
-            >
-              <div
-                className={`p-3 rounded-md border ${
-                  msg.sender === "user"
-                    ? "bg-blue-100 text-blue-900 border-blue-300"
-                    : "bg-gray-100 text-gray-700 border-gray-300"
-                } shadow-sm`}
-              >
-                {msg.text}
-              </div>
+          <div className="flex-1 flex flex-col">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-indigo-500 to-blue-600 shadow-md px-6 py-4 border-b-2 border-indigo-700 flex items-center justify-between rounded-b-lg">
+              <h1 className="text-2xl font-extrabold text-white tracking-wide">
+                Gen AI - Ask me anything you need
+              </h1>
+              <span className="text-sm text-indigo-200 italic">Empowering Conversations</span>
             </div>
-          ))}
-        </div>
 
-        {/* Input Box */}
-        <div className="p-4 border-t bg-gray-50 flex items-center">
-          <input
-            type="text"
-            placeholder="Type a message..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="flex-1 border border-gray-300 p-2 rounded-l-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-          />
-          <button
-            onClick={handleSendMessage}
-            className="bg-blue-500 text-white px-6 py-2 rounded-r-md hover:bg-blue-600 transition"
-          >
-            Send
-          </button>
-        </div>
-      </div>
+            {/* Chat Messages */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
+              {messages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`flex ${
+                    msg.sender === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`p-3 rounded-md border ${
+                      msg.sender === "user"
+                        ? "bg-blue-100 text-blue-900 border-blue-300"
+                        : "bg-gray-100 text-gray-700 border-gray-300"
+                    } shadow-sm`}
+                  >
+                    {msg.text}
+                  </div>
+                </div>
+              ))}
+
+              {/* Loading Indicator */}
+              {isLoading && (
+                <div className="text-gray-500 text-sm text-center">Processing...</div>
+              )}
+            </div>
+
+            {/* Input Box */}
+            <div className="p-4 border-t bg-gray-50 flex items-center">
+              <input
+                type="text"
+                placeholder="Type a message..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                className="flex-1 border border-gray-300 p-2 rounded-l-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+              />
+              <button
+                onClick={handleSendMessage}
+                className="bg-blue-500 text-white px-6 py-2 rounded-r-md hover:bg-blue-600 transition"
+              >
+                Send
+              </button>
+            </div>
+          </div>
 
       {/* Secrets Popup */}
       {showSecretInput && (

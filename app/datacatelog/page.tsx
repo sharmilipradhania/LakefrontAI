@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import axios from "axios";
 import {
   HomeIcon,
@@ -30,6 +30,7 @@ export default function ChatWindow() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [showSecretInput, setShowSecretInput] = useState(false);
   const [showSecrets, setShowSecrets] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const [keyName, setKeyName] = useState("");
   const [keyValue, setKeyValue] = useState("");
@@ -46,6 +47,12 @@ export default function ChatWindow() {
     );
   };
 
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+    
   // Add Secret Key-Value Pair
   const handleAddSecret = () => {
     if (keyName.trim() && keyValue.trim()) {
@@ -226,7 +233,7 @@ export default function ChatWindow() {
               </h1>
               <span className="text-sm text-indigo-200 italic">Empowering Conversations</span>
             </div>
-
+          <div className="flex-1 overflow-y-auto p-6 bg-white flex flex-col-reverse">
             {/* Chat Messages */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
               {messages.map((msg) => (
@@ -253,7 +260,9 @@ export default function ChatWindow() {
                 <div className="text-gray-500 text-sm text-center">Processing...</div>
               )}
             </div>
-
+      {/* Scroll to Bottom Ref */}
+      <div ref={messagesEndRef} />
+    </div>
             {/* Input Box */}
             <div className="p-4 border-t bg-gray-50 flex items-center">
               <input

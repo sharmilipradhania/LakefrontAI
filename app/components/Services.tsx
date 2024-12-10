@@ -3,11 +3,32 @@ import React from 'react'
 
 
 const Services = () => {
-  const cards: { id: number; title: string; bgColor: string }[] = [
-    { id: 1, title: 'Strategic Advisory and Data Solutions', bgColor: 'bg-purple-50' },
-    { id: 2, title: 'Data Engineering and Business Intelligence', bgColor: 'bg-purple-100' },
-    { id: 3, title: 'Fuel the Future: Transform Ideas into Reality with GenAI and Machine Learning', bgColor: 'bg-purple-250' },
-    { id: 4, title: 'Actionable Intelligence to Drive Business Growth', bgColor: 'bg-purple-300' },
+  const cards: { id: number; title: string; bgColor: string; href: string }[] = [
+    {
+      id: 1,
+      title: "Strategic Advisory and Data Solutions",
+      bgColor: "bg-purple-50",
+      href: "/strategic-advisory",
+    },
+    {
+      id: 2,
+      title: "Data Engineering and Business Intelligence",
+      bgColor: "bg-purple-100",
+      href: "/data-engineering", 
+    },
+    {
+      id: 3,
+      title:
+        "Fuel the Future: Transform Ideas into Reality with GenAI and Machine Learning",
+      bgColor: "bg-purple-200",
+      href: "/genai-ml", 
+    },
+    {
+      id: 4,
+      title: "Actionable Intelligence to Drive Business Growth",
+      bgColor: "bg-purple-300",
+      href: "/actionable-intelligence", 
+    },
   ];
 
   return (

@@ -30,7 +30,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
             <ul className="hidden md:flex box gap-x-6 text-black">
               {/* !--Hoverable Link-- */}
               <li className="hoverable hover:bg-gray-100 hover:text-black">
-                <a href="#" className="relative block  lg:p-3 lg:text-1xl  hover:bg-gray-100 hover:text-red-900">Services</a>
+                <a href="/services/services" className="relative block  lg:p-3 lg:text-1xl  hover:bg-gray-100 hover:text-red-900">Services</a>
                 <div className="p-9 mega-menu mb-20 sm:mb-0 shadow-xxl bg-gray-100">
                   <div className="container mx-auto w-full flex flex-wrap justify-between mx-2">
                   <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r-0 lg:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
@@ -97,7 +97,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
               </li>
               {/* <!--Hoverable Link--> */}
               <li className="hoverable hover:bg-gray-100 hover:text-white">
-                <a href="#" className="relative block  lg:p-3 lg:text-1xl  hover:bg-gray-100 hover:text-red-900">Product</a>
+                <a href="/product" className="relative block  lg:p-3 lg:text-1xl  hover:bg-gray-100 hover:text-red-900">Product</a>
                 <div className="p-6 mega-menu mb-16 sm:mb-0 shadow-xl bg-gray-100">
                   <div className="container mx-auto w-full flex flex-wrap justify-between mx-2">
                   </div>
@@ -105,7 +105,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
               </li>
               {/* second */}
               <li className="hoverable hover:bg-gray-100 hover:text-white">
-                <a href="#" className="relative block  lg:p-3 lg:text-1xl hover:bg-gray-100 hover:text-red-900">Blog</a>
+                <a href="/blog" className="relative block  lg:p-3 lg:text-1xl hover:bg-gray-100 hover:text-red-900">Blog</a>
                 <div className="p-6 mega-menu mb-16 sm:mb-0 shadow-xl bg-gray-100">
                   <div className="container mx-auto w-full flex flex-wrap justify-between mx-2"> 
                   </div>
@@ -113,7 +113,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
               </li>
               {/* third */}
               <li className="hoverable hover:bg-gray-100 hover:text-white">
-                <a href="/blog" className="relative block  lg:p-3 lg:text-1xl hover:bg-gray-100 hover:text-red-900">About Us</a>
+                <a href="/aboutus" className="relative block  lg:p-3 lg:text-1xl hover:bg-gray-100 hover:text-red-900">About Us</a>
                
               </li>
               {/* forth */}

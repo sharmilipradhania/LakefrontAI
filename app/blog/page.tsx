@@ -1,125 +1,71 @@
-import React from 'react'
-import Image from 'next/image'
-function blog() {
+const posts = [
+  {
+    id: 1,
+    title: 'Boost your conversion rate',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel iusto corrupti dicta laboris incididunt.',
+    date: 'Mar 16, 2020',
+    datetime: '2020-03-16',
+    category: { title: 'Marketing', href: '#' },
+    author: {
+      name: 'Michael Foster',
+      role: 'Co-Founder / CTO',
+      href: '#',
+      imageUrl:
+        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  // More posts...
+]
+
+export default function blog() {
   return (
-
-    <div className="bg-white px-6 pb-20 pt-16 lg:px-8 lg:pb-28 lg:pt-24">
-      <div className="relative mx-auto max-w-lg divide-y-2 divide-gray-200 lg:max-w-7xl">
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"># Streamlining Data Migration Using Airflow, dbt, AWS, and Snowflake
-          </h2>
-          <p className="mt-3 text-xl text-gray-500 sm:mt-4">Data migration is a critical process for organizations looking to modernize their data infrastructure, consolidate databases, or transition to cloud-based solutions. Leveraging the power of tools like Apache Airflow, dbt (data build tool), AWS, and Snowflake can make this process efficient, scalable, and reliable. In this blog post, we'll explore how to use these technologies together to perform seamless data migration.
-          </p>
-
-          <h2 className="text-xl font-bold tracking-tight text-gray-900 mt-9 sm:text-2xl">Content
-          </h2>
-          <ul className=' ml-4 mt-4 text-xl font-medium'>
-            <li className="list-decimal" ></li>
-            <li className="list-decimal"> </li>
-            <li className="list-decimal">.</li>
-            <li className="list-decimal">
-            </li>
-            <li className="list-decimal" ></li>
-            <li className="list-decimal"> </li>
-            <li className="list-decimal"></li>
-            <li className="list-decimal">
-            </li>
-            <li></li>
-          </ul><br></br>
-          <a href="/blog/blogdata" className="inline-block text-sm px-4 py-2 leading-none  rounded-xl text-black  hover:border-transparent hover:bg-blue-400 mt-4 lg:mt-3 rounded-lg">Read Blog</a>
-        </div>
-        <div className="mt-12 grid gap-16 pt-12 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-12">
-          <div>
-            <div>
-              <a href="#" className="inline-block">
-                <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-0.5 text-sm font-medium text-indigo-800">Article</span>
-              </a>
-            </div>
-            <a href="#" className="mt-4 block">
-              <p className="text-xl font-semibold text-gray-900">Boost your conversion rate</p>
-              <p className="mt-3 text-base text-gray-500">Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor lacus arcu.</p>
-            </a>
-            <div className="mt-6 flex items-center">
-              <div className="flex-shrink-0">
-                <a href="#">
-                  <span className="sr-only">Paul York</span>
-                </a>
-              </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-900">
-                  <a href="#">Paul York</a>
-                </p>
-                <div className="flex space-x-1 text-sm text-gray-500">
-                  <time dateTime="2020-03-16">Mar 16, 2020</time>
-                  <span aria-hidden="true">&middot;</span>
-                  <span>6 min read</span>
+    <div className="bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">From the blog</h2>
+          <p className="mt-2 text-lg/8 text-gray-600">Learn how to grow your business with our expert advice.</p>
+          <div className="mt-10 space-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16">
+            {posts.map((post) => (
+              <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
+                <div className="flex items-center gap-x-4 text-xs">
+                  <time dateTime={post.datetime} className="text-gray-500">
+                    {post.date}
+                  </time>
+                  <a
+                    href={post.category.href}
+                    className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+                  >
+                    {post.category.title}
+                  </a>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div>
-              <a href="#" className="inline-block">
-                <span className="inline-flex items-center rounded-full bg-pink-100 px-3 py-0.5 text-sm font-medium text-pink-800">Video</span>
-              </a>
-            </div>
-            <a href="#" className="mt-4 block">
-              <p className="text-xl font-semibold text-gray-900">How to use search engine optimization to drive sales</p>
-              <p className="mt-3 text-base text-gray-500">Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor lacus arcu.</p>
-            </a>
-            <div className="mt-6 flex items-center">
-              <div className="flex-shrink-0">
-                <a href="#">
-                  <span className="sr-only">Dessie Ryan</span>
-                </a>
-              </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-900">
-                  <a href="#">Dessie Ryan</a>
-                </p>
-                <div className="flex space-x-1 text-sm text-gray-500">
-                  <time dateTime="2020-03-10">Mar 10, 2020</time>
-                  <span aria-hidden="true">&middot;</span>
-                  <span>4 min read</span>
+                <div className="group relative">
+                  <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                    <a href={post.href}>
+                      <span className="absolute inset-0" />
+                      {post.title}
+                    </a>
+                  </h3>
+                  <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{post.description}</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div>
-              <a href="#" className="inline-block">
-                <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-0.5 text-sm font-medium text-green-800">Case Study</span>
-              </a>
-            </div>
-            <a href="#" className="mt-4 block">
-              <p className="text-xl font-semibold text-gray-900">Improve your customer experience</p>
-              <p className="mt-3 text-base text-gray-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab iure iusto fugiat commodi sequi.</p>
-            </a>
-            <div className="mt-6 flex items-center">
-              <div className="flex-shrink-0">
-                <a href="#">
-                  <span className="sr-only">Easer Collins</span>
-
-                </a>
-              </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-900">
-                  <a href="#">Easer Collins</a>
-                </p>
-                <div className="flex space-x-1 text-sm text-gray-500">
-                  <time dateTime="2020-02-12">Feb 12, 2020</time>
-                  <span aria-hidden="true">&middot;</span>
-                  <span>11 min read</span>
+                <div className="relative mt-8 flex items-center gap-x-4">
+                  <img alt="" src={post.author.imageUrl} className="size-10 rounded-full bg-gray-50" />
+                  <div className="text-sm/6">
+                    <p className="font-semibold text-gray-900">
+                      <a href={post.author.href}>
+                        <span className="absolute inset-0" />
+                        {post.author.name}
+                      </a>
+                    </p>
+                    <p className="text-gray-600">{post.author.role}</p>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </article>
+            ))}
           </div>
         </div>
       </div>
     </div>
-
-
   )
 }
-
-export default blog

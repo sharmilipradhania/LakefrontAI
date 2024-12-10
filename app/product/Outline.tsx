@@ -16,7 +16,7 @@ export default function Outline() {
     console.log(`You clicked on ${service}`);
 
     const formattedService = service.replace(/\s+/g, "-").toLowerCase();
-    router.push(`/datacatelog`);
+    router.push(`/datacatalog`);
   };
 
   return (

@@ -25,8 +25,6 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Outline from '../product/Outline'
-import { useAuth } from "../AuthContext";
-import { useRouter } from "next/navigation";
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -50,15 +48,8 @@ function classNames(...classes: (string | boolean | null | undefined)[]): string
   return classes.filter(Boolean).join(" ");
 }
 
-export default function dashboard() {
+export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { logout } = useAuth();
-  const router = useRouter(); // Use Next.js' useRouter
-
-  const handleLogout = () => {
-    logout();
-    router.push("/login"); // Navigate to login page
-  };
 
   return (
     <>

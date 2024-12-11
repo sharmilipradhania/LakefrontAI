@@ -71,7 +71,11 @@ const SignupPage = () => {
   };
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault(); // Prevent default form submission
-
+    validateForm();
+    if(!isFormValid){
+      console.log("return");
+      return;
+    }
     const data = {
       email: user.email,
       password: user.password

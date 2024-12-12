@@ -1,6 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState } from 'react';
+import { useAuth } from '../AuthContext';
+import { useRouter } from 'next/navigation';
 import {
   Dialog,
   DialogBackdrop,
@@ -41,15 +43,22 @@ const teams = [
 ]
 const userNavigation = [
   { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: 'handleLogout' },
 ]
 
 function classNames(...classes: (string | boolean | null | undefined)[]): string {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+export default function dashboard() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
+  };
 
   return (
     <>
@@ -142,16 +151,15 @@ export default function Example() {
                       </ul>
                     </li>
                     <li className="mt-auto">
-                      <a
-                        href="#"
+                    <button onClick={handleLogout}
                         className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-indigo-200 hover:bg-indigo-700 hover:text-white"
                       >
                         <Cog6ToothIcon
                           aria-hidden="true"
                           className="size-6 shrink-0 text-indigo-200 group-hover:text-white"
                         />
-                        Settings
-                      </a>
+                        Log Out
+                      </button>
                     </li>
                   </ul>
                 </nav>
@@ -223,16 +231,15 @@ export default function Example() {
                   </ul>
                 </li>
                 <li className="mt-auto">
-                  <a
-                    href="#"
+                  <button onClick={handleLogout}
                     className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-indigo-200 hover:bg-indigo-700 hover:text-white"
                   >
                     <Cog6ToothIcon
                       aria-hidden="true"
                       className="size-6 shrink-0 text-indigo-200 group-hover:text-white"
                     />
-                    Settings
-                  </a>
+                    Log Out
+                  </button>
                 </li>
               </ul>
             </nav>

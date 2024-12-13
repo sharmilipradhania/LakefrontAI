@@ -22,8 +22,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // SSL Certificates
-const privateKey = fs.readFileSync("server.key", "utf8");
-const certificate = fs.readFileSync("server.cert", "utf8");
+const privateKey = fs.readFileSync("privkey.pem", "utf8");
+const certificate = fs.readFileSync("fullchain.pem", "utf8");
 const credentials = { key: privateKey, cert: certificate };
 
 app.use(
@@ -193,5 +193,5 @@ app.post("/auth", (request, response) => {
 
 // Start HTTPS server
 https.createServer(credentials, app).listen(PORT, () => {
-  console.log(`HTTPS Server running on https://13.48.249.192:${PORT}`);
+  console.log(`HTTPS Server running on https://172-31-34-150:${PORT}`);
 });

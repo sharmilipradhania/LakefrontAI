@@ -1,3 +1,4 @@
+const https = require('https');
 const express = require("express");
 const mysql = require("mysql2");
 const session = require("express-session");
@@ -19,6 +20,11 @@ const PORT = 4000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// SSL Certificates
+const privateKey = fs.readFileSync("server.key", "utf8");
+const certificate = fs.readFileSync("server.cert", "utf8");
+const credentials = { key: privateKey, cert: certificate };
 
 app.use(
   session({
@@ -185,7 +191,7 @@ app.post("/auth", (request, response) => {
   });
 });
 
-// Start the Server
-app.listen(PORT, () => {
-  console.log(chalk.cyan(`🚀 Server running on http://localhost:${PORT}`));
+// Start HTTPS server
+https.createServer(credentials, app).listen(PORT, () => {
+  console.log(`HTTPS Server running on https://172-31-34-150:${PORT}`);
 });

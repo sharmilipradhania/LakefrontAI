@@ -193,5 +193,5 @@ app.post("/auth", (request, response) => {
 
 // Start HTTPS server
 https.createServer(credentials, app).listen(PORT, () => {
-  console.log(`HTTPS Server running on https://172-31-34-150:${PORT}`);
+  console.log(`HTTPS Server running on https://13.48.249.192:${PORT}`);
 });

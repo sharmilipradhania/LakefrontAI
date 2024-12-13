@@ -22,8 +22,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // SSL Certificates
-const privateKey = fs.readFileSync("privkey.pem", "utf8");
-const certificate = fs.readFileSync("fullchain.pem", "utf8");
+const privateKey = fs.readFileSync("/etc/letsencrypt/live/lakefrontai.com/privkey.pem", "utf8");
+const certificate = fs.readFileSync("/etc/letsencrypt/live/lakefrontai.com/fullchain.pem", "utf8");
 const credentials = { key: privateKey, cert: certificate };
 
 app.use(

@@ -59,7 +59,7 @@ const LoginPage = () => {
       try {
         console.log("Sending username:", data.username);
   
-        const res = await axios.post("http://13.60.236.59:4000/auth", data, {
+        const res = await axios.post("http://localhost:4000/auth", data, {
           headers: {
             "Content-Type": "application/json", // Explicitly set content type
           },

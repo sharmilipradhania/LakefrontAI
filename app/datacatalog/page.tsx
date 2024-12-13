@@ -89,7 +89,7 @@ export default function ChatWindow() {
   
     try {
       // Send the message to the backend server
-      const response = await axios.post("http://172.31.35.166:4000/openai", promptData, {
+      const response = await axios.post("http://localhost:4000/openai", promptData, {
         headers: {
           "Content-Type": "application/json",
         },

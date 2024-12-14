@@ -10,6 +10,8 @@ const fs = require("fs");
 const ini = require("ini");
 const { OpenAI } = require("openai");
 require("dotenv").config();
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 // Load environment variables
 
@@ -20,6 +22,7 @@ const PORT = 4000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // SSL Certificates
 const privateKey = fs.readFileSync("/etc/letsencrypt/live/lakefrontai.com/privkey.pem", "utf8");
@@ -52,6 +55,28 @@ const db = mysql.createConnection({
   password: dbConfig.password,
   database: dbConfig.database,
 });
+
+
+// JWT TOKEN 
+
+const JWT_SECRET = dbConfig.JWT_SECRET || "jwt-secret-key";
+
+// jwt middleware configuration for protected routes
+
+const verifyJWT = (req, res, next) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return sendResponse(res, 401, "error", "Invalid JWT token. Access is denied");
+  }
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return sendResponse(res,403, "error", "Invalid or expired JWT token. Access is denied");
+  }
+};
 
 db.connect((err) => {
   if (err) {
@@ -173,10 +198,19 @@ app.post("/auth", (request, response) => {
         console.log("✅ Authentication successful");
         request.session.loggedin = true;
         request.session.username = username;
+        // token signature
+        const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+          expiresIn: "1h",
+        });
+
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+        });
 
         return response
           .status(200)
-          .json({ result: "success", msg: "Login successfully" });
+          .json({ result: "success", msg: "Login successfully", token:token });
       } else {
         return response
           .status(401)
@@ -189,6 +223,19 @@ app.post("/auth", (request, response) => {
         .json({ result: "error", msg: "Internal server error" });
     }
   });
+});
+
+// Protected Route Example
+app.get("/protected", verifyJWT, (req, res) => {
+  return sendResponse(res, 200, "success", "You accessed a protected route!", {
+    user: req.user,
+  });
+});
+
+// Logout Route - Clear Cookie
+app.post("/logout", (req, res) => {
+  res.clearCookie("token");
+  return sendResponse(res, 200, "success", "Logged out successfully");
 });
 
 // Start HTTPS server

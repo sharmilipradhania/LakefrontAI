@@ -19,16 +19,7 @@ const PORT = 4000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 
-// SSL Certificates
-const privateKey = fs.readFileSync("/etc/letsencrypt/live/lakefrontai.com/privkey.pem","utf8");
-const certificate = fs.readFileSync("/etc/letsencrypt/live/lakefrontai.com/fullchain.pem","utf8"
-);
-const credentials = { key: privateKey, cert: certificate };
-
-// JWT Secret
-const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_key";
 
 // MySQL Connection
 const configPath = path.resolve(__dirname, "config.ini");
@@ -37,7 +28,26 @@ if (!fs.existsSync(configPath)) {
   process.exit(1);
 }
 const config = ini.parse(fs.readFileSync(configPath, "utf-8"));
-const dbConfig = config.database;
+
+// Production  environments
+
+ const dbConfig = config.database;
+ const privatekey = dbConfig.privatekey;
+ const certi = dbConfig.certificate;
+// deveopment environment variables
+//const dbConfig = config.development;
+//const privatekey = dbConfig.privatekey;
+//const certi = dbConfig.certificate;
+
+
+// SSL Certificates
+const privateKey = fs.readFileSync(privatekey,"utf8");
+const certificate = fs.readFileSync(certi,"utf8");
+const credentials = { key: privateKey, cert: certificate };
+
+
+
+
 
 const db = mysql.createConnection({
   host: dbConfig.host,
@@ -83,7 +93,7 @@ app.get("/", (req, res) => {
 });
 
 // User Login Route - Generate JWT Token
-app.post("/api/login", (req, res) => {
+app.post("/auth", (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {

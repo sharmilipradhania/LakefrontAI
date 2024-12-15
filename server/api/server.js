@@ -121,8 +121,8 @@ app.get("/dashboard", verifyJWT, (req, res) => {
 });
 
 app.get("/datacatalog", verifyJWT, (req, res) => {
-  console.log("inside dashboard");
-  res.status(200).send(`welcome to the dashboard`);
+  console.log("inside datacatalog page");
+  res.status(200).send(`datacatalog`);
 });
 
 app.post("/refresh", (req, res) => {

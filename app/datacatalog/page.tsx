@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef} from "react";
 import axios from "axios";
+import { useRouter } from 'next/navigation';
 import {
   HomeIcon,
   ChatBubbleLeftIcon,
@@ -37,7 +38,8 @@ export default function ChatWindow() {
   const [secrets, setSecrets] = useState<Secret[]>([]);
 
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
-
+  const [data, setData] = useState(null);
+  const router = useRouter();
   // Handle checkbox toggle
   const handleCheckboxChange = (model: string) => {
     setSelectedModels((prev) =>
@@ -52,6 +54,22 @@ export default function ChatWindow() {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get("https://lakefrontai.com:4000/datacatalog", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setData(response.data);
+      }catch (error) {
+        console.log(error);
+        router.push('/login');
+    } 
+    };
+    fetchData();
+  }, []);
     
   // Add Secret Key-Value Pair
   const handleAddSecret = () => {
@@ -132,6 +150,8 @@ export default function ChatWindow() {
   };
 
   return (
+    <>
+    { data ? 
     <div className="flex h-screen bg-gray-100 text-gray-800">
       {/* Sidebar */}
       <div
@@ -333,5 +353,8 @@ export default function ChatWindow() {
         </div>
       )}
     </div>
+      : <p> loading.. </p>
+    }
+  </>
   );
 }

@@ -1,17 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import axios from 'axios';
-import {useRouter} from 'next/navigation';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default function logout() {
+export default function Logout() { // Changed 'logout' to 'Logout'
   const router = useRouter();
 
   useEffect(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
     router.push('/login');
-  }, []);
-  return <p> Logging out...</p>
+  }, [router]); // Added 'router' to dependency array
+
+  return <p>Logging out...</p>;
 }

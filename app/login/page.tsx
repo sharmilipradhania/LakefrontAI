@@ -53,11 +53,11 @@ const LoginPage = () => {
     const submitHandler = async (e: React.FormEvent) => {
       e.preventDefault();
       const data = {
-        username: user.email,
+        email: user.email,
         password: user.password
       }
       try {
-        console.log("Sending username:", data.username, data.password);
+        console.log("Sending username:", data.email, data.password);
         console.log("data:", data);
         const res = await axios.post("https://lakefrontai.com:4000/auth", data, {
           headers: {

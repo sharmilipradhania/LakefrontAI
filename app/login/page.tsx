@@ -57,8 +57,8 @@ const LoginPage = () => {
         password: user.password
       }
       try {
-        console.log("Sending username:", data.username);
-  
+        console.log("Sending username:", data.username, data.password);
+        console.log("data:", data);
         const res = await axios.post("https://lakefrontai.com:4000/auth", data, {
           headers: {
             "Content-Type": "application/json", // Explicitly set content type

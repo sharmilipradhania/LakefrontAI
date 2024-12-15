@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const https = require("https");
 const express = require("express");
 const mysql = require("mysql2");
@@ -11,6 +12,7 @@ const ini = require("ini");
 const { OpenAI } = require("openai");
 require("dotenv").config();
 
+
 // Load environment variables
 const app = express();
 const PORT = 4000;
@@ -20,6 +22,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Token Authentication
+const JWT_SECRET = 'secret';
+const JWT_REFRESH_SECRET = 'refresh secret';
 
 // MySQL Connection
 const configPath = path.resolve(__dirname, "config.ini");
@@ -31,13 +36,13 @@ const config = ini.parse(fs.readFileSync(configPath, "utf-8"));
 
 // Production  environments
 
- const dbConfig = config.database;
- const privatekey = dbConfig.privatekey;
- const certi = dbConfig.certificate;
+// const dbConfig = config.database;
+// const privatekey = dbConfig.privatekey;
+// const certi = dbConfig.certificate;
 // deveopment environment variables
-//const dbConfig = config.development;
-//const privatekey = dbConfig.privatekey;
-//const certi = dbConfig.certificate;
+const dbConfig = config.development;
+const privatekey = dbConfig.privatekey;
+const certi = dbConfig.certificate;
 
 
 // SSL Certificates
@@ -71,9 +76,26 @@ const sendResponse = (res, status, result, msg, data = null) => {
 };
 
 // JWT Middleware for Protected Routes
-const verifyJWT = (req, res, next) => {
-  const token = req.cookies.token;
 
+const extractToken = (req) => {
+  // Get the authorization header safely
+  const authHeader = req.headers?.authorization;
+
+  if (authHeader && authHeader.startsWith("Bearer ")) {
+    // Safely split and extract the token
+    const token = authHeader.split(" ")[1];
+    console.log("Extracted Token:", token);
+    return token;
+  } else {
+    console.error("Authorization header missing or invalid.");
+    return null; // Return null if token is not available
+  }
+};
+
+const verifyJWT = (req, res, next) => {
+  const token = extractToken(req);
+  console.log(req);
+  console.log(token);
   if (!token) {
     return sendResponse(res, 401, "error", "Access denied. No token provided.");
   }
@@ -92,10 +114,41 @@ app.get("/", (req, res) => {
   res.send(`Hello World! Welcome, Guest`);
 });
 
+// verify token 
+app.get("/dashboard", verifyJWT, (req, res) => {
+  console.log("inside dashboard");
+  res.status(200).send(`welcome to the dashboard`);
+});
+
+app.post("/refresh", (req, res) => {
+  const { refreshToken} = req.body;
+
+  if (!refreshToken) { 
+    res.status(401).send("Refresh token is required");
+  }
+  jwt.verify(refreshToken, JWT_REFRESH_SECRET, (err, decoded) => {
+    if (err) { 
+        res.status(403).send("invalid refresh token");
+    }
+    // Extract user data from the decoded refresh token
+    console.log(decoded);
+    const { email } = decoded;
+    console.log( email);
+    if ( !email) {
+      return res.status(403).send("Invalid refresh token payload");
+    }
+    const token = jwt.sign({ email }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    res.json( { token});
+  });
+
+});
+
 // User Login Route - Generate JWT Token
 app.post("/auth", (req, res) => {
   const { email, password } = req.body;
-
+  console.log(email, password);
   if (!email || !password) {
     return sendResponse(res, 400, "error", "Please provide email and password");
   }
@@ -105,25 +158,24 @@ app.post("/auth", (req, res) => {
     if (err) {
       return sendResponse(res, 500, "error", "Database error");
     }
-
+    console.log(results);
     if (results.length === 0) {
       return sendResponse(res, 401, "error", "Invalid credentials");
     }
 
     const user = results[0];
     const isMatch = await bcrypt.compare(password, user.password);
-
+    console.log(user);
     if (isMatch) {
-      const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+      const token = jwt.sign({ email: user.email }, JWT_SECRET, {
         expiresIn: "1h",
       });
 
-      res.cookie("token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+      const refresh_token = jwt.sign({ id: user.id, email: user.email }, JWT_REFRESH_SECRET, {
+        expiresIn: "1d",
       });
 
-      return sendResponse(res, 200, "success", "Login successful", { token });
+      return sendResponse(res, 200, "success", "Login successful", { token, refresh_token });
     } else {
       return sendResponse(res, 401, "error", "Invalid credentials");
     }

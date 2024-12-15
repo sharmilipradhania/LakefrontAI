@@ -1,6 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 import {
   Dialog,
   DialogBackdrop,
@@ -49,7 +51,27 @@ function classNames(...classes: (string | boolean | null | undefined)[]): string
 }
 
 export default function Example() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [data, setData] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get("https://lakefrontai.com:4000/dashboard", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setData(response.data);
+      }catch (error) {
+        console.log(error);
+        router.push('/login');
+    } 
+    };
+    fetchData();
+  }, []);
+
+  
 
   return (
     <>
@@ -61,7 +83,9 @@ export default function Example() {
         <body class="h-full">
         ```
       */}
+      { data ? 
       <div>
+
         <Dialog open={sidebarOpen} onClose={setSidebarOpen} className="relative z-50 lg:hidden">
           <DialogBackdrop
             transition
@@ -313,7 +337,10 @@ export default function Example() {
               <Outline />
           </main>
         </div>
+
       </div>
+      : <p> loading.. </p>
+    }
     </>
   )
 }

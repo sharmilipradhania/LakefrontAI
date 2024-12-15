@@ -69,6 +69,8 @@ const LoginPage = () => {
   
         if (res.data.result === "success") { 
           console.log("Authentication successful. Redirecting...");
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("refreshToken", res.data.refreshToken);
           router.push("/dashboard");
         } else {
           setApiResponse(res.data.msg);

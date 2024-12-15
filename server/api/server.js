@@ -171,11 +171,11 @@ app.post("/auth", (req, res) => {
         expiresIn: "1h",
       });
 
-      const refresh_token = jwt.sign({ id: user.id, email: user.email }, JWT_REFRESH_SECRET, {
+      const refreshToken = jwt.sign({ id: user.id, email: user.email }, JWT_REFRESH_SECRET, {
         expiresIn: "1d",
       });
 
-      return sendResponse(res, 200, "success", "Login successful", { token, refresh_token });
+      return sendResponse(res, 200, "success", "Login successful", { token, refreshToken });
     } else {
       return sendResponse(res, 401, "error", "Invalid credentials");
     }

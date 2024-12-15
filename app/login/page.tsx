@@ -69,14 +69,12 @@ const LoginPage = () => {
   
         if (res.data.result === "success") { 
           console.log("Authentication successful. Redirecting...");
-          console.log("token", res.data.token);
-          console.log("refreshToken", res.data.refreshToken);
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("refreshToken", res.data.refreshToken);
+          const token = res.data.data.token;
+          const refreshToken = res.data.data.refreshToken;
+          localStorage.setItem("token", token);
+          localStorage.setItem("refreshToken", refreshToken);
           const tokenPrint = localStorage.getItem('token');
-          console.log(tokenPrint);
-          console.log(res.data);
-          //          router.push("/dashboard");
+          router.push("/dashboard");
         } else {
           setApiResponse(res.data.msg);
           console.log("Error:", res.data.msg);

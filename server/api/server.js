@@ -39,7 +39,7 @@ const config = ini.parse(fs.readFileSync(configPath, "utf-8"));
 const dbConfig = config.production;
 const privatekey = "/etc/letsencrypt/live/lakefrontai.com/privkey.pem";
 const certi = "/etc/letsencrypt/live/lakefrontai.com/fullchain.pem";
-// deveopment environment variables
+// development environment variables
 //const dbConfig = config.development;
 //const privatekey = dbConfig.privatekey;
 //const certi = dbConfig.certificate;
@@ -116,6 +116,11 @@ app.get("/", (req, res) => {
 
 // verify token 
 app.get("/dashboard", verifyJWT, (req, res) => {
+  console.log("inside dashboard");
+  res.status(200).send(`welcome to the dashboard`);
+});
+
+app.get("/datacatalog", verifyJWT, (req, res) => {
   console.log("inside dashboard");
   res.status(200).send(`welcome to the dashboard`);
 });
@@ -213,6 +218,39 @@ app.post("/register", async (req, res) => {
     });
   } catch (err) {
     return sendResponse(res, 500, "error", "Internal server error");
+  }
+});
+
+// OpenAI Integration: Prompt Endpoint
+app.post("/openai", async (req, res) => {
+  const { prompt } = req.body;
+  // OpenAI Configuration
+  const OPENAI_API_KEY =  dbConfig.OPENAI_API_KEY;
+
+  console.log("OpenAI API Key:", OPENAI_API_KEY);
+  const openai = new OpenAI({
+    apiKey: OPENAI_API_KEY, // Make sure OPENAI_API_KEY exists in .env
+  });
+
+  if (!prompt) {
+    return sendResponse(res, 400, "error", "Prompt is required");
+  }
+
+  try {
+    // Send request to OpenAI API
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo", // Specify the model
+      messages: [{ role: "user", content: prompt }],
+      max_tokens: 150,
+    });
+
+    const reply = response.choices[0]?.message?.content || "No response";
+    console.log(chalk.blue("🔹 OpenAI Response:"), reply);
+
+    return sendResponse(res, 200, "success", "Prompt processed successfully", { reply });
+  } catch (error) {
+    console.error(chalk.red("❌ OpenAI API Error:"), error.message);
+    return sendResponse(res, 500, "error", "Error processing OpenAI prompt");
   }
 });
 

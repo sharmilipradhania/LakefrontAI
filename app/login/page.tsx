@@ -73,7 +73,10 @@ const LoginPage = () => {
           console.log("refreshToken", res.data.refreshToken);
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("refreshToken", res.data.refreshToken);
-          router.push("/dashboard");
+          const tokenPrint = localStorage.getItem('token');
+          console.log(tokenPrint);
+          console.log(res.data);
+          //          router.push("/dashboard");
         } else {
           setApiResponse(res.data.msg);
           console.log("Error:", res.data.msg);

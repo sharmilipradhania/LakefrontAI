@@ -69,6 +69,8 @@ const LoginPage = () => {
   
         if (res.data.result === "success") { 
           console.log("Authentication successful. Redirecting...");
+          console.log("token", res.data.token);
+          console.log("refreshToken", res.data.refreshToken);
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("refreshToken", res.data.refreshToken);
           router.push("/dashboard");

@@ -94,7 +94,7 @@ const extractToken = (req) => {
 
 const verifyJWT = (req, res, next) => {
   const token = extractToken(req);
-  console.log(req);
+  console.log("verifyJWT");
   console.log(token);
   if (!token) {
     return sendResponse(res, 401, "error", "Access denied. No token provided.");

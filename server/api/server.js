@@ -36,13 +36,13 @@ const config = ini.parse(fs.readFileSync(configPath, "utf-8"));
 
 // Production  environments
 
-// const dbConfig = config.database;
-// const privatekey = dbConfig.privatekey;
-// const certi = dbConfig.certificate;
-// deveopment environment variables
-const dbConfig = config.development;
+const dbConfig = config.database;
 const privatekey = dbConfig.privatekey;
 const certi = dbConfig.certificate;
+// deveopment environment variables
+//const dbConfig = config.development;
+//const privatekey = dbConfig.privatekey;
+//const certi = dbConfig.certificate;
 
 
 // SSL Certificates

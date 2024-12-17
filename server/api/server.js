@@ -12,6 +12,9 @@ const ini = require("ini");
 const { OpenAI } = require("openai");
 require("dotenv").config();
 
+const { callOpenAI, callGemini } = require("./apiUtils");
+const { validateInput } = require("./validationUtils");
+
 
 // Load environment variables
 const app = express();
@@ -36,13 +39,13 @@ const config = ini.parse(fs.readFileSync(configPath, "utf-8"));
 
 // Production  environments
 
-const dbConfig = config.production;
-const privatekey = "/etc/letsencrypt/live/lakefrontai.com/privkey.pem";
-const certi = "/etc/letsencrypt/live/lakefrontai.com/fullchain.pem";
+//const dbConfig = config.production;
+//const privatekey = "/etc/letsencrypt/live/lakefrontai.com/privkey.pem";
+//const certi = "/etc/letsencrypt/live/lakefrontai.com/fullchain.pem";
 // development environment variables
-//const dbConfig = config.development;
-//const privatekey = dbConfig.privatekey;
-//const certi = dbConfig.certificate;
+const dbConfig = config.development;
+const privatekey = dbConfig.privatekey;
+const certi = dbConfig.certificate;
 
 
 // SSL Certificates
@@ -223,37 +226,65 @@ app.post("/register", async (req, res) => {
 
 // OpenAI Integration: Prompt Endpoint
 app.post("/processChat", async (req, res) => {
-  const { prompt } = req.body;
-  const { selectedModels } = req.body;
-  // OpenAI Configuration
-  const OPENAI_API_KEY =  dbConfig.OPENAI_API_KEY;
+  const { prompt, selectedModels } = req.body;
 
-  console.log("OpenAI API Key:", OPENAI_API_KEY);
-  const openai = new OpenAI({
-    apiKey: OPENAI_API_KEY, // Make sure OPENAI_API_KEY exists in .env
-  });
-
-  if (!prompt) {
-    return sendResponse(res, 400, "error", "Prompt is required");
-  }
+  // Load API keys
+  const apiKeys = {
+    OpenAI:  dbConfig.OPENAI_API_KEY,
+    Gemini:  dbConfig.GEMINI_API_KEY,
+  };
 
   try {
-    // Send request to OpenAI API
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // Specify the model
-      messages: [{ role: "user", content: prompt }],
-      max_tokens: 150,
+    // Validate input
+    validateInput(prompt, selectedModels, apiKeys);
+
+    // Prepare API calls dynamically
+    const apiCalls = [];
+    if (selectedModels.includes("OpenAI")) {
+      apiCalls.push(callOpenAI(prompt, apiKeys.OpenAI));
+    }
+    if (selectedModels.includes("Gemini")) {
+      apiCalls.push(callGemini(prompt, apiKeys.Gemini));
+    }
+
+    // Execute API calls in parallel
+    const results = await Promise.allSettled(apiCalls);
+
+    // Aggregate responses
+    const responses = {};
+    let index = 0;
+    if (selectedModels.includes("OpenAI")) {
+      responses["OpenAI"] =
+        results[index]?.status === "fulfilled"
+          ? results[index]?.value
+          : "Error fetching OpenAI response";
+      index++;
+    }
+    if (selectedModels.includes("Gemini")) {
+      responses["Gemini"] =
+        results[index]?.status === "fulfilled"
+          ? results[index]?.value
+          : "Error fetching Gemini response";
+      index++;
+    }
+
+    console.log("🔹 Aggregated Responses:", responses);
+
+    // Send aggregated responses to the client
+    return res.status(200).json({
+      status: "success",
+      message: "Responses retrieved successfully",
+      data: responses,
     });
-
-    const reply = response.choices[0]?.message?.content || "No response";
-    console.log(chalk.blue("🔹 OpenAI Response:"), reply);
-
-    return sendResponse(res, 200, "success", "Prompt processed successfully", { reply });
   } catch (error) {
-    console.error(chalk.red("❌ OpenAI API Error:"), error.message);
-    return sendResponse(res, 500, "error", "Error processing OpenAI prompt");
+    console.error("❌ Error:", error.message);
+    return res.status(500).json({
+      status: "error",
+      message: error.message || "Error processing requests",
+    });
   }
 });
+
 
 // Start HTTPS Server
 https.createServer(credentials, app).listen(PORT, () => {

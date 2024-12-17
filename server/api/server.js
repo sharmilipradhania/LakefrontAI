@@ -39,13 +39,13 @@ const config = ini.parse(fs.readFileSync(configPath, "utf-8"));
 
 // Production  environments
 
-//const dbConfig = config.production;
-//const privatekey = "/etc/letsencrypt/live/lakefrontai.com/privkey.pem";
-//const certi = "/etc/letsencrypt/live/lakefrontai.com/fullchain.pem";
+const dbConfig = config.production;
+const privatekey = "/etc/letsencrypt/live/lakefrontai.com/privkey.pem";
+const certi = "/etc/letsencrypt/live/lakefrontai.com/fullchain.pem";
 // development environment variables
-const dbConfig = config.development;
-const privatekey = dbConfig.privatekey;
-const certi = dbConfig.certificate;
+//const dbConfig = config.development;
+//const privatekey = dbConfig.privatekey;
+//const certi = dbConfig.certificate;
 
 
 // SSL Certificates

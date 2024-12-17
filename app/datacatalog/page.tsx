@@ -116,7 +116,7 @@ export default function ChatWindow() {
     console.log("promptData", promptData);
     try {
       // Send the message to the backend server
-      const response = await axios.post("https://lakefrontai.com:4000/openai", promptData, {
+      const response = await axios.post("https://lakefrontai.com:4000/processChat", promptData, {
         headers: {
           "Content-Type": "application/json",
         },

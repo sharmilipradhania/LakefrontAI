@@ -69,10 +69,12 @@ const LoginPage = () => {
   
         if (res.data.result === "success") { 
           console.log("Authentication successful. Redirecting...");
+          const username = data.email;
           const token = res.data.data.token;
           const refreshToken = res.data.data.refreshToken;
           localStorage.setItem("token", token);
           localStorage.setItem("refreshToken", refreshToken);
+          localStorage.setItem("username", username);
           const tokenPrint = localStorage.getItem('token');
           router.push("/dashboard");
         } else {

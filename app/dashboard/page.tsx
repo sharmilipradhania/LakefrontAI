@@ -59,6 +59,8 @@ export default function Example() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
+        const username = localStorage.getItem('username');
+        console.log(username);
         const response = await axios.get("https://lakefrontai.com:4000/dashboard", {
           headers: { Authorization: `Bearer ${token}` },
         });

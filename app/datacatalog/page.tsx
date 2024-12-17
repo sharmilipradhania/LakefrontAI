@@ -127,9 +127,21 @@ export default function ChatWindow() {
       // Ensure response is JSON and extract the reply
       const botResponseJ = JSON.stringify(response.data);
       const parsedResponse = JSON.parse(botResponseJ);
-      console.log(' parsedResponse.reply',  parsedResponse.data.reply)
-  
-      const reply = parsedResponse.data.reply || "No response received.";
+      console.log("Parsed Response - OpenAI:", parsedResponse.data.OpenAI);
+      console.log("Parsed Response - Gemini:", parsedResponse.data.Gemini);
+      
+      // Populate the response dynamically
+      let reply = "No response received."; // Default fallback
+      
+      if (parsedResponse.data.OpenAI && parsedResponse.data.Gemini) {
+        reply = `OpenAI: ${parsedResponse.data.OpenAI}\nGemini: ${parsedResponse.data.Gemini}`;
+      } else if (parsedResponse.data.OpenAI) {
+        reply = `OpenAI: ${parsedResponse.data.OpenAI}`;
+      } else if (parsedResponse.data.Gemini) {
+        reply = `Gemini: ${parsedResponse.data.Gemini}`;
+      }
+      
+      console.log("Final Reply:", reply);
   
       // Add the bot's response to the chat
       const botMessage: Message = {

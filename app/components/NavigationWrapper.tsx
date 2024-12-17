@@ -6,11 +6,18 @@ import Navigation from "./navigation";
 export default function NavigationWrapper() {
   const pathname = usePathname();
 
-  // Define routes where the Navbar should be hidden
-  const hiddenNavbarRoutes = ["/dashboard",'/datacatalog'];
+  // Define static routes where the Navbar should be hidden
+  const hiddenNavbarRoutes = ["/dashboard", "/datacatalog"];
+
+  // Regular expression to match dynamic routes like /[username]/dashboard
+  const dynamicRouteRegex = /^\/[^/]+\/dashboard$/;
+
+  // Check if the current path matches a static route or dynamic route
+  const isNavbarHidden =
+    hiddenNavbarRoutes.includes(pathname) || dynamicRouteRegex.test(pathname);
 
   // Conditionally render the Navbar
-  if (hiddenNavbarRoutes.includes(pathname)) {
+  if (isNavbarHidden) {
     return null;
   }
 

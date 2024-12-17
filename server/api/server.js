@@ -291,7 +291,7 @@ app.post("/processChat", async (req, res) => {
 app.get("/:username/recent-activity", verifyJWT, (req, res) => {
   const { username } = req.params;
 
-  const query = "SELECT * FROM recent_activity WHERE username = ?";
+  const query = "SELECT * FROM recent_activity WHERE username = ?     ORDER BY id DESC LIMIT 3";
   db.query(query, [username], (err, results) => {
     if (err) {
       console.error("Error fetching user activity:", err);

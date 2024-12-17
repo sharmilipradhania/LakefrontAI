@@ -76,7 +76,8 @@ const LoginPage = () => {
           localStorage.setItem("refreshToken", refreshToken);
           localStorage.setItem("username", username);
           const tokenPrint = localStorage.getItem('token');
-          router.push("/dashboard");
+          console.log(`/${username}/dashboard`);
+          router.push(`/${username}/dashboard`);
         } else {
           setApiResponse(res.data.msg);
           console.log("Error:", res.data.msg);

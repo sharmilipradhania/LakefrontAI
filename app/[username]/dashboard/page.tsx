@@ -26,7 +26,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import Outline from '../product/Outline'
+import Outline from '@/app/product/Outline';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -54,24 +54,24 @@ export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [data, setData] = useState(null);
   const router = useRouter();
-
+  const username = localStorage.getItem('username');
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const username = localStorage.getItem('username');
         console.log(username);
-        const response = await axios.get("https://lakefrontai.com:4000/dashboard", {
+        const response = await axios.get(`https://lakefrontai.com:4000/${username}/dashboard`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setData(response.data);
+        console.log(response.data);
       }catch (error) {
         console.log(error);
         router.push('/login');
     } 
     };
-    fetchData();
-  }, []);
+    if (username) fetchData();
+  }, [username]);
 
   
 

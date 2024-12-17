@@ -41,12 +41,14 @@ export default function ChatWindow() {
   const [data, setData] = useState(null);
   const router = useRouter();
   // Handle checkbox toggle
+  // Handle model selection and secret input prompt
   const handleCheckboxChange = (model: string) => {
-    setSelectedModels((prev) =>
-      prev.includes(model)
-        ? prev.filter((item) => item !== model) // Uncheck model
-        : [...prev, model] // Check model
-    );
+    const updatedModels = selectedModels.includes(model)
+      ? selectedModels.filter((item) => item !== model)
+      : [...selectedModels, model];
+
+    setSelectedModels(updatedModels);
+    console.log(updatedModels);
   };
 
   useEffect(() => {
@@ -80,6 +82,7 @@ export default function ChatWindow() {
       ]);
       setKeyName("");
       setKeyValue("");
+      localStorage.setItem("secrets", keyValue);
       setShowSecretInput(false); // Close the input popup
     }
   };
@@ -102,9 +105,15 @@ export default function ChatWindow() {
   
     // Show a loading indicator
     setIsLoading(true);
-  
-    const promptData = { prompt: input };
-  
+// Testing begins here
+//    const secrets = JSON.parse(localStorage.getItem("secrets") || "{}"); // Assuming secrets are stored as an object
+    const selectedModelsToSend = selectedModels; // All selected models
+    console.log("selectedModelsToSend",selectedModelsToSend);
+    console.log("secrets",secrets);
+    let allSecretsPresent = true;
+// Tesing ends here
+    const promptData = { prompt: input, selectedModels: selectedModels};
+    console.log("promptData", promptData);
     try {
       // Send the message to the backend server
       const response = await axios.post("https://lakefrontai.com:4000/openai", promptData, {

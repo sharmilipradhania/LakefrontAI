@@ -222,8 +222,9 @@ app.post("/register", async (req, res) => {
 });
 
 // OpenAI Integration: Prompt Endpoint
-app.post("/openai", async (req, res) => {
+app.post("/processChat", async (req, res) => {
   const { prompt } = req.body;
+  const { selectedModels } = req.body;
   // OpenAI Configuration
   const OPENAI_API_KEY =  dbConfig.OPENAI_API_KEY;
 

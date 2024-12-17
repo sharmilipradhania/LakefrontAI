@@ -298,7 +298,7 @@ app.get("/:username/recent-activity", verifyJWT, (req, res) => {
       return res.status(500).json({ error: "Failed to retrieve user activity" });
     }
     if (results.length === 0) {
-      return res.status(404).json({ message: "No activity found for this user" });
+      return res.status(200).json({ message: "No activity found for this user" });
     }
     res.status(200).json(results);
   });

@@ -31,7 +31,7 @@ const RecentActivity: React.FC = () => {
         setLoading(false);
       } catch (err) {
         console.error("Error fetching recent activity:", err);
-        setError("Failed to load recent activity.");
+        setError("No recent activity");
         setLoading(false);
       }
     };
@@ -40,7 +40,7 @@ const RecentActivity: React.FC = () => {
   }, []);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (error) return <span className="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold  text-white"><p>{error}</p></span>;
 
   return (
     <div>

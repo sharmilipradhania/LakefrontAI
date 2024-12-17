@@ -118,7 +118,7 @@ app.get("/", (req, res) => {
 });
 
 // verify token 
-app.get(`/:username/dashboard`, verifyJWT, (req, res) => {
+app.get("/:username/dashboard", verifyJWT, (req, res) => {
   console.log("inside dashboard");
   res.status(200).send(`welcome to the dashboard ${req.params.username}`);
 });

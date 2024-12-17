@@ -43,9 +43,9 @@ const dbConfig = config.production;
 const privatekey = "/etc/letsencrypt/live/lakefrontai.com/privkey.pem";
 const certi = "/etc/letsencrypt/live/lakefrontai.com/fullchain.pem";
 // development environment variables
-//const dbConfig = config.development;
-//const privatekey = dbConfig.privatekey;
-//const certi = dbConfig.certificate;
+// const dbConfig = config.development;
+// const privatekey = dbConfig.privatekey;
+// const certi = dbConfig.certificate;
 
 
 // SSL Certificates
@@ -285,6 +285,45 @@ app.post("/processChat", async (req, res) => {
   }
 });
 
+// recent activities 
+
+// Endpoint to fetch user-specific activities dynamically
+app.get("/:username/recent-activity", verifyJWT, (req, res) => {
+  const { username } = req.params;
+
+  const query = "SELECT * FROM recent_activity WHERE username = ?";
+  db.query(query, [username], (err, results) => {
+    if (err) {
+      console.error("Error fetching user activity:", err);
+      return res.status(500).json({ error: "Failed to retrieve user activity" });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ message: "No activity found for this user" });
+    }
+    res.status(200).json(results);
+  });
+});
+
+// Endpoint to add an activity for a specific user
+app.post("/recent-activity", verifyJWT, (req, res) => {
+  const { username, name, href, initial, current } = req.body;
+
+  if (!username || !name || !href || !initial) {
+    return res.status(400).json({ error: "username, name, href, and initial are required fields." });
+  }
+
+  const query =
+    "INSERT INTO recent_activity (username, name, href, initial, current) VALUES (?, ?, ?, ?, ?)";
+  const values = [username, name, href, initial, current || false];
+
+  db.query(query, values, (err, result) => {
+    if (err) {
+      console.error("Error inserting data:", err);
+      return res.status(500).json({ error: "Failed to add recent activity" });
+    }
+    res.status(201).json({ message: "Activity added successfully", id: result.insertId });
+  });
+});
 
 // Start HTTPS Server
 https.createServer(credentials, app).listen(PORT, () => {

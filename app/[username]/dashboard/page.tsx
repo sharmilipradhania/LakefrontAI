@@ -43,7 +43,7 @@ const recentActivity = [
 ]
 const userNavigation = [
   { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: '/logout' },
 ]
 
 function classNames(...classes: (string | boolean | null | undefined)[]): string {

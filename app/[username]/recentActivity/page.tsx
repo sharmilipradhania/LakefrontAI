@@ -45,24 +45,28 @@ const RecentActivity: React.FC = () => {
   return (
     <div>
       <ul>
-      {recentActivity.map((item) => (
-  <li key={item.id}>
-    <a
-      href={item.href}
-              className={classNames(
-                item.current
-                  ? 'bg-indigo-700 text-white'
-                  : 'text-indigo-200 hover:bg-indigo-700 hover:text-white',
-                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
-              )}
-            >
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
-                {item.initial}
-              </span>
-              <span className="truncate">{item.name}</span>
-            </a>
-          </li>
-        ))}
+        {Array.isArray(recentActivity) && recentActivity.length > 0 ? (
+          recentActivity.map((item) => (
+            <li key={item.id}>
+              <a
+                href={item.href}
+                className={classNames(
+                  item.current
+                    ? 'bg-indigo-700 text-white'
+                    : 'text-indigo-200 hover:bg-indigo-700 hover:text-white',
+                  'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold'
+                )}
+              >
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
+                  {item.initial}
+                </span>
+                <span className="truncate">{item.name}</span>
+              </a>
+            </li>
+          ))
+        ) : (
+          <p className="text-indigo-200 text-sm">No recent activity found.</p>
+        )}
       </ul>
     </div>
   );

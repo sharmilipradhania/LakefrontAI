@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -36,11 +36,7 @@ const navigation = [
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ]
-const recentActivity = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
-]
+
 const userNavigation = [
   { name: 'Your profile', href: '#' },
   { name: 'Sign out', href: '/logout' },
@@ -54,7 +50,17 @@ export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [data, setData] = useState(null);
   const router = useRouter();
-  const username = localStorage.getItem('username');
+  const [username, setUsername] = useState<string | null>(null);
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      setUsername(storedUsername);
+    } else {
+      // Redirect to login if no username is found in localStorage
+      router.push('/login');
+    }
+  }, [router]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

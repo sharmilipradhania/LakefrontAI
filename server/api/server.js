@@ -10,6 +10,8 @@ const chalk = require("chalk");
 const fs = require("fs");
 const ini = require("ini");
 const { OpenAI } = require("openai");
+const { Configuration, OpenAIApi } = require('openai');
+const multer = require('multer');
 require("dotenv").config();
 
 const { callOpenAI, callGemini } = require("./apiUtils");
@@ -37,15 +39,23 @@ if (!fs.existsSync(configPath)) {
 }
 const config = ini.parse(fs.readFileSync(configPath, "utf-8"));
 
-// Production  environments
+// Declare variables outside the conditional block
+let privatekey;
+let certi;
+let dbConfig;
 
-const dbConfig = config.production;
-const privatekey = "/etc/letsencrypt/live/lakefrontai.com/privkey.pem";
-const certi = "/etc/letsencrypt/live/lakefrontai.com/fullchain.pem";
+const ENV = 'production'; // production environment and development environment
+if (ENV === 'development') {
 // development environment variables
-// const dbConfig = config.development;
-// const privatekey = dbConfig.privatekey;
-// const certi = dbConfig.certificate;
+  dbConfig = config.development;
+  privatekey = dbConfig.privatekey;
+  certi = dbConfig.certificate;
+} else if (ENV === 'production') {
+// Production  environments
+  dbConfig = config.production;
+  privatekey = "/etc/letsencrypt/live/lakefrontai.com/privkey.pem";
+  certi = "/etc/letsencrypt/live/lakefrontai.com/fullchain.pem";
+}
 
 
 // SSL Certificates
@@ -54,7 +64,11 @@ const certificate = fs.readFileSync(certi,"utf8");
 const credentials = { key: privateKey, cert: certificate };
 
 
+// Set up multer for file uploads
+const upload = multer({ storage: multer.memoryStorage() });
 
+// Temporary storage for document contexts
+let documentContexts = [];
 
 
 const db = mysql.createConnection({
@@ -323,6 +337,63 @@ app.post("/recent-activity", verifyJWT, (req, res) => {
     }
     res.status(201).json({ message: "Activity added successfully", id: result.insertId });
   });
+});
+
+// Endpoint to Upload and parse multiple documents
+app.post('/:username/upload-documents', verifyJWT, upload.array('files'), async (req, res) => {
+  try {
+    const files = req.files;
+
+    if (!files || files.length === 0) {
+      return res.status(400).json({ error: 'No files uploaded.' });
+    }
+
+    // Parse and store the content of each file
+    documentContexts = files.map((file) => file.buffer.toString('utf-8'));
+    console.log(documentContexts);
+    res.status(200).json({ message: 'Documents uploaded and parsed successfully.' });
+  } catch (error) {
+    console.error('Error uploading documents:', error);
+    res.status(500).json({ error: 'Failed to upload documents.' });
+  }
+});
+
+// Endpoint to Ask questions based on the documents
+app.post('/:username/ask-question', verifyJWT, async (req, res) => {
+  // Load API keys
+  const openai = new OpenAI({ apiKey: dbConfig.OPENAI_API_KEY });
+
+  try {
+    const { question } = req.body;
+
+    if (documentContexts.length === 0) {
+      return res.status(400).json({ error: 'No document contexts available. Upload documents first.' });
+    }
+
+    // Concatenate all document contexts to form the context
+    const combinedContext = documentContexts.join('\n\n');
+
+    const prompt = `
+      Documents Content:
+      ${combinedContext}
+
+      Question: ${question}
+      Answer:
+    `;
+
+    // OpenAI API call using GPT-4
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: prompt }],
+      max_tokens: 150,
+    });
+    console.log(response);
+    const answer = response.choices[0].message['content'];
+    res.status(200).json({ answer: answer || 'No answer available.' });
+  } catch (error) {
+    console.error('Error processing question:', error);
+    res.status(500).json({ error: 'Failed to process question.' });
+  }
 });
 
 // Start HTTPS Server

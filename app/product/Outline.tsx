@@ -1,22 +1,32 @@
-"use client"
-import React from "react";
+"use client";
 import { useRouter } from "next/navigation";
-
+import React, { useEffect, useState } from 'react';
 
 const lakefrontaiServices = [
   "Data",
-  "Document Summarization",
-  "Data Catelog",
+  "Document Summary",
+  "Data Catalog",
   "Any any Question",
 ];
 
 export default function Outline() {
   const router = useRouter();
+  const [username, setUsername] = useState<string | null>(null);
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      setUsername(storedUsername);
+    } else {
+      // Redirect to login if no username is found in localStorage
+      router.push('/login');
+    }
+  }, [router]);
   const handleClick = (service: string) => {
     console.log(`You clicked on ${service}`);
 
-    const formattedService = service.replace(/\s+/g, "-").toLowerCase();
-    router.push(`/datacatalog`);
+    const formattedService = service.replace(/\s+/g, "").toLowerCase();
+    console.log(`${formattedService}`);
+    router.push(`/${username}/${formattedService}`);
   };
 
   return (

@@ -7,10 +7,10 @@ export default function NavigationWrapper() {
   const pathname = usePathname();
 
   // Define static routes where the Navbar should be hidden
-  const hiddenNavbarRoutes = ["/dashboard", "/datacatalog"];
+  const hiddenNavbarRoutes = ["/dashboard", "/datacatalog","/documentsummary"];
 
   // Regular expression to match dynamic routes like /[username]/dashboard
-  const dynamicRouteRegex = /^\/[^/]+\/dashboard$/;
+  const dynamicRouteRegex = /^\/[^/]+\/(dashboard|datacatalog|documentsummary)$/;
 
   // Check if the current path matches a static route or dynamic route
   const isNavbarHidden =

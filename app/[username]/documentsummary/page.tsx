@@ -270,9 +270,9 @@ export default function ChatWindow() {
             {/* Header */}
             <div className="bg-gradient-to-r from-indigo-500 to-blue-600 shadow-md px-6 py-4 border-b-2 border-indigo-700 flex items-center justify-between rounded-b-lg">
               <h1 className="text-2xl font-extrabold text-white tracking-wide">
-                Gen AI - Ask me anything you need
+                Gen AI - Document Processing
               </h1>
-              <span className="text-sm text-indigo-200 italic">Empowering Conversations</span>
+              <span className="text-sm text-indigo-200 italic"></span>
             </div>
           <div className="flex-1 overflow-y-auto p-6 bg-white flex flex-col-reverse">
             {/* Chat Messages */}

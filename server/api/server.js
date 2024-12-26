@@ -142,6 +142,11 @@ app.get("/datacatalog", verifyJWT, (req, res) => {
   res.status(200).send(`datacatalog`);
 });
 
+app.get("/documentsummary", verifyJWT, (req, res) => {
+  console.log("inside document summary");
+  res.status(200).send(`documentsummary`);
+});
+
 app.post("/refresh", (req, res) => {
   const { refreshToken} = req.body;
 

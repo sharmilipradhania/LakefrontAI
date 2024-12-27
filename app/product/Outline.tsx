@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from 'react';
 
 const lakefrontaiServices = [
-  "Data",
+  "Model Training",
   "Document Summary",
   "Data Catalog",
   "Any any Question",

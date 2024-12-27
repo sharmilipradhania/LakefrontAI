@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.1.10",
-    "@heroicons/react": "^2.1.5",
+    "@heroicons/react": "^2.2.0",
     "@nextui-org/dropdown": "^2.1.29",
     "@nextui-org/system": "^2.2.5",
     "@nextui-org/theme": "^2.2.9",

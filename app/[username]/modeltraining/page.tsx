@@ -128,6 +128,15 @@ const DataUploader: React.FC = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.clear(); // Clear all localStorage data
+    window.location.href = "/login"; // Redirect to login page
+  };
+
+  const handleBack = () => {
+    window.history.back(); // Navigate to the previous page
+  };
+
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -176,14 +185,14 @@ const DataUploader: React.FC = () => {
           </div>
           <div className="space-y-2">
             <button
-              onClick={() => alert("Logging out...")}
+              onClick={handleLogout}
               className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 flex items-center justify-center"
             >
               <ArrowRightOnRectangleIcon className="h-5 w-5 mr-2" />
               {isSidebarOpen && "Logout"}
             </button>
             <button
-              onClick={() => alert("Going back...")}
+              onClick={handleBack}
               className="w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600 flex items-center justify-center"
             >
               <ArrowLeftIcon className="h-5 w-5 mr-2" />

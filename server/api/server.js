@@ -353,16 +353,20 @@ app.post('/:username/upload-documents', verifyJWT, upload.array('files'), async 
       return res.status(400).json({ error: 'No files uploaded.' });
     }
 
+    // Clear previous contexts
+    documentContexts = [];
+
     // Parse and store the content of each file
-    const documentContexts = files.map((file) => {
-      const fileContent = fs.readFileSync(file.path, 'utf-8');
-      return fileContent;
-    });
-
-    console.log(documentContexts);
-
-    // Optional: Clean up uploaded files after processing
-    files.forEach((file) => fs.unlinkSync(file.path));
+    for (const file of files) {
+      const filePath = path.join(__dirname, "uploads", file.filename);
+      const content = fs.readFileSync(filePath, "utf-8");
+      documentContexts.push(content);
+    }
+    // Parse and store the content of each file
+    for (const file of files) {
+      const filePath = path.join(__dirname, "uploads", file.filename);
+      fs.unlinkSync(filePath);
+    }
 
     res.status(200).json({ message: 'Documents uploaded and parsed successfully.' });
   } catch (error) {
@@ -379,11 +383,11 @@ app.post('/:username/ask-question', verifyJWT, async (req, res) => {
   try {
     const { question } = req.body;
 
-    if (documentContexts.length === 0) {
+    if (!documentContexts || documentContexts.length === 0) {
       return res.status(400).json({ error: 'No document contexts available. Upload documents first.' });
     }
 
-    // Concatenate all document contexts to form the context
+    // Concatenate all document contexts to form the combined context
     const combinedContext = documentContexts.join('\n\n');
 
     const prompt = `
@@ -400,7 +404,7 @@ app.post('/:username/ask-question', verifyJWT, async (req, res) => {
       messages: [{ role: "user", content: prompt }],
       max_tokens: 150,
     });
-    console.log(response);
+
     const answer = response.choices[0].message['content'];
     res.status(200).json({ answer: answer || 'No answer available.' });
   } catch (error) {

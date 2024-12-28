@@ -65,7 +65,7 @@ const credentials = { key: privateKey, cert: certificate };
 
 
 // Set up multer for file uploads
-const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({ dest: "uploads/" });
 
 // Temporary storage for document contexts
 let documentContexts = [];

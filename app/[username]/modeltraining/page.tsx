@@ -9,8 +9,18 @@ import {
   ChevronDoubleRightIcon,
   HomeIcon,
   ArrowLeftIcon,
+  EyeSlashIcon,
+  EyeIcon,
+  KeyIcon,
+  TrashIcon,
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
+
+interface Secret {
+  keyName: string;
+  keyValue: string;
+  isVisible: boolean; // For toggling secret visibility
+}
 
 const DataUploader: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -41,8 +51,13 @@ const DataUploader: React.FC = () => {
   const [token,settoken] = useState(""); // token 
   const router = useRouter();
 
+  const [secrets, setSecrets] = useState<Secret[]>([]);
+  const [keyName, setKeyName] = useState("");
+  const [keyValue, setKeyValue] = useState("");
+  const [showSecretInput, setShowSecretInput] = useState(false);
 
-
+  const [selectedModels, setSelectedModels] = useState<string[]>([]);
+  
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFiles(e.target.files);
@@ -54,6 +69,8 @@ const DataUploader: React.FC = () => {
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) {
       setusername(storedUsername);
+    } else {
+      router.push('/login');
     }
   }, [username]);
 
@@ -63,6 +80,8 @@ const DataUploader: React.FC = () => {
     const storedtoken = localStorage.getItem("token");
     if (storedtoken) {
       settoken(storedtoken);
+    } else {
+      router.push('/login');
     }
   }, [token]);
 
@@ -159,6 +178,42 @@ const DataUploader: React.FC = () => {
     window.history.back(); // Navigate to the previous page
   };
 
+  const handleAddSecret = () => {
+    if (keyName.trim() && keyValue.trim()) {
+      const newSecret = {
+        keyName: keyName.trim(),
+        keyValue: keyValue.trim(),
+        isVisible: false, // Default to hidden
+      };
+      setSecrets((prevSecrets) => [...prevSecrets, newSecret]);
+      setKeyName("");
+      setKeyValue("");
+      setShowSecretInput(false); // Close the popup
+    } else {
+      alert("Please enter both key name and value.");
+    }
+  };
+
+  const toggleSecretVisibility = (index: number) => {
+    setSecrets((prevSecrets) =>
+      prevSecrets.map((secret, i) =>
+        i === index ? { ...secret, isVisible: !secret.isVisible } : secret
+      )
+    );
+  };
+
+  const removeSecret = (index: number) => {
+    const updatedSecrets = secrets.filter((_, i) => i !== index);
+    setSecrets(updatedSecrets);
+  };
+
+  const handleCheckboxChange = (model: string) => {
+    const updatedModels = selectedModels.includes(model)
+      ? selectedModels.filter((item) => item !== model)
+      : [...selectedModels, model];
+    setSelectedModels(updatedModels);
+  };
+
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -196,6 +251,81 @@ const DataUploader: React.FC = () => {
           >
             <ServerStackIcon className="h-5 w-5" />
             {isSidebarOpen && <span>Database</span>}
+          </li>
+          {/* Add Secret */}
+          <li>
+            <div
+              onClick={() => setShowSecretInput(true)}
+              className="flex items-center gap-x-3 cursor-pointer hover:bg-gray-700 p-2 rounded"
+            >
+              <KeyIcon className="h-5 w-5" />
+              {isSidebarOpen && <span>Add Secret</span>}
+            </div>
+
+            {/* Display Secrets */}
+            {isSidebarOpen && secrets.length > 0 && (
+              <ul className="mt-2 ml-6 space-y-2">
+                {secrets.map((secret, index) => (
+                  <li
+                    key={index}
+                    className="bg-gray-700 p-2 rounded flex justify-between items-center"
+                  >
+                    <div>
+                      <span className="font-bold">{secret.keyName}:</span>{" "}
+                      {secret.isVisible ? secret.keyValue : "*****"}
+                    </div>
+                    <div className="flex space-x-2">
+                      {/* Toggle Visibility */}
+                      <button
+                        onClick={() => toggleSecretVisibility(index)}
+                        className="text-gray-300 hover:text-white"
+                      >
+                        {secret.isVisible ? (
+                          <EyeSlashIcon className="h-5 w-5" />
+                        ) : (
+                          <EyeIcon className="h-5 w-5" />
+                        )}
+                      </button>
+
+                      {/* Remove Secret */}
+                      <button
+                        onClick={() => removeSecret(index)}
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        <TrashIcon className="h-5 w-5" />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+
+          {/* Model Selection */}
+          <li className="p-2">
+            <h3 className={`text-sm font-bold ${isSidebarOpen ? "" : "hidden"}`}>
+              Model Selection
+            </h3>
+            <div className="mt-2 space-y-2">
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={selectedModels.includes("OpenAI")}
+                  onChange={() => handleCheckboxChange("OpenAI")}
+                  className="mr-2"
+                />
+                {isSidebarOpen && <span>OpenAI</span>}
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={selectedModels.includes("Gemini")}
+                  onChange={() => handleCheckboxChange("Gemini")}
+                  className="mr-2"
+                />
+                {isSidebarOpen && <span>Gemini</span>}
+              </label>
+            </div>
           </li>
         </ul>
 
@@ -378,60 +508,80 @@ const DataUploader: React.FC = () => {
           </div>
         )}
 
-          {/* Chat Box */}
-          <div
-            className={`w-full fixed bottom-0 bg-gray-200 shadow-lg p-4 transition-all duration-300 ${
-              isSidebarOpen ? "place-self-auto" : "pl-8"
-            }`}
-          >
-            <div className="max-w-4xl mx-auto flex flex-col sm:flex-row  space-y-4 sm:space-y-0 sm:space-x-4">
-              {/* Input Box */}
-              <div className="flex-1 w-full">
-                <input
-                  type="text"
-                  value={question}
-                  onChange={(e) => setQuestion(e.target.value)}
-                  placeholder="Ask a question..."
-                  className="w-full border border-gray-300 rounded p-3 text-sm"
-                />
-              </div>
-              {/* Ask Button */}
-              <button
-                onClick={handleAskQuestion}
-                disabled={isAsking}
-                className={`w-full sm:w-auto px-4 py-3 text-sm rounded ${
-                  isAsking
-                    ? "bg-gray-400 text-white cursor-not-allowed"
-                    : "bg-green-500 text-white hover:bg-green-600"
-                }`}
-              >
-                {isAsking ? "Processing..." : "Ask"}
-              </button>
-            </div>
-
-            {/* Chat Messages */}
-            <div className="mt-4 max-w-4xl mx-auto space-y-2 overflow-y-auto max-h-40 sm:max-h-60">
-              {chatMessages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`flex ${
-                    msg.role === "user" ? "justify-end" : "justify-start"
-                  }`}
-                >
-                  <div
-                    className={`inline-block px-4 py-2 rounded-lg max-w-xs break-words ${
-                      msg.role === "user"
-                        ? "bg-blue-500 text-white self-end"
-                        : "bg-gray-300 text-gray-800"
-                    }`}
-                  >
-                    {msg.message}
-                  </div>
-                </div>
-              ))}
-            </div>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col bg-gray-100 relative">
+        {/* Chat Box */}
+        <div
+          className={`fixed bottom-0 ${
+            isSidebarOpen ? "left-64" : "left-16"
+          } w-[calc(100%-16rem)] sm:w-[calc(100%-4rem)] bg-gray-200 shadow-lg p-4 transition-all duration-300`}
+        >
+          <div className="max-w-4xl mx-auto flex items-center space-x-4">
+            <input
+              type="text"
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              placeholder="Ask a question..."
+              className="flex-1 border border-gray-300 rounded p-2"
+            />
+            <button
+              onClick={handleAskQuestion}
+              disabled={isAsking}
+              className={`px-4 py-2 rounded ${
+                isAsking
+                  ? "bg-gray-400 text-white cursor-not-allowed"
+                  : "bg-green-500 text-white hover:bg-green-600"
+              }`}
+            >
+              {isAsking ? "Processing..." : "Ask"}
+            </button>
           </div>
+          <div className="mt-4 space-y-2">
+            {chatMessages.map((msg, index) => (
+              <div
+                key={index}
+                className={`text-${
+                  msg.role === "user" ? "right" : "left"
+                } text-sm`}
+              >
+                <span className="block">
+                  {msg.role === "user" ? "You: " : "Bot: "}
+                  {msg.message}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+      </div>
+      {/* Add Secret Popup */}
+      {showSecretInput && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded shadow-lg w-80">
+            <h2 className="text-lg font-bold mb-4">Add Secret</h2>
+            <input
+              type="text"
+              placeholder="Key Name"
+              value={keyName}
+              onChange={(e) => setKeyName(e.target.value)}
+              className="w-full border border-gray-300 rounded p-2 mb-2"
+            />
+            <input
+              type="text"
+              placeholder="Key Value"
+              value={keyValue}
+              onChange={(e) => setKeyValue(e.target.value)}
+              className="w-full border border-gray-300 rounded p-2 mb-4"
+            />
+            <button
+              onClick={handleAddSecret}
+              className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            >
+              Save Secret
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

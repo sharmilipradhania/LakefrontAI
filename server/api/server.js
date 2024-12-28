@@ -12,7 +12,6 @@ const ini = require("ini");
 const { OpenAI } = require("openai");
 const { Configuration, OpenAIApi } = require('openai');
 const multer = require('multer');
-const fs = require('fs');
 require("dotenv").config();
 
 const { callOpenAI, callGemini } = require("./apiUtils");

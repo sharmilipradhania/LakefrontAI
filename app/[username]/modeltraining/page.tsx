@@ -57,7 +57,7 @@ const DataUploader: React.FC = () => {
   const [showSecretInput, setShowSecretInput] = useState(false);
 
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
-  
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFiles(e.target.files);
@@ -357,156 +357,175 @@ const DataUploader: React.FC = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col p-6 bg-gray-100">
         {/* File Upload Modal */}
-        {isFileModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-6 rounded shadow-lg w-96">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-bold">Upload Files</h2>
-                <XMarkIcon
-                  className="h-6 w-6 cursor-pointer text-gray-500"
+          {isFileModalOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+              <div className="bg-white p-6 rounded shadow-lg w-96 relative">
+                {/* Close Button */}
+                <button
                   onClick={() => setIsFileModalOpen(false)}
-                />
+                  className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+                {/* Modal Header */}
+                <h2 className="text-lg font-bold mb-4 text-center">Upload Files</h2>
+                {/* File Input */}
+                <div className="mb-4">
+                  <input
+                    type="file"
+                    multiple
+                    onChange={handleFileChange}
+                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                  />
+                  {/* Display Selected Files */}
+                  {files && (
+                    <ul className="mt-4 space-y-2">
+                      {Array.from(files).map((file, index) => (
+                        <li
+                          key={index}
+                          className="text-sm text-gray-700 bg-gray-100 px-2 py-1 rounded"
+                        >
+                          {file.name}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                {/* Upload Button */}
+                <button
+                  onClick={handleFileUpload}
+                  disabled={isUploading}
+                  className={`w-full py-2 rounded ${
+                    isUploading
+                      ? "bg-gray-400 text-white cursor-not-allowed"
+                      : "bg-blue-500 text-white hover:bg-blue-600"
+                  }`}
+                >
+                  {isUploading ? "Uploading..." : "Upload"}
+                </button>
+                {/* Success Message */}
+                {uploadSuccess && (
+                  <p className="mt-2 text-sm text-green-500 text-center">
+                    Upload successful!
+                  </p>
+                )}
               </div>
-              <input
-                type="file"
-                multiple
-                onChange={handleFileChange}
-                className="w-full border border-gray-300 rounded p-2 mb-4"
-              />
-              {files && (
-                <ul className="mb-4">
-                  {Array.from(files).map((file, index) => (
-                    <li key={index} className="text-sm text-gray-700">
-                      {file.name}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <button
-                onClick={handleFileUpload}
-                disabled={isUploading}
-                className={`w-full py-2 rounded ${
-                  isUploading
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-blue-500 text-white hover:bg-blue-600"
-                }`}
-              >
-                {isUploading ? "Uploading..." : "Upload"}
-              </button>
-              {uploadSuccess && (
-                <p className="text-green-500 text-sm mt-2">Upload successful!</p>
-              )}
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Database Selection Modal */}
-        {isDatabaseModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-6 rounded shadow-lg w-96">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-bold">Select Database</h2>
-                <XMarkIcon
-                  className="h-6 w-6 cursor-pointer text-gray-500"
+          {/* Database Selection Modal */}
+          {isDatabaseModalOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+              <div className="bg-white p-6 rounded shadow-lg w-96 relative">
+                {/* Close Button */}
+                <button
                   onClick={() => setIsDatabaseModalOpen(false)}
-                />
-              </div>
-              <div className="space-y-4">
-                {["MySQL", "PostgreSQL", "Snowflake"].map((db) => (
-                  <button
-                    key={db}
-                    onClick={() => {
-                      setDbType(db);
-                      setIsDatabaseModalOpen(false);
-                      setIsDbConfigModalOpen(true);
-                    }}
-                    className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-                  >
-                    {db}
-                  </button>
-                ))}
+                  className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+                {/* Modal Header */}
+                <h2 className="text-lg font-bold mb-4 text-center">Select Database</h2>
+                {/* Database Options */}
+                <div className="space-y-4">
+                  {["MySQL", "PostgreSQL", "Snowflake"].map((db) => (
+                    <button
+                      key={db}
+                      onClick={() => {
+                        setDbType(db);
+                        setIsDatabaseModalOpen(false);
+                        setIsDbConfigModalOpen(true);
+                      }}
+                      className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+                    >
+                      {db}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Database Configuration Modal */}
-        {isDbConfigModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-6 rounded shadow-lg w-96">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-bold">{dbType} Configuration</h2>
-                <XMarkIcon
-                  className="h-6 w-6 cursor-pointer text-gray-500"
+          {/* Database Configuration Modal */}
+          {isDbConfigModalOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+              <div className="bg-white p-6 rounded shadow-lg w-96 relative">
+                {/* Close Button */}
+                <button
                   onClick={() => setIsDbConfigModalOpen(false)}
+                  className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+                {/* Modal Header */}
+                <h2 className="text-lg font-bold mb-4 text-center">{dbType} Configuration</h2>
+                {/* Database Configuration Fields */}
+                <input
+                  type="text"
+                  placeholder="Host"
+                  value={dbConfig.host}
+                  onChange={(e) =>
+                    setDbConfig({ ...dbConfig, host: e.target.value })
+                  }
+                  className="w-full border border-gray-300 rounded p-2 mb-4"
                 />
+                <input
+                  type="text"
+                  placeholder="Port"
+                  value={dbConfig.port}
+                  onChange={(e) =>
+                    setDbConfig({ ...dbConfig, port: e.target.value })
+                  }
+                  className="w-full border border-gray-300 rounded p-2 mb-4"
+                />
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={dbConfig.username}
+                  onChange={(e) =>
+                    setDbConfig({ ...dbConfig, username: e.target.value })
+                  }
+                  className="w-full border border-gray-300 rounded p-2 mb-4"
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={dbConfig.password}
+                  onChange={(e) =>
+                    setDbConfig({ ...dbConfig, password: e.target.value })
+                  }
+                  className="w-full border border-gray-300 rounded p-2 mb-4"
+                />
+                <input
+                  type="text"
+                  placeholder="Database Name"
+                  value={dbConfig.database}
+                  onChange={(e) =>
+                    setDbConfig({ ...dbConfig, database: e.target.value })
+                  }
+                  className="w-full border border-gray-300 rounded p-2 mb-4"
+                />
+                <input
+                  type="text"
+                  placeholder="Table Name"
+                  value={tableName}
+                  onChange={(e) => setTableName(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-4"
+                />
+                <button
+                  onClick={handleDbFetch}
+                  disabled={isFetching}
+                  className={`w-full py-2 rounded ${
+                    isFetching
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-green-500 text-white hover:bg-green-600"
+                  }`}
+                >
+                  {isFetching ? "Fetching..." : "Fetch Data"}
+                </button>
               </div>
-              <input
-                type="text"
-                placeholder="Host"
-                value={dbConfig.host}
-                onChange={(e) =>
-                  setDbConfig({ ...dbConfig, host: e.target.value })
-                }
-                className="w-full border border-gray-300 rounded p-2 mb-4"
-              />
-              <input
-                type="text"
-                placeholder="Port"
-                value={dbConfig.port}
-                onChange={(e) =>
-                  setDbConfig({ ...dbConfig, port: e.target.value })
-                }
-                className="w-full border border-gray-300 rounded p-2 mb-4"
-              />
-              <input
-                type="text"
-                placeholder="Username"
-                value={dbConfig.username}
-                onChange={(e) =>
-                  setDbConfig({ ...dbConfig, username: e.target.value })
-                }
-                className="w-full border border-gray-300 rounded p-2 mb-4"
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={dbConfig.password}
-                onChange={(e) =>
-                  setDbConfig({ ...dbConfig, password: e.target.value })
-                }
-                className="w-full border border-gray-300 rounded p-2 mb-4"
-              />
-              <input
-                type="text"
-                placeholder="Database Name"
-                value={dbConfig.database}
-                onChange={(e) =>
-                  setDbConfig({ ...dbConfig, database: e.target.value })
-                }
-                className="w-full border border-gray-300 rounded p-2 mb-4"
-              />
-              <input
-                type="text"
-                placeholder="Table Name"
-                value={tableName}
-                onChange={(e) => setTableName(e.target.value)}
-                className="w-full border border-gray-300 rounded p-2 mb-4"
-              />
-              <button
-                onClick={handleDbFetch}
-                disabled={isFetching}
-                className={`w-full py-2 rounded ${
-                  isFetching
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green-500 text-white hover:bg-green-600"
-                }`}
-              >
-                {isFetching ? "Fetching..." : "Fetch Data"}
-              </button>
             </div>
-          </div>
-        )}
+          )}
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col bg-gray-100 relative">

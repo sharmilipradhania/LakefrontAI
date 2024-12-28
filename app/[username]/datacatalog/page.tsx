@@ -51,6 +51,8 @@ export default function ChatWindow() {
     console.log(updatedModels);
   };
 
+  const username = localStorage.getItem('username');
+  console.log(username);
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -170,6 +172,10 @@ export default function ChatWindow() {
     }
   };
 
+  const handleHome = () => {
+    router.push(`/${username}/dashboard`); // Navigate to dashboard
+  };
+
   return (
     <>
     { data ? 
@@ -197,8 +203,13 @@ export default function ChatWindow() {
       {/* Navigation Links */}
       <ul className="mt-4 space-y-1">
         <li className="flex items-center p-3 hover:bg-gray-200 cursor-pointer">
-          <HomeIcon className="h-5 w-5" />
-          {isSidebarOpen && <span className="ml-3">Home</span>}
+            <div
+              onClick={handleHome}
+                className="flex items-center gap-x-3 cursor-pointer hover:bg-gray-200 p-2 rounded"
+              >
+              <HomeIcon className="h-5 w-5" />
+              {isSidebarOpen && <span>Home</span>}
+            </div>
         </li>
 
         <li

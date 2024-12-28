@@ -208,7 +208,9 @@ const ChatWindow: React.FC = () => {
   const handleBack = () => {
     window.history.back(); // Navigate to the previous page
   };
-
+  const handleHome = () => {
+    router.push(`/${username}/dashboard`); // Navigate to dashboard
+  };
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -232,8 +234,13 @@ const ChatWindow: React.FC = () => {
         {/* Sidebar Links */}
         <ul className="mt-4 space-y-4 px-2">
           <li className="flex items-center gap-x-3 cursor-pointer hover:bg-gray-700 p-2 rounded">
-            <HomeIcon className="h-5 w-5" />
-            {isSidebarOpen && <span>Home</span>}
+            <div
+                onClick={handleHome}
+                className="flex items-center gap-x-3 cursor-pointer hover:bg-gray-700 p-2 rounded"
+              >
+              <HomeIcon className="h-5 w-5" />
+              {isSidebarOpen && <span>Home</span>}
+            </div>
           </li>
 
           {/* Add Secret */}

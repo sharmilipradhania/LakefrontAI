@@ -354,8 +354,16 @@ app.post('/:username/upload-documents', verifyJWT, upload.array('files'), async 
     }
 
     // Parse and store the content of each file
-    documentContexts = files.map((file) => file.buffer.toString('utf-8'));
+    const documentContexts = files.map((file) => {
+      const fileContent = fs.readFileSync(file.path, 'utf-8');
+      return fileContent;
+    });
+
     console.log(documentContexts);
+
+    // Optional: Clean up uploaded files after processing
+    files.forEach((file) => fs.unlinkSync(file.path));
+
     res.status(200).json({ message: 'Documents uploaded and parsed successfully.' });
   } catch (error) {
     console.error('Error uploading documents:', error);

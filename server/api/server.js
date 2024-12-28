@@ -12,6 +12,8 @@ const ini = require("ini");
 const { OpenAI } = require("openai");
 const { Configuration, OpenAIApi } = require('openai');
 const multer = require('multer');
+const csvParser = require("csv-parser");
+const xlsx = require("xlsx");
 require("dotenv").config();
 
 const { callOpenAI, callGemini } = require("./apiUtils");
@@ -410,6 +412,124 @@ app.post('/:username/ask-question', verifyJWT, async (req, res) => {
   } catch (error) {
     console.error('Error processing question:', error);
     res.status(500).json({ error: 'Failed to process question.' });
+  }
+});
+
+let modelTrainDocumentContexts = [];
+// Endpoint to upload and process multiple files
+app.post("/:username/train-upload-documents", upload.array("files"), async (req, res) => {
+  try {
+    const files = req.files;
+
+    if (!files || files.length === 0) {
+      return res.status(400).json({ error: "No files uploaded." });
+    }
+
+    // Clear previous contexts
+    modelTrainDocumentContexts = [];
+
+    // Process each file
+    for (const file of files) {
+      const filePath = path.join(__dirname, "uploads", file.filename);
+      const ext = path.extname(file.originalname).toLowerCase();
+
+      if (ext === ".csv" || ext === ".xls" || ext === ".xlsx") {
+        // Read and parse the file content
+        const workbook = xlsx.readFile(filePath);
+        const sheetNames = workbook.SheetNames;
+        const jsonData = xlsx.utils.sheet_to_json(workbook.Sheets[sheetNames[0]]);
+        modelTrainDocumentContexts.push(...jsonData);
+      } else {
+        return res.status(400).json({ error: "Unsupported file format. Use CSV, XLS, or XLSX." });
+      }
+
+      fs.unlinkSync(filePath); // Clean up uploaded file
+    }
+
+    res.status(200).json({ message: "Documents uploaded and processed successfully." });
+  } catch (error) {
+    console.error("Error uploading documents:", error);
+    res.status(500).json({ error: "Failed to upload documents." });
+  }
+});
+
+// Train on uploaded data
+app.post("/:username/train-model", async (req, res) => {
+  try {
+    const { modelName, trainingParams } = req.body;
+    const { username } = req.params;
+    if (!modelName || !trainingParams) {
+      return res.status(400).json({ error: "Model name and training parameters are required." });
+    }
+
+    if (modelTrainDocumentContexts.length === 0) {
+      return res.status(400).json({ error: "No document contexts available. Upload documents first." });
+    }
+
+    // Prepare training data
+    const trainingData = modelTrainDocumentContexts.map((row) => {
+      const prompt = JSON.stringify(row).slice(0, 100); // First 100 characters as prompt
+      const completion = JSON.stringify(row).slice(100, 300); // Next 200 characters as completion
+      return { prompt, completion };
+    });
+
+    // Save training data to a local JSON file
+    // File path specific to the username
+    const trainingDirectory = path.join(__dirname, "uploads", username);
+    const trainingFilePath = path.join(trainingDirectory, "training_data.json");
+    // Ensure the directory exists
+    if (!fs.existsSync(trainingDirectory)) {
+      fs.mkdirSync(trainingDirectory, { recursive: true });
+    }
+    fs.writeFileSync(trainingFilePath, JSON.stringify(trainingData, null, 2), "utf-8");
+
+    res.status(200).json({
+      message: "Training data prepared and stored successfully.",
+      trainingDataSample: trainingData.slice(0, 5),
+    });
+  } catch (error) {
+    console.error("Error training model:", error);
+    res.status(500).json({ error: "Failed to train the model." });
+  }
+});
+
+// Query with trained data
+app.post("/:username/query", async (req, res) => {
+  try {
+    const { question } = req.body;
+    const { username } = req.params;
+    const openai = new OpenAI({ apiKey: dbConfig.OPENAI_API_KEY });
+
+    if (!question) {
+      return res.status(400).json({ error: "Question is required." });
+    }
+
+    const trainingDataPath = path.join(__dirname, "uploads", username, "training_data.json");
+    if (!fs.existsSync(trainingDataPath)) {
+      return res.status(400).json({ error: "No training data available. Train the model first." });
+    }
+
+    const trainingData = JSON.parse(fs.readFileSync(trainingDataPath, "utf-8"));
+
+    const context = trainingData.map((d) => d.prompt).join("\n").slice(0, 2000);
+
+    // Create a prompt for the Chat Completion API
+    const messages = [
+      { role: "system", content: "You are a helpful assistant for data analysis." },
+      { role: "user", content: `Context:\n${context}\n\nQuestion: ${question}` },
+    ];
+
+    const response = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: messages,
+      max_tokens: 300,
+    });
+
+    const answer = response.choices[0].message['content'];
+    res.status(200).json({ answer });
+  } catch (error) {
+    console.error("Error querying model:", error.response?.data || error);
+    res.status(500).json({ error: "Failed to query model." });
   }
 });
 

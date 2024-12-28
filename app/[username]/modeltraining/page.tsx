@@ -31,6 +31,7 @@ const DataUploader: React.FC = () => {
   const [files, setFiles] = useState<FileList | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [trainSuccess, setTrainSuccess] = useState(false);
 
   const [dbType, setDbType] = useState("");
   const [dbConfig, setDbConfig] = useState({
@@ -100,7 +101,7 @@ const DataUploader: React.FC = () => {
 
     try {
       const response = await axios.post(
-        `https://lakefrontai.com:4000/${username}/upload-documents`,
+        `https://lakefrontai.com:4000/${username}/train-upload-documents`,
         formData,
         {
           headers: {
@@ -117,6 +118,37 @@ const DataUploader: React.FC = () => {
       alert("Failed to upload files. Please try again.");
     } finally {
       setIsUploading(false);
+    }
+  };
+
+  const handleTrainModel = async () => {
+    setTrainSuccess(false);
+    try {
+      const response = await axios.post(
+        `https://lakefrontai.com:4000/${username}/train-model`,
+        {
+          modelName: "gpt-4", // Payload
+          trainingParams: {
+            n_epochs: 4,
+            batch_size: 8,
+            learning_rate_multiplier: 0.1,
+          },
+        },
+        {
+          headers: {
+
+            Authorization: `Bearer ${token}`, // Replace with actual JWT token
+          },
+        }
+      );
+
+      setTrainSuccess(true);
+      alert(response.data.message || "Model trained successfully!");
+    } catch (error) {
+      console.error("Error training model:", error);
+      alert(" Please try again.");
+    } finally {
+      setTrainSuccess(false);
     }
   };
 
@@ -150,23 +182,45 @@ const DataUploader: React.FC = () => {
       alert("Please enter a question.");
       return;
     }
-
+  
     setIsAsking(true);
-
+    console.log(`Question: ${question}`);
+    
     try {
-      const response = await axios.post("http://localhost:4000/ask-question", {
-        question,
-      });
-
+      const response = await axios.post(
+        `https://lakefrontai.com:4000/${username}/query`,
+        { question },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include JWT token for authentication
+            "Content-Type": "application/json", // Indicate JSON payload
+          },
+        }
+      );
+  
+      // Update chat messages
       setChatMessages((prevMessages) => [
         ...prevMessages,
         { role: "user", message: question },
         { role: "bot", message: response.data.answer || "No answer available." },
       ]);
+  
+      // Clear input box after submission
       setQuestion("");
     } catch (error) {
-      console.error("Error asking question:", error);
-      alert("Failed to get an answer. Please try again.");
+      if (axios.isAxiosError(error)) {
+        // Axios-specific error handling
+        console.error("Axios error response:", error.response?.data || error.message);
+        alert(error.response?.data?.error || "Failed to get an answer. Please try again.");
+      } else if (error instanceof Error) {
+        // Generic error handling
+        console.error("Error message:", error.message);
+        alert("An unknown error occurred. Please try again.");
+      } else {
+        // Unknown error type
+        console.error("Unknown error:", error);
+        alert("An unexpected error occurred. Please try again.");
+      }
     } finally {
       setIsAsking(false);
     }
@@ -216,6 +270,8 @@ const DataUploader: React.FC = () => {
       : [...selectedModels, model];
     setSelectedModels(updatedModels);
   };
+
+
 
   return (
     <div className="flex h-screen">
@@ -530,51 +586,65 @@ const DataUploader: React.FC = () => {
             </div>
           )}
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col bg-gray-100 relative">
-        {/* Chat Box */}
-        <div
-          className={`fixed bottom-0 ${
-            isSidebarOpen ? "left-64" : "left-16"
-          } w-[calc(100%-16rem)] sm:w-[calc(100%-4rem)] bg-gray-200 shadow-lg p-4 transition-all duration-300`}
-        >
-          <div className="max-w-4xl mx-auto flex items-center space-x-4">
-            <input
-              type="text"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Ask a question..."
-              className="flex-1 border border-gray-300 rounded p-2"
-            />
-            <button
-              onClick={handleAskQuestion}
-              disabled={isAsking}
-              className={`px-4 py-2 rounded ${
-                isAsking
-                  ? "bg-gray-400 text-white cursor-not-allowed"
-                  : "bg-green-500 text-white hover:bg-green-600"
-              }`}
-            >
-              {isAsking ? "Processing..." : "Ask"}
-            </button>
-          </div>
-          <div className="mt-4 space-y-2">
-            {chatMessages.map((msg, index) => (
-              <div
-                key={index}
-                className={`text-${
-                  msg.role === "user" ? "right" : "left"
-                } text-sm`}
-              >
-                <span className="block">
-                  {msg.role === "user" ? "You: " : "Bot: "}
-                  {msg.message}
-                </span>
+            {/* Main Content */}
+            <div className="flex-1 flex flex-col">
+              {/* Chat Area */}
+              <div className="flex-1 overflow-y-auto p-6 bg-white shadow-inner">
+                <div className="space-y-4">
+                  {chatMessages.map((msg, index) => (
+                    <div
+                      key={index}
+                      className={`${
+                        msg.role === "user" ? "text-right" : "text-left text-blue-600"
+                      }`}
+                    >
+                      <p
+                        className={`inline-block px-4 py-2 rounded-lg ${
+                          msg.role === "user"
+                            ? "bg-gray-200 text-gray-800"
+                            : "bg-blue-100"
+                        }`}
+                      >
+                        {msg.role === "user" ? "You: " : "Bot: "} {msg.message}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
+
+              {/* Bottom Section */}
+              <div className="flex items-center p-4 bg-gray-200 border-t space-x-4">
+                {/* Upload Icon */}
+                <button
+                  onClick={handleTrainModel}
+                  className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                >
+                  Train
+                </button>
+
+                {/* Input Box */}
+                <div className="flex flex-1 items-center">
+                  <input
+                    type="text"
+                    value={question}
+                    onChange={(e) => setQuestion(e.target.value)}
+                    placeholder="Ask a question..."
+                    className="flex-1 border border-gray-300 rounded p-2"
+                  />
+                  <button
+                    onClick={handleAskQuestion}
+                    disabled={isAsking}
+                    className={`ml-3 px-4 py-2 rounded ${
+                      isAsking
+                        ? "bg-gray-400 text-white cursor-not-allowed"
+                        : "bg-green-500 text-white hover:bg-green-600"
+                    }`}
+                  >
+                    {isAsking ? "Processing..." : "Ask"}
+                  </button>
+                </div>
+              </div>
+            </div>
       </div>
       {/* Add Secret Popup */}
       {showSecretInput && (

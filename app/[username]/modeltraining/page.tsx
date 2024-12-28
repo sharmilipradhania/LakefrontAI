@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from 'next/navigation';
 import {
   ArrowUpTrayIcon,
   ServerStackIcon,
@@ -36,14 +37,35 @@ const DataUploader: React.FC = () => {
   const [question, setQuestion] = useState<string>("");
   const [isAsking, setIsAsking] = useState(false);
   const [chatMessages, setChatMessages] = useState<{ role: string; message: string }[]>([]);
+  const [username,setusername] = useState(""); // Replace with dynamic username
+  const [token,settoken] = useState(""); // token 
+  const router = useRouter();
 
-  const username = "JohnDoe"; // Replace with the logged-in username
+
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFiles(e.target.files);
     }
   };
+
+  // Load  username from localStorage when the component mounts
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setusername(storedUsername);
+    }
+  }, [username]);
+
+
+  // Load token from localStorage when the component mounts
+  useEffect(() => {
+    const storedtoken = localStorage.getItem("token");
+    if (storedtoken) {
+      settoken(storedtoken);
+    }
+  }, [token]);
+
 
   const handleFileUpload = async () => {
     if (!files || files.length === 0) {

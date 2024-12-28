@@ -100,10 +100,13 @@ const DataUploader: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/upload-file",
+        `https://lakefrontai.com:4000/${username}/upload-documents`,
         formData,
         {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`, // Replace with actual JWT token
+          },
         }
       );
 

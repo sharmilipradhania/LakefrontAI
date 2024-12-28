@@ -235,6 +235,10 @@ const DataUploader: React.FC = () => {
     window.history.back(); // Navigate to the previous page
   };
 
+  const handleHome = () => {
+    router.push(`/${username}/dashboard`); // Navigate to dashboard
+  };
+
   const handleAddSecret = () => {
     if (keyName.trim() && keyValue.trim()) {
       const newSecret = {
@@ -294,8 +298,13 @@ const DataUploader: React.FC = () => {
 
         <ul className="mt-4 space-y-4 px-2 flex-grow">
           <li className="flex items-center gap-x-3 cursor-pointer hover:bg-gray-700 p-2 rounded">
-            <HomeIcon className="h-5 w-5" />
-            {isSidebarOpen && <span>Home</span>}
+            <div
+                onClick={handleHome}
+                className="flex items-center gap-x-3 cursor-pointer hover:bg-gray-700 p-2 rounded"
+              >
+              <HomeIcon className="h-5 w-5" />
+              {isSidebarOpen && <span>Home</span>}
+            </div>
           </li>
           <li
             onClick={() => setIsFileModalOpen(true)}

@@ -46,7 +46,7 @@ let privatekey;
 let certi;
 let dbConfig;
 
-const ENV = 'production'; // production environment and development environment
+const ENV = 'development'; // production environment and development environment
 if (ENV === 'development') {
 // development environment variables
   dbConfig = config.development;
@@ -427,6 +427,11 @@ app.post("/:username/train-upload-documents", upload.array("files"), async (req,
 
     // Clear previous contexts
     modelTrainDocumentContexts = [];
+    const fileDirectory = path.join(__dirname, "uploads");
+    // Ensure the directory exists
+    if (!fs.existsSync(fileDirectory)) {
+      fs.mkdirSync(fileDirectory, { recursive: true });
+    }
 
     // Process each file
     for (const file of files) {

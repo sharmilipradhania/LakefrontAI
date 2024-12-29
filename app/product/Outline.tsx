@@ -6,7 +6,7 @@ const lakefrontaiServices = [
   "Model Training",
   "Document Summary",
   "Data Catalog",
-  "Any any Question",
+  "AI Agent",
 ];
 
 export default function Outline() {

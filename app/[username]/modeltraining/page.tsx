@@ -92,13 +92,24 @@ const DataUploader: React.FC = () => {
       alert("Please select files to upload.");
       return;
     }
-
+  
+    // Check file sizes
+    const MAX_FILE_SIZE_MB = 2; // Maximum file size in MB
+    const oversizedFiles = Array.from(files).filter(
+      (file) => file.size > MAX_FILE_SIZE_MB * 1024 * 1024
+    );
+  
+    if (oversizedFiles.length > 0) {
+      alert(`One or more files exceed the size limit of ${MAX_FILE_SIZE_MB} MB. Please select smaller files.`);
+      return;
+    }
+  
     const formData = new FormData();
     Array.from(files).forEach((file) => formData.append("files", file));
-
+  
     setIsUploading(true);
     setUploadSuccess(false);
-
+  
     try {
       const response = await axios.post(
         `https://lakefrontai.com:4000/${username}/train-upload-documents`,
@@ -110,7 +121,7 @@ const DataUploader: React.FC = () => {
           },
         }
       );
-
+  
       setUploadSuccess(true);
       alert(response.data.message || "File uploaded successfully!");
     } catch (error) {

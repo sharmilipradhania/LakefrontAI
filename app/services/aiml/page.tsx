@@ -55,13 +55,13 @@ const InnovationWithAI = () => {
               </ul>
               <div className="flex space-x-4">
                 <a
-                  href="#"
+                  href="/login"
                   className="bg-indigo-500 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-600"
                 >
                   Get Started
                 </a>
                 <a
-                  href="#"
+                  href="/productDescription"
                   className="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg shadow hover:bg-gray-300"
                 >
                   Learn More
@@ -72,7 +72,7 @@ const InnovationWithAI = () => {
             {/* Image Section */}
             <div className="w-full md:w-1/2 mt-8 md:mt-0">
               <Image
-                src="/genai_innovation.png"
+                src="/ai_picture.png"
                 alt="GenAI and Machine Learning"
                 width={600}
                 height={400}
@@ -88,19 +88,19 @@ const InnovationWithAI = () => {
             title: "Generative AI Solutions",
             description:
               "Design AI-driven content creation, personalized recommendations, and customer support systems powered by GenAI. Boost efficiency and creativity in your workflows.",
-            image: "/genai_solutions.png",
+            image: "/product/genai_solutions.jpg",
           },
           {
             title: "Predictive Analytics and Insights",
             description:
               "Leverage machine learning to predict trends, customer behavior, and operational performance. Make proactive decisions backed by data-driven insights.",
-            image: "/predictive_analytics.png",
+            image: "/product/predictive_analytics.jpg",
           },
           {
             title: "AI-Powered Automation",
             description:
               "Transform repetitive tasks with intelligent automation. Implement AI models that streamline processes, improve accuracy, and reduce manual effort.",
-            image: "/ai_automation.png",
+            image: "/product/ai_automation.jpg",
           },
           {
             title: "Custom Machine Learning Models",
@@ -142,7 +142,7 @@ const InnovationWithAI = () => {
             Partner with us to leverage the power of GenAI and machine learning. Let’s innovate together and achieve extraordinary results.
           </p>
           <a
-            href="#"
+            href="/aboutus"
             className="bg-indigo-500 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-600"
           >
             Contact Us

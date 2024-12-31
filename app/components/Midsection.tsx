@@ -1,3 +1,4 @@
+"use client";
 import Image from 'next/image'
 import React from 'react'
 
@@ -8,8 +9,10 @@ import Testimonial from './Testimonial';
 import Services from './Services';
 import FeatureSection from './FeatureSection';
 import Description from './Description';
+import { useRouter } from "next/navigation";
 
 const Midsection = () => {
+  const router = useRouter();
   return (
     // animation section
     <div className='area'>
@@ -42,7 +45,9 @@ const Midsection = () => {
             </div>
             <h2 className="text-4xl font-bold text-orange-300 mt-1 md:mt-1">Augmenting industry best practices with AI and analytics</h2>
             <p className="my-3 text-justify text-xl font-base text-orange-300 leading-relaxed">Every industry has its specific challenges, and there are no playbooks for many pressing ones. Balancing best practices and fundamental grounds-up thinking is needed to solve these.</p>
-            <button className="mt-2 md:mt-5 p-3 px-5 bg-black text-orange-300 font-bold text-sm hover:bg-purple-800">
+            <button 
+              onClick={() => router.push("/productDescription")}
+              className="mt-2 md:mt-5 p-3 px-5 bg-black text-orange-300 font-bold text-sm hover:bg-purple-800">
               Read More
             </button>
           </div>

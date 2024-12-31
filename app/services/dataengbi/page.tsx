@@ -62,7 +62,7 @@ const DataEngineering = () => {
             {/* Image Section */}
             <div className="w-full md:w-1/2 mt-8 md:mt-0">
               <Image
-                src="/data_engineering.png"
+                src="/ai_picture.png"
                 alt="Data Engineering"
                 width={600}
                 height={400}
@@ -78,25 +78,25 @@ const DataEngineering = () => {
             title: "Data Engineering Services",
             description:
               "From data ingestion to processing, we ensure your data pipelines are optimized for performance and scalability. Our engineers specialize in handling structured, semi-structured, and unstructured data.",
-            image: "/data_pipelines.png",
+            image: "/dataengbi/DataEngineering.jpg",
           },
           {
             title: "Cloud Data Solutions",
             description:
               "Leverage the cloud to modernize your data infrastructure. We offer cloud migration, integration, and management services tailored to your business needs.",
-            image: "/cloud_data.png",
+            image: "/dataengbi/CloudDataSolutions.jpg",
           },
           {
             title: "Business Intelligence Insights",
             description:
               "Transform your raw data into actionable insights with custom dashboards and reports. Make informed decisions with real-time analytics.",
-            image: "/bi_dashboard.png",
+            image: "/dataengbi/BI.jpg",
           },
           {
             title: "Data Warehousing",
             description:
               "Centralize your data in robust warehouses that are secure, scalable, and easy to manage. Our solutions are designed to handle growing volumes of data efficiently.",
-            image: "/data_warehousing.png",
+            image: "/dataengbi/Datawarehouse.png",
           },
         ].map((section, index) => (
           <div
@@ -133,7 +133,7 @@ const DataEngineering = () => {
             insights. Take the first step towards a smarter future.
           </p>
           <a
-            href="#"
+            href="/aboutus"
             className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600"
           >
             Contact Us

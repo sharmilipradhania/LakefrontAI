@@ -200,13 +200,52 @@ const DataUploader: React.FC = () => {
     console.log(`Question: ${question}`);
     
     try {
+      // Retrieve selected model from localStorage
+      const selectedModel = JSON.parse(localStorage.getItem("selected_models") || "[]");
+      
+      // Check for available models in order of preference
+      const modelToUse =
+        selectedModel.includes("OpenAI") ? "openai" :
+        selectedModel.includes("Gemini") ? "gemini" :
+        selectedModel.includes("Bard") ? "bard" :
+        null;
+      
+      if (modelToUse) {
+        console.log(`Using model: ${modelToUse}`);
+      } else {
+        console.log("No valid model selected.");
+      }
+      console.log(selectedModel);
+      // Retrieve the secret for the selected model
+      const secretKey = `secret_${modelToUse}`; // Use dynamic key naming convention
+      const savedSecret = localStorage.getItem(secretKey);
+
+      if (!savedSecret) {
+        alert(`Secret for the selected model (${modelToUse}) is not set. Please add it in the settings.`);
+        return;
+      }
+
+      // Parse the saved secret
+      const parsedSecret = JSON.parse(savedSecret);
+      const apiKey = parsedSecret[0]?.keyValue; // Use the first secret's value; modify this logic as needed
+      console.log(apiKey);
+      if (!apiKey) {
+        alert(`Invalid secret for the selected model (${selectedModel}). Please check the saved secrets.`);
+        return;
+      }
+
+      // Make the API call
       const response = await axios.post(
         `https://lakefrontai.com:4000/${username}/query`,
-        { question },
+        {
+          question,
+          model: selectedModel, // Pass the selected model
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`, // Include JWT token for authentication
             "Content-Type": "application/json", // Indicate JSON payload
+            "x-model-secret": apiKey, // Include the model-specific secret in a custom header
           },
         }
       );
@@ -294,6 +333,7 @@ const DataUploader: React.FC = () => {
       ? selectedModels.filter((item) => item !== model)
       : [...selectedModels, model];
     setSelectedModels(updatedModels);
+    localStorage.setItem("selected_models", JSON.stringify(updatedModels));
   };
 
 

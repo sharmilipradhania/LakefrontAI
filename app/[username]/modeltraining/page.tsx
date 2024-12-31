@@ -17,6 +17,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 interface Secret {
+  keyType: string;
   keyName: string;
   keyValue: string;
   isVisible: boolean; // For toggling secret visibility
@@ -56,6 +57,7 @@ const DataUploader: React.FC = () => {
   const [keyName, setKeyName] = useState("");
   const [keyValue, setKeyValue] = useState("");
   const [showSecretInput, setShowSecretInput] = useState(false);
+  const [keyType, setKeyType] = useState("");
 
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
 
@@ -251,18 +253,26 @@ const DataUploader: React.FC = () => {
   };
 
   const handleAddSecret = () => {
-    if (keyName.trim() && keyValue.trim()) {
+    if (keyType && keyName.trim() && keyValue.trim()) {
       const newSecret = {
+        keyType: keyType, // Save key type
         keyName: keyName.trim(),
         keyValue: keyValue.trim(),
         isVisible: false, // Default to hidden
       };
-      setSecrets((prevSecrets) => [...prevSecrets, newSecret]);
+      const localStorageKey = `secret_${keyType}`;
+      setSecrets((prevSecrets) => {
+        const updatedSecrets = [...prevSecrets, newSecret];
+        localStorage.setItem(localStorageKey, JSON.stringify(updatedSecrets));
+        return updatedSecrets;
+      });
+      setKeyType(""); // Reset the key type
       setKeyName("");
       setKeyValue("");
       setShowSecretInput(false); // Close the popup
+
     } else {
-      alert("Please enter both key name and value.");
+      alert("Please select a key type and enter both key name and value.");
     }
   };
 
@@ -350,7 +360,7 @@ const DataUploader: React.FC = () => {
                     className="bg-gray-700 p-2 rounded flex justify-between items-center"
                   >
                     <div>
-                      <span className="font-bold">{secret.keyName}:</span>{" "}
+                      <span className="font-bold">{secret.keyType}:</span>{" "}
                       {secret.isVisible ? secret.keyValue : "*****"}
                     </div>
                     <div className="flex space-x-2">
@@ -671,26 +681,43 @@ const DataUploader: React.FC = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded shadow-lg w-80">
             <h2 className="text-lg font-bold mb-4">Add Secret</h2>
-            <input
-              type="text"
-              placeholder="Key Name"
-              value={keyName}
-              onChange={(e) => setKeyName(e.target.value)}
-              className="w-full border border-gray-300 rounded p-2 mb-2"
-            />
-            <input
-              type="text"
-              placeholder="Key Value"
-              value={keyValue}
-              onChange={(e) => setKeyValue(e.target.value)}
-              className="w-full border border-gray-300 rounded p-2 mb-4"
-            />
-            <button
-              onClick={handleAddSecret}
-              className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-            >
-              Save Secret
-            </button>
+
+                {/* Key Type Selection */}
+                <select
+                  value={keyType}
+                  onChange={(e) => setKeyType(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-2"
+                >
+                  <option value="" disabled>Select Key Type</option>
+                  <option value="openai">OpenAI</option>
+                  <option value="gemini">Gemini</option>
+                </select>
+
+                {/* Key Name Input */}
+                <input
+                  type="text"
+                  placeholder="Key Name"
+                  value={keyName}
+                  onChange={(e) => setKeyName(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-2"
+                />
+
+                {/* Key Value Input */}
+                <input
+                  type="text"
+                  placeholder="Key Value"
+                  value={keyValue}
+                  onChange={(e) => setKeyValue(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-4"
+                />
+
+                {/* Save Button */}
+                <button
+                  onClick={handleAddSecret}
+                  className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                  Save Secret
+                </button>
           </div>
         </div>
       )}

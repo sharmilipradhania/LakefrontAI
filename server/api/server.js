@@ -358,6 +358,12 @@ app.post('/:username/upload-documents', verifyJWT, upload.array('files'), async 
     // Clear previous contexts
     documentContexts = [];
 
+    const fileDirectory = path.join(__dirname, "uploads");
+    // Ensure the directory exists
+    if (!fs.existsSync(fileDirectory)) {
+      fs.mkdirSync(fileDirectory, { recursive: true });
+    }
+    
     // Parse and store the content of each file
     for (const file of files) {
       const filePath = path.join(__dirname, "uploads", file.filename);

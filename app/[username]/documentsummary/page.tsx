@@ -16,6 +16,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 interface Secret {
+  keyType: string;
   keyName: string;
   keyValue: string;
   isVisible: boolean; // For toggling secret visibility
@@ -37,6 +38,7 @@ const ChatWindow: React.FC = () => {
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
   const [username,setusername] = useState(""); // Replace with dynamic username
   const [token,settoken] = useState(""); // token 
+  const [keyType, setKeyType] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -114,6 +116,18 @@ const ChatWindow: React.FC = () => {
       return;
     }
 
+  
+    // Check file sizes
+    const MAX_FILE_SIZE_MB = 2; // Maximum file size in MB
+    const oversizedFiles = Array.from(files).filter(
+      (file) => file.size > MAX_FILE_SIZE_MB * 1024 * 1024
+    );
+  
+    if (oversizedFiles.length > 0) {
+      alert(`One or more files exceed the size limit of ${MAX_FILE_SIZE_MB} MB. Please select smaller files.`);
+      return;
+    }
+    
     const formData = new FormData();
     Array.from(files).forEach((file) => formData.append("files", file));
 
@@ -172,18 +186,26 @@ const ChatWindow: React.FC = () => {
   };
 
   const handleAddSecret = () => {
-    if (keyName.trim() && keyValue.trim()) {
+    if (keyType && keyName.trim() && keyValue.trim()) {
       const newSecret = {
+        keyType: keyType, // Save key type
         keyName: keyName.trim(),
         keyValue: keyValue.trim(),
         isVisible: false, // Default to hidden
       };
-      setSecrets((prevSecrets) => [...prevSecrets, newSecret]);
+      const localStorageKey = `secret_${keyType}`;
+      setSecrets((prevSecrets) => {
+        const updatedSecrets = [...prevSecrets, newSecret];
+        localStorage.setItem(localStorageKey, JSON.stringify(updatedSecrets));
+        return updatedSecrets;
+      });
+      setKeyType(""); // Reset the key type
       setKeyName("");
       setKeyValue("");
       setShowSecretInput(false); // Close the popup
+
     } else {
-      alert("Please enter both key name and value.");
+      alert("Please select a key type and enter both key name and value.");
     }
   };
 

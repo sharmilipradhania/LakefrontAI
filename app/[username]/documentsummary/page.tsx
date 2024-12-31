@@ -127,7 +127,7 @@ const ChatWindow: React.FC = () => {
       alert(`One or more files exceed the size limit of ${MAX_FILE_SIZE_MB} MB. Please select smaller files.`);
       return;
     }
-    
+
     const formData = new FormData();
     Array.from(files).forEach((file) => formData.append("files", file));
 
@@ -166,7 +166,7 @@ const ChatWindow: React.FC = () => {
     try {
       const response = await axios.post(
         `https://lakefrontai.com:4000/${username}/ask-question`,
-        { question, selectedModels },
+        { question, selectedModels, secrets },
         {
           headers: {
             Authorization: `Bearer ${token}`, // Replace with actual JWT token
@@ -284,7 +284,7 @@ const ChatWindow: React.FC = () => {
                     className="bg-gray-700 p-2 rounded flex justify-between items-center"
                   >
                     <div>
-                      <span className="font-bold">{secret.keyName}:</span>{" "}
+                      <span className="font-bold">{secret.keyType}:</span>{" "}
                       {secret.isVisible ? secret.keyValue : "*****"}
                     </div>
                     <div className="flex space-x-2">
@@ -481,26 +481,43 @@ const ChatWindow: React.FC = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded shadow-lg w-80">
             <h2 className="text-lg font-bold mb-4">Add Secret</h2>
-            <input
-              type="text"
-              placeholder="Key Name"
-              value={keyName}
-              onChange={(e) => setKeyName(e.target.value)}
-              className="w-full border border-gray-300 rounded p-2 mb-2"
-            />
-            <input
-              type="text"
-              placeholder="Key Value"
-              value={keyValue}
-              onChange={(e) => setKeyValue(e.target.value)}
-              className="w-full border border-gray-300 rounded p-2 mb-4"
-            />
-            <button
-              onClick={handleAddSecret}
-              className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-            >
-              Save Secret
-            </button>
+
+                {/* Key Type Selection */}
+                <select
+                  value={keyType}
+                  onChange={(e) => setKeyType(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-2"
+                >
+                  <option value="" disabled>Select Key Type</option>
+                  <option value="openai">OpenAI</option>
+                  <option value="gemini">Gemini</option>
+                </select>
+
+                {/* Key Name Input */}
+                <input
+                  type="text"
+                  placeholder="Key Name"
+                  value={keyName}
+                  onChange={(e) => setKeyName(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-2"
+                />
+
+                {/* Key Value Input */}
+                <input
+                  type="text"
+                  placeholder="Key Value"
+                  value={keyValue}
+                  onChange={(e) => setKeyValue(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-4"
+                />
+
+                {/* Save Button */}
+                <button
+                  onClick={handleAddSecret}
+                  className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                  Save Secret
+                </button>
           </div>
         </div>
       )}

@@ -6,28 +6,28 @@ import { useRouter } from "next/navigation";
 
 const agents = [
   {
-    name: "Data Analytics AI Agent",
+    name: "Data Analytics",
     description:
       "Empowers businesses with actionable insights by analyzing structured and unstructured data for better decision-making.",
     image: "/images/aiagent/data-analytics.png",
     route: "aiagent/data-analytics",
   },
   {
-    name: "DevOps AI Agent",
+    name: "DevOps",
     description:
       "Streamlines DevOps workflows by optimizing CI/CD pipelines, monitoring infrastructure, and enhancing collaboration.",
     image: "/images/ai-agents/devops.png",
     route: "aiagent/devops",
   },
   {
-    name: "Financial Analyst AI Agent",
+    name: "Data Catalog",
     description:
-      "Offers in-depth financial analysis, trend predictions, and portfolio optimization for strategic financial planning.",
+      "Create, manage, and search data catalogs",
     image: "/images/ai-agents/financial-analyst.png",
-    route: "aiagent/financial-analyst",
+    route: "aiagent/datacatalog",
   },
   {
-    name: "Customer Support AI Agent",
+    name: "Customer Support",
     description:
       "Enhances customer service by providing instant responses, resolving issues efficiently, and ensuring customer satisfaction.",
     image: "/images/ai-agents/customer-support.png",

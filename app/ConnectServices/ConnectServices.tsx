@@ -74,6 +74,12 @@ export default function ConnectServices() {
       if (response.status === 200) {
         setConnectionStatus(`Connected successfully to ${activeService}!`);
         console.log("Response from server:", response.data);
+        localStorage.setItem("serviceActive", JSON.stringify(data));
+        const storedData = localStorage.getItem("serviceActive");
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          console.log(parsedData); // Access the parsed object
+        }
       } else {
         setConnectionStatus(`Failed to connect to ${activeService}: ${response.data?.message || "Unknown error"}`);
       }

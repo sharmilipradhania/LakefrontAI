@@ -2,11 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { FaBars, FaEye, FaEyeSlash, FaTrash, FaEdit, FaKey } from "react-icons/fa";
-import { LockClosedIcon, HomeIcon,  ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { LockClosedIcon, HomeIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { Dialog } from "@headlessui/react";
 import ConnectServices from "@/app/ConnectServices/ConnectServices";
-import Chatbox  from "@/app/Chatbox/Chatbox";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 export default function ConnectServicesWithSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -14,15 +13,17 @@ export default function ConnectServicesWithSidebar() {
   const [selectedModel, setSelectedModel] = useState<string | null>(null);
   const [secretKey, setSecretKey] = useState("");
   const [secrets, setSecrets] = useState<{ model: string; secret: string; isVisible: boolean }[]>([]);
-  const [username,setusername] = useState(""); 
+  const [username, setUsername] = useState("");
   const router = useRouter();
+
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) {
-      setusername(storedUsername);
+      setUsername(storedUsername);
     } else {
-      router.push('/login');
+      router.push("/login");
     }
   }, [username]);
 
@@ -86,123 +87,157 @@ export default function ConnectServicesWithSidebar() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.clear(); // Clear all localStorage data
-    window.location.href = "/login"; // Redirect to login page
+    localStorage.clear();
+    router.push("/login");
   };
 
   const handleBack = () => {
-    window.history.back(); // Navigate to the previous page
+    window.history.back();
   };
-
 
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full ${
-          isSidebarOpen ? "w-64" : "w-20"
-        } bg-gray-800 text-white transition-all duration-300 flex flex-col`}
-      >
-        <div className="p-4 flex items-center">
-          <button onClick={toggleSidebar} className="text-white hover:text-gray-300">
-            <FaBars className="text-2xl" />
-          </button>
-          {isSidebarOpen && <h2 className="ml-4 text-lg font-semibold">Sidebar</h2>}
-        </div>
-        <ul className="mt-4 flex-1 space-y-4 px-4">
-          <li className="flex items-center gap-2">
-            <HomeIcon className="h-6 w-6" />
-            {isSidebarOpen && <span className="text-sm font-medium">Dashboard</span>}
-          </li>
-          <li>
-            <div className="flex items-center gap-2">
-              <FaKey />
-              {isSidebarOpen && <span className="text-sm font-medium">Select Model</span>}
+          className={`fixed top-0 left-0 h-full ${
+            isSidebarOpen ? "w-64" : "w-20"
+          } bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 text-white shadow-lg transition-all duration-300 flex flex-col`}
+        >
+            <div className="p-4 flex items-center">
+              <button
+                onClick={toggleSidebar}
+                className="text-white hover:text-gray-300 focus:outline-none"
+              >
+                <FaBars className="text-2xl" />
+              </button>
+              {isSidebarOpen && (
+                <h2 className="ml-4 text-lg font-semibold tracking-wide text-left">Menu</h2>
+              )}
             </div>
-            {isSidebarOpen && (
-              <div className="pl-6 mt-2 space-y-2">
-                {["OpenAI", "Gemini"].map((model) => (
-                  <div key={model}>
-                    <input
-                      type="checkbox"
-                      id={model.toLowerCase()}
-                      name="model"
-                      checked={isModelChecked(model)}
-                      onChange={() => handleModelChange(model)}
-                    />
-                    <label htmlFor={model.toLowerCase()} className="ml-2">
-                      {model}
-                    </label>
-                  </div>
-                ))}
+          <ul className="mt-6 space-y-4 flex-1 px-4">
+            <li
+              className={`flex items-center gap-3 p-2 rounded-md cursor-pointer hover:bg-gray-700 transition ${
+                isSidebarOpen && "pl-4"
+              }`}
+            >
+              <HomeIcon className="h-6 w-6" />
+              {isSidebarOpen && (
+                <span className="text-sm font-medium tracking-wide">Dashboard</span>
+              )}
+            </li>
+            <li>
+              <div
+                className={`flex items-center gap-3 p-2 rounded-md cursor-pointer hover:bg-gray-700 transition ${
+                  isSidebarOpen && "pl-4"
+                }`}
+              >
+                <FaKey />
+                {isSidebarOpen && (
+                  <span className="text-sm font-medium tracking-wide">Select Model</span>
+                )}
+              </div>
+              {isSidebarOpen && (
+                <div className="pl-6 mt-2 space-y-2">
+                  {["OpenAI", "Gemini"].map((model) => (
+                    <div
+                      key={model}
+                      className="flex items-center gap-3 hover:bg-gray-600 p-1 rounded-md cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        id={model.toLowerCase()}
+                        name="model"
+                        checked={isModelChecked(model)}
+                        onChange={() => handleModelChange(model)}
+                      />
+                      <label
+                        htmlFor={model.toLowerCase()}
+                        className="text-sm tracking-wide"
+                      >
+                        {model}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </li>
+            <li>
+              <div
+                className={`flex items-center gap-3 p-2 rounded-md cursor-pointer hover:bg-gray-700 transition ${
+                  isSidebarOpen && "pl-4"
+                }`}
+              >
+                <LockClosedIcon className="h-6 w-6" />
+                {isSidebarOpen && (
+                  <span className="text-sm font-medium tracking-wide">
+                    Saved Secrets
+                  </span>
+                )}
+              </div>
+              {isSidebarOpen && (
+                <ul className="pl-6 mt-2 space-y-2">
+                  {secrets.map((secret) => (
+                    <li
+                      key={secret.model}
+                      className="flex justify-between items-center bg-gray-800 p-2 rounded-md hover:bg-gray-700 transition"
+                    >
+                      <span className="font-medium text-sm">{secret.model}</span>
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() => handleToggleSecretVisibility(secret.model)}
+                          className="text-gray-400 hover:text-gray-200 focus:outline-none"
+                        >
+                          {secret.isVisible ? <FaEyeSlash /> : <FaEye />}
+                        </button>
+                        <button
+                          onClick={() => handleEditSecret(secret.model)}
+                          className="text-yellow-400 hover:text-yellow-200 focus:outline-none"
+                        >
+                          <FaEdit />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteSecret(secret.model)}
+                          className="text-red-400 hover:text-red-200 focus:outline-none"
+                        >
+                          <FaTrash />
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          </ul>
+          {/* Sidebar Footer */}
+          <div className="mt-auto p-4 border-t border-gray-700 space-y-3">
+            {isSidebarOpen && username && (
+              <div className="text-center">
+                <p className="text-sm font-semibold tracking-wide">{username}</p>
               </div>
             )}
-          </li>
-          <li>
-            <div className="flex items-center gap-2">
-              <LockClosedIcon className="h-6 w-6" />
-              {isSidebarOpen && <span className="text-sm font-medium">Saved Secrets</span>}
-            </div>
-            {isSidebarOpen && (
-              <ul className="mt-2 space-y-2">
-                {secrets.map((secret) => (
-                  <li
-                    key={secret.model}
-                    className="flex justify-between items-center bg-gray-700 p-2 rounded"
-                  >
-                    <span>{secret.model}</span>
-                    <div className="flex items-center space-x-2">
-                      <button
-                        onClick={() => handleToggleSecretVisibility(secret.model)}
-                        className="text-gray-400 hover:text-gray-200"
-                      >
-                        {secret.isVisible ? <FaEyeSlash /> : <FaEye />}
-                      </button>
-                      <button
-                        onClick={() => handleEditSecret(secret.model)}
-                        className="text-yellow-400 hover:text-yellow-200"
-                      >
-                        <FaEdit />
-                      </button>
-                      <button
-                        onClick={() => handleDeleteSecret(secret.model)}
-                        className="text-red-400 hover:text-red-200"
-                      >
-                        <FaTrash />
-                      </button>
-                    </div>
-                    {secret.isVisible && (
-                      <p className="mt-1 text-xs text-gray-300">{secret.secret}</p>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        </ul>
-        {/* Sidebar Footer */}
-        <div className="mt-auto p-4 border-t border-gray-700 space-y-3">
-          <div className="text-center">
-            <p className="text-sm font-semibold">{username}</p>
+            <button
+              onClick={handleLogout}
+              className={`w-full py-2 rounded-md text-white text-sm transition ${
+                isSidebarOpen ? "bg-red-500 hover:bg-red-600" : "bg-gray-700 hover:bg-gray-800"
+              } flex items-center justify-center`}
+            >
+              <ArrowLeftIcon className="h-5 w-5 mr-2" />
+              {isSidebarOpen && "Logout"}
+            </button>
+            <button
+              onClick={handleBack}
+              className={`w-full py-2 rounded-md text-white text-sm transition ${
+                isSidebarOpen ? "bg-gray-600 hover:bg-gray-700" : "bg-gray-700 hover:bg-gray-800"
+              } flex items-center justify-center`}
+            >
+              <ArrowLeftIcon className="h-5 w-5 mr-2" />
+              {isSidebarOpen && "Back"}
+            </button>
           </div>
-          <button
-            onClick={handleLogout}
-            className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600"
-          >
-            Logout
-          </button>
-          <button
-            onClick={handleBack}
-            className="w-full bg-gray-600 text-white py-2 rounded hover:bg-gray-700"
-          >
-            <ArrowLeftIcon className="h-5 w-5 inline mr-2" />
-            Back
-          </button>
         </div>
-      </div>
 
       {/* Main Content */}
-      <div className="flex-1 ml-20 lg:ml-64 p-6">
+      <div className="flex-1 ml-20 lg:ml-64 p-6 bg-gray-50">
         <ConnectServices />
       </div>
 
@@ -213,14 +248,14 @@ export default function ConnectServicesWithSidebar() {
           onClose={() => setShowSecretPopup(false)}
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
         >
-          <div className="bg-white p-6 rounded shadow-lg w-80">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-80">
             <h2 className="text-lg font-bold mb-4">Enter Secret Key for {selectedModel}</h2>
             <input
               type="text"
               placeholder="Enter Secret Key"
               value={secretKey}
               onChange={(e) => setSecretKey(e.target.value)}
-              className="w-full border border-gray-300 rounded p-2 mb-4"
+              className="w-full border border-gray-300 rounded p-2 mb-4 focus:ring focus:ring-blue-200"
             />
             <div className="flex justify-between">
               <button

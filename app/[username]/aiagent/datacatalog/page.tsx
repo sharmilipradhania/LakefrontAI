@@ -238,7 +238,7 @@ export default function ConnectServicesWithSidebar() {
 
       {/* Main Content */}
       <div className="flex-1 ml-20 lg:ml-64 p-6 bg-gray-50">
-        <ConnectServices />
+        <ConnectServices isSidebarOpen={isSidebarOpen}/>
       </div>
 
       {/* Secret Input Popup */}

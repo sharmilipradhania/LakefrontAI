@@ -54,7 +54,7 @@ export default function ConnectServices() {
   };
 
   const handleConnect = async () => {
-    const storedUsername = "test001@gmail.com";//localStorage.getItem('username');
+    const storedUsername = localStorage.getItem('username');
     try {
       console.log(`using ${storedUsername} Connecting to ${activeService} with credentials:`, credentials);
   
@@ -64,7 +64,7 @@ export default function ConnectServices() {
         credentials,
       };
   
-      const response = await axios.post("https://localhost:4000/anjulkumar001@gmail.com/aiagent/datacatalog", data, {
+      const response = await axios.post(`https://lakefrontai.com:4000/${storedUsername}/aiagent/datacatalog`, data, {
         headers: {
           "Content-Type": "application/json",
         },

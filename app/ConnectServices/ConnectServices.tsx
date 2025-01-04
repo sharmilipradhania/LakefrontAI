@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import axios from "axios";
 import { Dialog } from "@headlessui/react";
 import { CloudIcon, CubeIcon } from "@heroicons/react/24/outline";
 import { FaDatabase } from "react-icons/fa"; // Add FontAwesome for MySQL/PostgreSQL icons
@@ -18,6 +19,7 @@ export default function ConnectServices() {
     password: "",
     warehouse: "",
     database: "",
+    schema:"",
     host: "",
     port: "",
   });
@@ -41,6 +43,7 @@ export default function ConnectServices() {
       password: "",
       warehouse: "",
       database: "",
+      schema: "",
       host: "",
       port: "",
     });
@@ -51,13 +54,36 @@ export default function ConnectServices() {
   };
 
   const handleConnect = async () => {
+    const storedUsername = "test001@gmail.com";//localStorage.getItem('username');
     try {
-      console.log(`Connecting to ${activeService} with credentials:`, credentials);
-      setConnectionStatus(`Connected successfully to ${activeService}!`);
-    } catch (error) {
-      setConnectionStatus(`Failed to connect to ${activeService}.`);
+      console.log(`using ${storedUsername} Connecting to ${activeService} with credentials:`, credentials);
+  
+      // Making an Axios POST request
+      const data = {
+        service: activeService,
+        credentials,
+      };
+  
+      const response = await axios.post("https://localhost:4000/anjulkumar001@gmail.com/aiagent/datacatalog", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      // Assuming the API response contains a message
+      if (response.status === 200) {
+        setConnectionStatus(`Connected successfully to ${activeService}!`);
+        console.log("Response from server:", response.data);
+      } else {
+        setConnectionStatus(`Failed to connect to ${activeService}: ${response.data?.message || "Unknown error"}`);
+      }
+    } catch (error:any) {
+      // Handling errors
+      console.error("Error while connecting:", error);
+      setConnectionStatus(`Failed to connect to ${activeService}: ${error.response?.data?.message || error.message}`);
     } finally {
-      setTimeout(() => setConnectionStatus(""), 5000); // Reset status after 5 seconds
+      // Reset the status after 5 seconds
+      setTimeout(() => setConnectionStatus(""), 5000);
     }
   };
 
@@ -180,6 +206,14 @@ export default function ConnectServices() {
                   name="database"
                   placeholder="Database"
                   value={credentials.database}
+                  onChange={handleInputChange}
+                  className="block w-full rounded-md border-gray-300 p-2 focus:border-blue-500 focus:ring-blue-500"
+                />
+                <input
+                  type="text"
+                  name="schema"
+                  placeholder="Schema"
+                  value={credentials.schema}
                   onChange={handleInputChange}
                   className="block w-full rounded-md border-gray-300 p-2 focus:border-blue-500 focus:ring-blue-500"
                 />

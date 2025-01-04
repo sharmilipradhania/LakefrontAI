@@ -1,0 +1,659 @@
+{"level":"INFO","message":"[7:13:47.022 PM]: Creating new connection object"}
+{"level":"INFO","message":"[7:13:47.044 PM]: Creating Connection[id: ef6ef4a8-88a4-4a4c-a929-b020cb056516] with host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: SCHOOL, schema: students, warehouse: COMPUTE_WH, proxy was not configured, password is provided, region: ca-central-1.aws.snowflakecomputing.com, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, os:"}
+{"level":"INFO","message":"[7:13:47.045 PM]: Connection[id: ef6ef4a8-88a4-4a4c-a929-b020cb056516] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[7:13:47.045 PM]: Connection[id: ef6ef4a8-88a4-4a4c-a929-b020cb056516] - connection object created successfully."}
+{"level":"INFO","message":"[7:13:47.046 PM]: Connection[id: ef6ef4a8-88a4-4a4c-a929-b020cb056516] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"INFO","message":"[7:13:47.047 PM]: Connection[id: ef6ef4a8-88a4-4a4c-a929-b020cb056516] - authentication successful using: SNOWFLAKE"}
+{"level":"INFO","message":"[7:13:47.048 PM]: Trying to initialize Easy Logging"}
+{"level":"INFO","message":"[7:13:47.052 PM]: No client config detected."}
+{"level":"INFO","message":"[7:13:47.053 PM]: No config file path found. Client config will not be used."}
+{"level":"INFO","message":"[7:13:47.053 PM]: Easy Logging is disabled as no config has been found"}
+{"level":"INFO","message":"[7:13:47.059 PM]: Connection[id: ef6ef4a8-88a4-4a4c-a929-b020cb056516] - connected successfully after 12.511208999996597 milliseconds"}
+{"level":"INFO","message":"[8:53:40.100 PM]: Creating new connection object"}
+{"level":"INFO","message":"[8:53:40.116 PM]: Creating Connection[id: c0ef0a82-c926-4768-bce2-0ca1b2ada29a] with host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: SCHOOL, schema: students, warehouse: COMPUTE_WH, proxy was not configured, password is provided, region: ca-central-1.aws.snowflakecomputing.com, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, os:"}
+{"level":"INFO","message":"[8:53:40.117 PM]: Connection[id: c0ef0a82-c926-4768-bce2-0ca1b2ada29a] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[8:53:40.118 PM]: Connection[id: c0ef0a82-c926-4768-bce2-0ca1b2ada29a] - connection object created successfully."}
+{"level":"INFO","message":"[8:53:40.118 PM]: Connection[id: c0ef0a82-c926-4768-bce2-0ca1b2ada29a] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"INFO","message":"[8:53:40.119 PM]: Connection[id: c0ef0a82-c926-4768-bce2-0ca1b2ada29a] - authentication successful using: SNOWFLAKE"}
+{"level":"INFO","message":"[8:53:40.120 PM]: Trying to initialize Easy Logging"}
+{"level":"INFO","message":"[8:53:40.123 PM]: No client config detected."}
+{"level":"INFO","message":"[8:53:40.123 PM]: No config file path found. Client config will not be used."}
+{"level":"INFO","message":"[8:53:40.124 PM]: Easy Logging is disabled as no config has been found"}
+{"level":"INFO","message":"[8:53:40.142 PM]: Connection[id: c0ef0a82-c926-4768-bce2-0ca1b2ada29a] - connected successfully after 23.274915999999394 milliseconds"}
+{"level":"INFO","message":"[8:58:58.050 PM]: Creating new connection object"}
+{"level":"INFO","message":"[8:58:58.070 PM]: Creating Connection[id: 5c647085-1657-4d56-8daa-c500c0608545] with host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: SCHOOL, schema: students, warehouse: COMPUTE_WH, proxy was not configured, password is provided, region: ca-central-1.aws.snowflakecomputing.com, authenticator: EXTERNALBROWSER, ocsp mode: FAIL_OPE"}
+{"level":"INFO","message":"[8:58:58.071 PM]: Connection[id: 5c647085-1657-4d56-8daa-c500c0608545] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[8:58:58.071 PM]: Connection[id: 5c647085-1657-4d56-8daa-c500c0608545] - connection object created successfully."}
+{"level":"INFO","message":"[8:58:58.072 PM]: Connection[id: 5c647085-1657-4d56-8daa-c500c0608545] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"ERROR","message":"[8:58:58.072 PM]: Connection[id: 5c647085-1657-4d56-8daa-c500c0608545] - connecting failed after 0.21299999999973807 milliseconds.Error: External browser and Okta are not compatible with connection process"}
+{"level":"INFO","message":"[9:01:45.196 PM]: Creating new connection object"}
+{"level":"INFO","message":"[9:01:45.221 PM]: Creating Connection[id: 09bf37d7-f0df-4d44-897f-01e0e0725e3a] with host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: undefined, schema: undefined, warehouse: undefined, proxy was not configured, password is provided, region: ca-central-1.aws.snowflakecomputing.com, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, "}
+{"level":"INFO","message":"[9:01:45.222 PM]: Connection[id: 09bf37d7-f0df-4d44-897f-01e0e0725e3a] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[9:01:45.223 PM]: Connection[id: 09bf37d7-f0df-4d44-897f-01e0e0725e3a] - connection object created successfully."}
+{"level":"INFO","message":"[9:01:45.223 PM]: Connection[id: 09bf37d7-f0df-4d44-897f-01e0e0725e3a] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"INFO","message":"[9:01:45.224 PM]: Connection[id: 09bf37d7-f0df-4d44-897f-01e0e0725e3a] - authentication successful using: SNOWFLAKE"}
+{"level":"INFO","message":"[9:01:45.225 PM]: Trying to initialize Easy Logging"}
+{"level":"INFO","message":"[9:01:45.228 PM]: No client config detected."}
+{"level":"INFO","message":"[9:01:45.229 PM]: No config file path found. Client config will not be used."}
+{"level":"INFO","message":"[9:01:45.229 PM]: Easy Logging is disabled as no config has been found"}
+{"level":"INFO","message":"[9:01:45.234 PM]: Connection[id: 09bf37d7-f0df-4d44-897f-01e0e0725e3a] - connected successfully after 10.348708000000443 milliseconds"}
+{"level":"INFO","message":"[9:08:37.825 PM]: Creating new connection object"}
+{"level":"INFO","message":"[9:08:37.839 PM]: Creating Connection[id: 4c93d645-5329-4ded-a89a-111039ad5ef7] with host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: undefined, schema: undefined, warehouse: undefined, proxy was not configured, password is provided, region: ca-central-1.aws.snowflakecomputing.com, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, "}
+{"level":"INFO","message":"[9:08:37.840 PM]: Connection[id: 4c93d645-5329-4ded-a89a-111039ad5ef7] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[9:08:37.841 PM]: Connection[id: 4c93d645-5329-4ded-a89a-111039ad5ef7] - connection object created successfully."}
+{"level":"INFO","message":"[9:08:37.841 PM]: Connection[id: 4c93d645-5329-4ded-a89a-111039ad5ef7] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"INFO","message":"[9:08:37.846 PM]: Connection[id: 4c93d645-5329-4ded-a89a-111039ad5ef7] - authentication successful using: SNOWFLAKE"}
+{"level":"INFO","message":"[9:08:37.847 PM]: Trying to initialize Easy Logging"}
+{"level":"INFO","message":"[9:08:37.850 PM]: No client config detected."}
+{"level":"INFO","message":"[9:08:37.850 PM]: No config file path found. Client config will not be used."}
+{"level":"INFO","message":"[9:08:37.851 PM]: Easy Logging is disabled as no config has been found"}
+{"level":"INFO","message":"[9:08:37.860 PM]: Connection[id: 4c93d645-5329-4ded-a89a-111039ad5ef7] - connected successfully after 19.005999999999858 milliseconds"}
+{"level":"INFO","message":"[9:10:39.660 PM]: Creating new connection object"}
+{"level":"INFO","message":"[9:10:39.675 PM]: Creating Connection[id: 3a4fc4e0-0401-42c7-9be7-d7a547e348ff] with host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: undefined, schema: undefined, warehouse: undefined, proxy was not configured, password is provided, region: ca-central-1.aws.snowflakecomputing.com, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, "}
+{"level":"INFO","message":"[9:10:39.676 PM]: Connection[id: 3a4fc4e0-0401-42c7-9be7-d7a547e348ff] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[9:10:39.676 PM]: Connection[id: 3a4fc4e0-0401-42c7-9be7-d7a547e348ff] - connection object created successfully."}
+{"level":"INFO","message":"[9:10:39.677 PM]: Connection[id: 3a4fc4e0-0401-42c7-9be7-d7a547e348ff] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"INFO","message":"[9:10:39.677 PM]: Connection[id: 3a4fc4e0-0401-42c7-9be7-d7a547e348ff] - authentication successful using: SNOWFLAKE"}
+{"level":"INFO","message":"[9:10:39.678 PM]: Trying to initialize Easy Logging"}
+{"level":"INFO","message":"[9:10:39.681 PM]: No client config detected."}
+{"level":"INFO","message":"[9:10:39.681 PM]: No config file path found. Client config will not be used."}
+{"level":"INFO","message":"[9:10:39.682 PM]: Easy Logging is disabled as no config has been found"}
+{"level":"INFO","message":"[9:10:39.687 PM]: Connection[id: 3a4fc4e0-0401-42c7-9be7-d7a547e348ff] - connected successfully after 10.546792000000096 milliseconds"}
+{"level":"INFO","message":"[5:33:21.013 PM]: Creating new connection object"}
+{"level":"INFO","message":"[5:33:21.031 PM]: Creating Connection[id: 9fc1cabf-7ca3-45b9-9116-c2e2bc5ce54d] with host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: undefined, schema: undefined, warehouse: undefined, proxy was not configured, password is provided, region: ca-central-1.aws.snowflakecomputing.com, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, "}
+{"level":"INFO","message":"[5:33:21.032 PM]: Connection[id: 9fc1cabf-7ca3-45b9-9116-c2e2bc5ce54d] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[5:33:21.032 PM]: Connection[id: 9fc1cabf-7ca3-45b9-9116-c2e2bc5ce54d] - connection object created successfully."}
+{"level":"INFO","message":"[5:33:21.033 PM]: Connection[id: 9fc1cabf-7ca3-45b9-9116-c2e2bc5ce54d] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"INFO","message":"[5:33:21.035 PM]: Connection[id: 9fc1cabf-7ca3-45b9-9116-c2e2bc5ce54d] - authentication successful using: SNOWFLAKE"}
+{"level":"INFO","message":"[5:33:21.047 PM]: Connection[id: 9fc1cabf-7ca3-45b9-9116-c2e2bc5ce54d] - connected successfully after 13.706459015607834 milliseconds"}
+{"level":"INFO","message":"[5:37:17.870 PM]: Creating new connection object"}
+{"level":"INFO","message":"[5:37:17.883 PM]: Creating Connection[id: 5800d069-786d-4610-aacb-c61635104b2b] with host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: SCHOOL, schema: students, warehouse: COMPUTE_WH, proxy was not configured, password is provided, region: ca-central-1.aws.snowflakecomputing.com, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, os:"}
+{"level":"INFO","message":"[5:37:17.884 PM]: Connection[id: 5800d069-786d-4610-aacb-c61635104b2b] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[5:37:17.884 PM]: Connection[id: 5800d069-786d-4610-aacb-c61635104b2b] - connection object created successfully."}
+{"level":"INFO","message":"[5:37:17.885 PM]: Connection[id: 5800d069-786d-4610-aacb-c61635104b2b] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"INFO","message":"[5:37:17.885 PM]: Connection[id: 5800d069-786d-4610-aacb-c61635104b2b] - authentication successful using: SNOWFLAKE"}
+{"level":"INFO","message":"[5:37:17.886 PM]: Trying to initialize Easy Logging"}
+{"level":"INFO","message":"[5:37:17.889 PM]: No client config detected."}
+{"level":"INFO","message":"[5:37:17.890 PM]: No config file path found. Client config will not be used."}
+{"level":"INFO","message":"[5:37:17.890 PM]: Easy Logging is disabled as no config has been found"}
+{"level":"INFO","message":"[5:37:17.894 PM]: Connection[id: 5800d069-786d-4610-aacb-c61635104b2b] - connected successfully after 9.667334000000665 milliseconds"}
+{"level":"INFO","message":"[8:25:51.797 PM]: Creating new connection object"}
+{"level":"INFO","message":"[8:25:51.810 PM]: Creating Connection[id: 86ae96b8-fac2-41e5-a009-499b19f4fc2e] with host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: SCHOOL, schema: students, warehouse: COMPUTE_WH, proxy was not configured, password is provided, region: ca-central-1.aws.snowflakecomputing.com, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, os:"}
+{"level":"INFO","message":"[8:25:51.811 PM]: Connection[id: 86ae96b8-fac2-41e5-a009-499b19f4fc2e] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[8:25:51.812 PM]: Connection[id: 86ae96b8-fac2-41e5-a009-499b19f4fc2e] - connection object created successfully."}
+{"level":"INFO","message":"[8:25:51.812 PM]: Connection[id: 86ae96b8-fac2-41e5-a009-499b19f4fc2e] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"INFO","message":"[8:25:51.813 PM]: Connection[id: 86ae96b8-fac2-41e5-a009-499b19f4fc2e] - authentication successful using: SNOWFLAKE"}
+{"level":"INFO","message":"[8:25:51.814 PM]: Trying to initialize Easy Logging"}
+{"level":"INFO","message":"[8:25:51.817 PM]: No client config detected."}
+{"level":"INFO","message":"[8:25:51.818 PM]: No config file path found. Client config will not be used."}
+{"level":"INFO","message":"[8:25:51.818 PM]: Easy Logging is disabled as no config has been found"}
+{"level":"INFO","message":"[8:25:51.822 PM]: Connection[id: 86ae96b8-fac2-41e5-a009-499b19f4fc2e] - connected successfully after 9.99279100000058 milliseconds"}
+{"level":"INFO","message":"[9:34:16.070 PM]: Configuring logger with level: 3, filePath: undefined, additionalLogToConsole: undefined"}
+{"level":"INFO","message":"[9:34:28.218 PM]: Creating new connection object"}
+{"level":"DEBUG","message":"[9:34:28.220 PM]: Connection configuration object created"}
+{"level":"DEBUG","message":"[9:34:28.220 PM]: HttpClient setup finished"}
+{"level":"DEBUG","message":"[9:34:28.220 PM]: ConnectionContext - received data was validated."}
+{"level":"DEBUG","message":"[9:34:28.221 PM]: ConnectionContext - services were instantiated."}
+{"level":"INFO","message":"[9:34:28.222 PM]: Creating Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] with host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: SCHOOL, schema: students, warehouse: COMPUTE_WH, proxy was not configured, password is provided, region: ca-central-1.aws.snowflakecomputing.com, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, os:"}
+{"level":"INFO","message":"[9:34:28.223 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[9:34:28.223 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] - connection object created successfully."}
+{"level":"INFO","message":"[9:34:28.224 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"DEBUG","message":"[9:34:28.224 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] - using authentication type: SNOWFLAKE"}
+{"level":"DEBUG","message":"[9:34:28.224 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] - retrieving authenticator"}
+{"level":"DEBUG","message":"[9:34:28.224 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] - trying to authenticate"}
+{"level":"INFO","message":"[9:34:28.225 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] - authentication successful using: SNOWFLAKE"}
+{"level":"DEBUG","message":"[9:34:28.225 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] - initializing easyLogging"}
+{"level":"INFO","message":"[9:34:28.226 PM]: Trying to initialize Easy Logging"}
+{"level":"DEBUG","message":"[9:34:28.226 PM]: Retrieving client config"}
+{"level":"DEBUG","message":"[9:34:28.226 PM]: Searching for config in default directories: [{\"dir\":\"/Users/anjulkumar/Documents/GitHub/LakeFrontAI/LakefrontAI/node_modules/snowflake-sdk/lib\",\"dirDescription\":\"driver\"},{\"dir\":\"/Users/anjulkumar\",\"dirDescription\":\"home\"}]"}
+{"level":"DEBUG","message":"[9:34:28.228 PM]: Unable to find config in any default directory."}
+{"level":"INFO","message":"[9:34:28.228 PM]: No client config detected."}
+{"level":"INFO","message":"[9:34:28.228 PM]: No config file path found. Client config will not be used."}
+{"level":"INFO","message":"[9:34:28.228 PM]: Easy Logging is disabled as no config has been found"}
+{"level":"DEBUG","message":"[9:34:28.228 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] - easyLogging initialized"}
+{"level":"DEBUG","message":"[9:34:28.228 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] - connecting through service"}
+{"level":"DEBUG","message":"[9:34:28.229 PM]: 300"}
+{"level":"DEBUG","message":"[9:34:28.230 PM]: Contacting SF: /session/v1/login-request?requestId=bf149de2-1b37-4f09-ab17-e294e09b6329&warehouse=COMPUTE_WH&databaseName=SCHOOL&schemaName=students, (0/7)"}
+{"level":"DEBUG","message":"[9:34:28.233 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[9:34:28.233 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-keepAlive] - proxy settings used in requests:  none."}
+{"level":"DEBUG","message":"[9:34:28.233 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=bf149de2-1b37-4f09-ab17-e294e09b6329, request_guid=1f277c9d-df24-4f58-8c31-dfe0d76c3126, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - options - timeout: 90000, retryDelay: 2144.08770461104, responseType: text"}
+{"level":"INFO","message":"[9:34:28.233 PM]: Connection[id: 3f11b768-7683-4394-b3f4-e052ef1e2b18] - connected successfully after 9.735415999999532 milliseconds"}
+{"level":"DEBUG","message":"[9:34:28.243 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=bf149de2-1b37-4f09-ab17-e294e09b6329, request_guid=1f277c9d-df24-4f58-8c31-dfe0d76c3126, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[9:34:28.596 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=bf149de2-1b37-4f09-ab17-e294e09b6329, request_guid=1f277c9d-df24-4f58-8c31-dfe0d76c3126, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - failed after 361.7646659999991 milliseconds."}
+{"level":"DEBUG","message":"[9:34:28.597 PM]: Encountered an error when sending the request. Details: {\"message\":\"Hostname/IP does not match certificate's altnames: Host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com. is not in the cert's altnames: DNS:*.prod3.us-west-2.snowflakecomputing.com, DNS:*.us-west-2.snowflakecomputing.com, DNS:*.global.snowflakecomputing.com, DNS:*.snowflakecomputing.com, DNS:*.prod3.us-west-2.aws.snowflakecomputing.com\",\"code\":\"ERR_TLS_CERT_ALTNAME_INVALID\",\"stack\":\"Error: Hostname/IP doe"}
+{"level":"DEBUG","message":"[9:34:29.948 PM]: Contacting SF: /session/v1/login-request?requestId=1988ddb7-dcf0-4bd9-9220-f56fe7d8d2d6&warehouse=COMPUTE_WH&databaseName=SCHOOL&schemaName=students, (1/7)"}
+{"level":"DEBUG","message":"[9:34:29.949 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[9:34:29.950 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=1988ddb7-dcf0-4bd9-9220-f56fe7d8d2d6, request_guid=db1f9f36-dce3-4cb7-957f-669519acd404, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - options - timeout: 90000, retryDelay: 1245.3212761656723, responseType: text"}
+{"level":"DEBUG","message":"[9:34:29.955 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=1988ddb7-dcf0-4bd9-9220-f56fe7d8d2d6, request_guid=db1f9f36-dce3-4cb7-957f-669519acd404, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[9:34:30.267 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=1988ddb7-dcf0-4bd9-9220-f56fe7d8d2d6, request_guid=db1f9f36-dce3-4cb7-957f-669519acd404, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - failed after 317.07133299999987 milliseconds."}
+{"level":"DEBUG","message":"[9:34:30.269 PM]: Encountered an error when sending the request. Details: {\"message\":\"Hostname/IP does not match certificate's altnames: Host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com. is not in the cert's altnames: DNS:*.prod3.us-west-2.snowflakecomputing.com, DNS:*.us-west-2.snowflakecomputing.com, DNS:*.global.snowflakecomputing.com, DNS:*.snowflakecomputing.com, DNS:*.prod3.us-west-2.aws.snowflakecomputing.com\",\"code\":\"ERR_TLS_CERT_ALTNAME_INVALID\",\"stack\":\"Error: Hostname/IP doe"}
+{"level":"DEBUG","message":"[9:34:33.717 PM]: Contacting SF: /session/v1/login-request?requestId=cde6f44a-82ad-40c5-a548-ccac539330ed&warehouse=COMPUTE_WH&databaseName=SCHOOL&schemaName=students, (2/7)"}
+{"level":"DEBUG","message":"[9:34:33.719 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[9:34:33.719 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=cde6f44a-82ad-40c5-a548-ccac539330ed, request_guid=18351bed-2e6c-4821-b145-d54a06c9e2bd, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - options - timeout: 90000, retryDelay: 1575.495291819506, responseType: text"}
+{"level":"DEBUG","message":"[9:34:33.723 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=cde6f44a-82ad-40c5-a548-ccac539330ed, request_guid=18351bed-2e6c-4821-b145-d54a06c9e2bd, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[9:34:34.030 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=cde6f44a-82ad-40c5-a548-ccac539330ed, request_guid=18351bed-2e6c-4821-b145-d54a06c9e2bd, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - failed after 309.93883300000016 milliseconds."}
+{"level":"DEBUG","message":"[9:34:34.031 PM]: Encountered an error when sending the request. Details: {\"message\":\"Hostname/IP does not match certificate's altnames: Host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com. is not in the cert's altnames: DNS:*.prod3.us-west-2.snowflakecomputing.com, DNS:*.us-west-2.snowflakecomputing.com, DNS:*.global.snowflakecomputing.com, DNS:*.snowflakecomputing.com, DNS:*.prod3.us-west-2.aws.snowflakecomputing.com\",\"code\":\"ERR_TLS_CERT_ALTNAME_INVALID\",\"stack\":\"Error: Hostname/IP doe"}
+{"level":"DEBUG","message":"[9:34:43.522 PM]: Contacting SF: /session/v1/login-request?requestId=c3e9ac61-fbc1-422d-a09f-6795c6088d46&warehouse=COMPUTE_WH&databaseName=SCHOOL&schemaName=students, (3/7)"}
+{"level":"DEBUG","message":"[9:34:43.524 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[9:34:43.524 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=c3e9ac61-fbc1-422d-a09f-6795c6088d46, request_guid=c9d78502-fb2a-42c9-ad25-b6bd0ca9f1d0, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - options - timeout: 90000, retryDelay: 2812.157414836416, responseType: text"}
+{"level":"DEBUG","message":"[9:34:43.528 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=c3e9ac61-fbc1-422d-a09f-6795c6088d46, request_guid=c9d78502-fb2a-42c9-ad25-b6bd0ca9f1d0, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[9:34:43.828 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=c3e9ac61-fbc1-422d-a09f-6795c6088d46, request_guid=c9d78502-fb2a-42c9-ad25-b6bd0ca9f1d0, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - failed after 302.8122919999987 milliseconds."}
+{"level":"DEBUG","message":"[9:34:43.829 PM]: Encountered an error when sending the request. Details: {\"message\":\"Hostname/IP does not match certificate's altnames: Host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com. is not in the cert's altnames: DNS:*.prod3.us-west-2.snowflakecomputing.com, DNS:*.us-west-2.snowflakecomputing.com, DNS:*.global.snowflakecomputing.com, DNS:*.snowflakecomputing.com, DNS:*.prod3.us-west-2.aws.snowflakecomputing.com\",\"code\":\"ERR_TLS_CERT_ALTNAME_INVALID\",\"stack\":\"Error: Hostname/IP doe"}
+{"level":"DEBUG","message":"[9:34:52.077 PM]: Contacting SF: /session/v1/login-request?requestId=3cbb0bd1-b694-43b3-8a94-0bd649d912f1&warehouse=COMPUTE_WH&databaseName=SCHOOL&schemaName=students, (4/7)"}
+{"level":"DEBUG","message":"[9:34:52.080 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[9:34:52.081 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=3cbb0bd1-b694-43b3-8a94-0bd649d912f1, request_guid=39e8c279-60a2-4baf-beff-006443351cf5, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - options - timeout: 90000, retryDelay: 2651.362375113965, responseType: text"}
+{"level":"DEBUG","message":"[9:34:52.085 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=3cbb0bd1-b694-43b3-8a94-0bd649d912f1, request_guid=39e8c279-60a2-4baf-beff-006443351cf5, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[9:34:52.386 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=3cbb0bd1-b694-43b3-8a94-0bd649d912f1, request_guid=39e8c279-60a2-4baf-beff-006443351cf5, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - failed after 304.29999999999563 milliseconds."}
+{"level":"DEBUG","message":"[9:34:52.387 PM]: Encountered an error when sending the request. Details: {\"message\":\"Hostname/IP does not match certificate's altnames: Host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com. is not in the cert's altnames: DNS:*.prod3.us-west-2.snowflakecomputing.com, DNS:*.us-west-2.snowflakecomputing.com, DNS:*.global.snowflakecomputing.com, DNS:*.snowflakecomputing.com, DNS:*.prod3.us-west-2.aws.snowflakecomputing.com\",\"code\":\"ERR_TLS_CERT_ALTNAME_INVALID\",\"stack\":\"Error: Hostname/IP doe"}
+{"level":"DEBUG","message":"[9:35:00.229 PM]: Contacting SF: /session/v1/login-request?requestId=5cdc2297-8a17-4201-a381-f454a493f1b0&warehouse=COMPUTE_WH&databaseName=SCHOOL&schemaName=students, (5/7)"}
+{"level":"DEBUG","message":"[9:35:00.231 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[9:35:00.232 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=5cdc2297-8a17-4201-a381-f454a493f1b0, request_guid=5f818703-9bd3-4252-996b-79c1efeeaf15, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - options - timeout: 90000, retryDelay: 2888.539193180159, responseType: text"}
+{"level":"DEBUG","message":"[9:35:00.235 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=5cdc2297-8a17-4201-a381-f454a493f1b0, request_guid=5f818703-9bd3-4252-996b-79c1efeeaf15, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[9:35:00.542 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=5cdc2297-8a17-4201-a381-f454a493f1b0, request_guid=5f818703-9bd3-4252-996b-79c1efeeaf15, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - failed after 309.7759159999987 milliseconds."}
+{"level":"DEBUG","message":"[9:35:00.543 PM]: Encountered an error when sending the request. Details: {\"message\":\"Hostname/IP does not match certificate's altnames: Host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com. is not in the cert's altnames: DNS:*.prod3.us-west-2.snowflakecomputing.com, DNS:*.us-west-2.snowflakecomputing.com, DNS:*.global.snowflakecomputing.com, DNS:*.snowflakecomputing.com, DNS:*.prod3.us-west-2.aws.snowflakecomputing.com\",\"code\":\"ERR_TLS_CERT_ALTNAME_INVALID\",\"stack\":\"Error: Hostname/IP doe"}
+{"level":"DEBUG","message":"[9:35:30.388 PM]: Contacting SF: /session/v1/login-request?requestId=075f1748-bea5-4947-b7a3-ff09100514fd&warehouse=COMPUTE_WH&databaseName=SCHOOL&schemaName=students, (6/7)"}
+{"level":"DEBUG","message":"[9:35:30.391 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[9:35:30.392 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=075f1748-bea5-4947-b7a3-ff09100514fd, request_guid=45b84f95-6b88-4f41-b5c2-e8a334dd07ae, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - options - timeout: 90000, retryDelay: 1485.3805754028522, responseType: text"}
+{"level":"DEBUG","message":"[9:35:30.400 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=075f1748-bea5-4947-b7a3-ff09100514fd, request_guid=45b84f95-6b88-4f41-b5c2-e8a334dd07ae, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[9:35:30.712 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=075f1748-bea5-4947-b7a3-ff09100514fd, request_guid=45b84f95-6b88-4f41-b5c2-e8a334dd07ae, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - failed after 319.3050829999993 milliseconds."}
+{"level":"DEBUG","message":"[9:35:30.713 PM]: Encountered an error when sending the request. Details: {\"message\":\"Hostname/IP does not match certificate's altnames: Host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com. is not in the cert's altnames: DNS:*.prod3.us-west-2.snowflakecomputing.com, DNS:*.us-west-2.snowflakecomputing.com, DNS:*.global.snowflakecomputing.com, DNS:*.snowflakecomputing.com, DNS:*.prod3.us-west-2.aws.snowflakecomputing.com\",\"code\":\"ERR_TLS_CERT_ALTNAME_INVALID\",\"stack\":\"Error: Hostname/IP doe"}
+{"level":"DEBUG","message":"[9:36:47.460 PM]: Contacting SF: /session/v1/login-request?requestId=1652518a-92b0-418c-bd06-c7c13989fa1c&warehouse=COMPUTE_WH&databaseName=SCHOOL&schemaName=students, (7/7)"}
+{"level":"DEBUG","message":"[9:36:47.464 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[9:36:47.465 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=1652518a-92b0-418c-bd06-c7c13989fa1c, request_guid=81ab0ab9-058a-4d77-9c41-d88439bb007d, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - options - timeout: 90000, retryDelay: 1278.2423945555647, responseType: text"}
+{"level":"DEBUG","message":"[9:36:47.469 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=1652518a-92b0-418c-bd06-c7c13989fa1c, request_guid=81ab0ab9-058a-4d77-9c41-d88439bb007d, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[9:36:47.828 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=1652518a-92b0-418c-bd06-c7c13989fa1c, request_guid=81ab0ab9-058a-4d77-9c41-d88439bb007d, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - failed after 362.37837500000023 milliseconds."}
+{"level":"DEBUG","message":"[9:36:47.829 PM]: Encountered an error when sending the request. Details: {\"message\":\"Hostname/IP does not match certificate's altnames: Host: sx28444.ca-central-1.aws.snowflakecomputing.com.snowflakecomputing.com. is not in the cert's altnames: DNS:*.prod3.us-west-2.snowflakecomputing.com, DNS:*.us-west-2.snowflakecomputing.com, DNS:*.global.snowflakecomputing.com, DNS:*.snowflakecomputing.com, DNS:*.prod3.us-west-2.aws.snowflakecomputing.com\",\"code\":\"ERR_TLS_CERT_ALTNAME_INVALID\",\"stack\":\"Error: Hostname/IP doe"}
+{"level":"DEBUG","message":"[9:36:47.829 PM]: Failed to all retries to SF."}
+{"level":"INFO","message":"[9:37:36.958 PM]: Creating new connection object"}
+{"level":"DEBUG","message":"[9:37:36.959 PM]: Connection configuration object created"}
+{"level":"DEBUG","message":"[9:37:36.959 PM]: HttpClient setup finished"}
+{"level":"DEBUG","message":"[9:37:36.959 PM]: ConnectionContext - received data was validated."}
+{"level":"DEBUG","message":"[9:37:36.959 PM]: ConnectionContext - services were instantiated."}
+{"level":"INFO","message":"[9:37:36.960 PM]: Creating Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] with host: sx28444.ca-central-1.aws.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: SCHOOL, schema: students, warehouse: COMPUTE_WH, proxy was not configured, password is provided, region: ca-central-1.aws, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, os: darwin, os version: 23.5.0"}
+{"level":"INFO","message":"[9:37:36.960 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[9:37:36.960 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] - connection object created successfully."}
+{"level":"INFO","message":"[9:37:36.960 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"DEBUG","message":"[9:37:36.960 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] - using authentication type: SNOWFLAKE"}
+{"level":"DEBUG","message":"[9:37:36.960 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] - retrieving authenticator"}
+{"level":"DEBUG","message":"[9:37:36.960 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] - trying to authenticate"}
+{"level":"INFO","message":"[9:37:36.960 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] - authentication successful using: SNOWFLAKE"}
+{"level":"DEBUG","message":"[9:37:36.960 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] - initializing easyLogging"}
+{"level":"DEBUG","message":"[9:37:36.960 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] - easyLogging initialized"}
+{"level":"DEBUG","message":"[9:37:36.960 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] - connecting through service"}
+{"level":"DEBUG","message":"[9:37:36.961 PM]: 300"}
+{"level":"DEBUG","message":"[9:37:36.961 PM]: Contacting SF: /session/v1/login-request?requestId=07404261-1f5c-4783-a8e8-283492c51012&warehouse=COMPUTE_WH&databaseName=SCHOOL&schemaName=students, (0/7)"}
+{"level":"DEBUG","message":"[9:37:36.961 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[9:37:36.961 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com-keepAlive] - proxy settings used in requests:  none."}
+{"level":"DEBUG","message":"[9:37:36.961 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=07404261-1f5c-4783-a8e8-283492c51012, request_guid=4e3ab0f1-86fe-4638-936f-d95b34a415f1, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - options - timeout: 90000, retryDelay: 1508.7039643721548, responseType: text"}
+{"level":"INFO","message":"[9:37:36.962 PM]: Connection[id: 27533ba1-0614-471b-beb9-60c7a83d37fb] - connected successfully after 1.7966250000172295 milliseconds"}
+{"level":"DEBUG","message":"[9:37:36.965 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=07404261-1f5c-4783-a8e8-283492c51012, request_guid=4e3ab0f1-86fe-4638-936f-d95b34a415f1, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[9:37:37.306 PM]: Reading OCSP cache file. /Users/anjulkumar/Library/Caches/Snowflake/ocsp_response_cache.json"}
+{"level":"DEBUG","message":"[9:37:37.311 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.312 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.313 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.313 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.314 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.314 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.314 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.314 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.314 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.315 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.315 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.315 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.315 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.316 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.316 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.317 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.317 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.317 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.317 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.318 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.318 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.318 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.318 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.318 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.319 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.319 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.319 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.319 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.319 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.319 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.319 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.319 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.320 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.320 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.320 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.320 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.320 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.320 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.320 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.321 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.321 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.321 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.321 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.321 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.321 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.321 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.321 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.322 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.322 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.322 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.322 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.322 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.322 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.323 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.323 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.323 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.323 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.323 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.323 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.324 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.324 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.324 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.324 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.324 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.324 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.324 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.324 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.325 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.325 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.325 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.325 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.325 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.325 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.325 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.325 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.325 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.325 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.326 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.326 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.326 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.326 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.326 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.326 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.326 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.326 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.326 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.326 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.327 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.327 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.327 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.327 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.327 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.327 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.328 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.328 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.329 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.329 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.329 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.329 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.330 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.330 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.330 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.330 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.330 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.330 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.331 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.331 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.331 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.331 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.332 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.332 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.332 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.332 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.332 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.332 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.332 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.332 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.332 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.332 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.333 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.333 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.333 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.333 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.333 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.333 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.333 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.333 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.333 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.334 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.334 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.334 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.334 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.334 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.334 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.334 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.335 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.335 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.335 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.335 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.336 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.336 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.337 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.338 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.338 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.338 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.338 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.338 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.338 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.338 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.339 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.340 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.341 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.342 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.342 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.342 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.342 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.342 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.342 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.342 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.342 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.343 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.343 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.343 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.343 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.343 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.343 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.343 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.544 PM]: Finish OCSP Cache Server: http://ocsp.snowflakecomputing.com/ocsp_response_cache.json"}
+{"level":"DEBUG","message":"[9:37:37.547 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.547 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.548 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.548 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.548 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.548 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.548 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.549 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.549 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.603 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.603 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.603 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.603 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.604 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.605 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.606 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.607 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.608 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.609 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.610 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.611 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.611 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.611 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.611 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.611 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.611 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.611 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.611 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.611 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.611 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.612 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.613 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.614 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.614 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.614 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.614 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.614 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.614 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.614 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.614 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.614 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.615 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.615 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.615 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.615 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.615 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.615 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.615 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.616 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.617 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.617 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.617 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.617 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.617 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.617 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.617 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.617 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.618 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.618 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.618 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.618 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.618 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.618 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.619 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.619 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.619 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.619 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.619 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.619 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.619 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.620 PM]: OCSP cache validity is out of range. currentTime: 1735958257.306, timestamp: 1702513747, maxAge: 86400"}
+{"level":"DEBUG","message":"[9:37:37.721 PM]: Finish OCSP responder: o.ss2.us"}
+{"level":"DEBUG","message":"[9:37:37.746 PM]: Finish OCSP responder: ocsp.rootg2.amazontrust.com"}
+{"level":"DEBUG","message":"[9:37:37.793 PM]: Finish OCSP responder: ocsp.rootca1.amazontrust.com"}
+{"level":"DEBUG","message":"[9:37:37.796 PM]: /Users/anjulkumar/Library/Caches/Snowflake/ocsp_response_cache.json"}
+{"level":"DEBUG","message":"[9:37:37.810 PM]: Writing OCSP cache file. /Users/anjulkumar/Library/Caches/Snowflake/ocsp_response_cache.json"}
+{"level":"DEBUG","message":"[9:37:38.094 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=07404261-1f5c-4783-a8e8-283492c51012, request_guid=4e3ab0f1-86fe-4638-936f-d95b34a415f1, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - response received after 1131.889083999995 milliseconds with status 200."}
+{"level":"DEBUG","message":"[9:37:38.094 PM]: New session with id 1665562547675158 initialized"}
+{"level":"DEBUG","message":"[9:37:38.095 PM]: Creating new QueryContextCache with capacity 5 for session 1665562547675158"}
+{"level":"DEBUG","message":"[9:37:38.095 PM]: --createStatementPreExec"}
+{"level":"DEBUG","message":"[9:37:38.095 PM]: numBinds = 0"}
+{"level":"DEBUG","message":"[9:37:38.095 PM]: threshold = 65280"}
+{"level":"DEBUG","message":"[9:37:38.095 PM]: RowStatementPreExec"}
+{"level":"DEBUG","message":"[9:37:38.096 PM]: context.bindStage=undefined"}
+{"level":"DEBUG","message":"[9:37:38.096 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[9:37:38.096 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com, path=/queries/v1/query-request, method=POST, requestId=e4760b2a-117f-4aad-9b62-f2935ed2a6e5, request_guid=88011db8-43d6-4930-b95b-f421ee000ece] - options - timeout: 90000, retryDelay: 1771.3365556969202, responseType: text"}
+{"level":"DEBUG","message":"[9:37:38.098 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com, path=/queries/v1/query-request, method=POST, requestId=e4760b2a-117f-4aad-9b62-f2935ed2a6e5, request_guid=88011db8-43d6-4930-b95b-f421ee000ece] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[9:37:38.322 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com, path=/queries/v1/query-request, method=POST, requestId=e4760b2a-117f-4aad-9b62-f2935ed2a6e5, request_guid=88011db8-43d6-4930-b95b-f421ee000ece] - response received after 225.12262500001816 milliseconds with status 200."}
+{"level":"DEBUG","message":"[9:37:38.325 PM]: QCC session 1665562547675158 - deserializeQueryContext() called: data from server: {\"entries\":[{\"id\":0,\"timestamp\":1735958258437242,\"priority\":0,\"context\":\"CJKkKw==\"}]}"}
+{"level":"DEBUG","message":"[9:37:38.326 PM]: QCC session 1665562547675158 - Merging QCE: {\"id\":0,\"timestamp\":1735958258437242,\"priority\":0,\"context\":\"CJKkKw==\"}"}
+{"level":"DEBUG","message":"[9:37:38.326 PM]: QCC session 1665562547675158 - Adding new element to the cache: {\"id\":0,\"timestamp\":1735958258437242,\"priority\":0,\"context\":\"CJKkKw==\"}"}
+{"level":"DEBUG","message":"[9:37:38.326 PM]: QCC session 1665562547675158 - Cache Entry: id: 0 timestamp: 1735958258437242 priority: 0"}
+{"level":"INFO","message":"[10:06:02.227 PM]: Configuring logger with level: 3, filePath: undefined, additionalLogToConsole: undefined"}
+{"level":"INFO","message":"[10:06:53.325 PM]: Configuring logger with level: 3, filePath: undefined, additionalLogToConsole: undefined"}
+{"level":"INFO","message":"[10:19:52.620 PM]: Creating new connection object"}
+{"level":"DEBUG","message":"[10:19:52.623 PM]: Connection configuration object created"}
+{"level":"DEBUG","message":"[10:19:52.624 PM]: HttpClient setup finished"}
+{"level":"DEBUG","message":"[10:19:52.624 PM]: ConnectionContext - received data was validated."}
+{"level":"DEBUG","message":"[10:19:52.625 PM]: ConnectionContext - services were instantiated."}
+{"level":"INFO","message":"[10:19:52.626 PM]: Creating Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] with host: sx28444.ca-central-1.aws.snowflakecomputing.com, account: sx28444, accessUrl: https://sx28444.ca-central-1.aws.snowflakecomputing.com, user: anjulkumar2001, role: undefined, database: SCHOOL, schema: students, warehouse: COMPUTE_WH, proxy was not configured, password is provided, region: ca-central-1.aws, authenticator: SNOWFLAKE, ocsp mode: FAIL_OPEN, os: darwin, os version: 23.5.0"}
+{"level":"INFO","message":"[10:19:52.627 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] additional details: passcode in password is provided, passcode is not provided, private key is not provided, application: undefined, client name: snowflake-sdk, client version: 2.0.1, retry timeout: 300, private key path: undefined, private key pass is not provided, client store temporary credential: false, browser response timeout: 120000"}
+{"level":"INFO","message":"[10:19:52.627 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] - connection object created successfully."}
+{"level":"INFO","message":"[10:19:52.628 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] - connecting. Associated Snowflake domain: GLOBAL"}
+{"level":"DEBUG","message":"[10:19:52.628 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] - using authentication type: SNOWFLAKE"}
+{"level":"DEBUG","message":"[10:19:52.628 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] - retrieving authenticator"}
+{"level":"DEBUG","message":"[10:19:52.629 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] - trying to authenticate"}
+{"level":"INFO","message":"[10:19:52.630 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] - authentication successful using: SNOWFLAKE"}
+{"level":"DEBUG","message":"[10:19:52.630 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] - initializing easyLogging"}
+{"level":"INFO","message":"[10:19:52.631 PM]: Trying to initialize Easy Logging"}
+{"level":"DEBUG","message":"[10:19:52.631 PM]: Retrieving client config"}
+{"level":"DEBUG","message":"[10:19:52.631 PM]: Searching for config in default directories: [{\"dir\":\"/Users/anjulkumar/Documents/GitHub/LakeFrontAI/LakefrontAI/node_modules/snowflake-sdk/lib\",\"dirDescription\":\"driver\"},{\"dir\":\"/Users/anjulkumar\",\"dirDescription\":\"home\"}]"}
+{"level":"DEBUG","message":"[10:19:52.634 PM]: Unable to find config in any default directory."}
+{"level":"INFO","message":"[10:19:52.635 PM]: No client config detected."}
+{"level":"INFO","message":"[10:19:52.635 PM]: No config file path found. Client config will not be used."}
+{"level":"INFO","message":"[10:19:52.635 PM]: Easy Logging is disabled as no config has been found"}
+{"level":"DEBUG","message":"[10:19:52.635 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] - easyLogging initialized"}
+{"level":"DEBUG","message":"[10:19:52.635 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] - connecting through service"}
+{"level":"DEBUG","message":"[10:19:52.636 PM]: 300"}
+{"level":"DEBUG","message":"[10:19:52.637 PM]: Contacting SF: /session/v1/login-request?requestId=b42fa7bb-50cd-4a8a-bd93-145a3dae4071&warehouse=COMPUTE_WH&databaseName=SCHOOL&schemaName=students, (0/7)"}
+{"level":"DEBUG","message":"[10:19:52.640 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com-keepAlive] - the destination host is: sx28444.ca-central-1.aws.snowflakecomputing.com."}
+{"level":"DEBUG","message":"[10:19:52.641 PM]: Agent[id: https://sx28444.ca-central-1.aws.snowflakecomputing.com-sx28444.ca-central-1.aws.snowflakecomputing.com-keepAlive] - proxy settings used in requests:  none."}
+{"level":"DEBUG","message":"[10:19:52.641 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=b42fa7bb-50cd-4a8a-bd93-145a3dae4071, request_guid=128fb979-35d2-41c7-9df8-a4684be888ca, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - options - timeout: 90000, retryDelay: 1910.1018613382328, responseType: text"}
+{"level":"INFO","message":"[10:19:52.641 PM]: Connection[id: cb303c1e-4320-4b1e-9250-a20163bfb0c7] - connected successfully after 13.152417000033893 milliseconds"}
+{"level":"DEBUG","message":"[10:19:52.649 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=b42fa7bb-50cd-4a8a-bd93-145a3dae4071, request_guid=128fb979-35d2-41c7-9df8-a4684be888ca, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - original buffer length: 8192 bytes. Compressed buffer length: 8192 bytes."}
+{"level":"DEBUG","message":"[10:19:52.911 PM]: Reading OCSP cache file. /Users/anjulkumar/Library/Caches/Snowflake/ocsp_response_cache.json"}
+{"level":"DEBUG","message":"[10:19:53.332 PM]: Request[baseUrl=https://sx28444.ca-central-1.aws.snowflakecomputing.com, path=/session/v1/login-request, method=POST, requestId=b42fa7bb-50cd-4a8a-bd93-145a3dae4071, request_guid=128fb979-35d2-41c7-9df8-a4684be888ca, warehouse=COMPUTE_WH, databaseName=SCHOOL, schemaName=students] - response received after 689.936417000019 milliseconds with status 200."}
+{"level":"DEBUG","message":"[10:19:53.333 PM]: New session with id 1665562547675162 initialized"}
+{"level":"DEBUG","message":"[10:19:53.334 PM]: Creating new QueryContextCache with capacity 5 for session 1665562547675162"}

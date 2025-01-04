@@ -19,6 +19,12 @@ require("dotenv").config();
 const { callOpenAI, callGemini } = require("./apiUtils");
 const { validateInput } = require("./validationUtils");
 
+const lookerService = require("./services/looker");
+const snowflakeService = require("./services/snowflake");
+const mysqlService = require("./services/mysql");
+const postgresService = require("./services/postgres");
+const { handleError } = require("./utils/errorHandler");
+
 
 // Load environment variables
 const app = express();
@@ -46,7 +52,7 @@ let privatekey;
 let certi;
 let dbConfig;
 
-const ENV = 'production'; // production environment and development environment
+const ENV = 'development'; // production environment and development environment
 if (ENV === 'development') {
 // development environment variables
   dbConfig = config.development;
@@ -363,7 +369,7 @@ app.post('/:username/upload-documents', verifyJWT, upload.array('files'), async 
     if (!fs.existsSync(fileDirectory)) {
       fs.mkdirSync(fileDirectory, { recursive: true });
     }
-    
+
     // Parse and store the content of each file
     for (const file of files) {
       const filePath = path.join(__dirname, "uploads", file.filename);
@@ -543,6 +549,44 @@ app.post("/:username/query", async (req, res) => {
     res.status(500).json({ error: "Failed to query model." });
   }
 });
+
+// Handle connection requests aiagent, data
+app.post("/:username/aiagent/datacatalog", async (req, res) => {
+  const { service, credentials } = req.body;
+  console.log(service);
+  console.log(credentials);
+  console.log(req.body);
+  if (!service || !credentials) {
+    return res.status(400).json({ error: "Service and credentials are required" });
+  }
+
+  try {
+    switch (service) {
+      case "Looker":
+        await lookerService.connect(credentials);
+        return res.status(200).json({ message: "Connected to Looker successfully!" });
+
+      case "Snowflake":
+          const results = await snowflakeService.connectToSnowflake(credentials);
+          return res.status(200).json({ message: "Connected to MySQL successfully!" });
+        
+
+      case "MySQL":
+        await mysqlService.connect(credentials);
+        return res.status(200).json({ message: "Connected to MySQL successfully!" });
+
+      case "PostgreSQL":
+        await postgresService.connect(credentials);
+        return res.status(200).json({ message: "Connected to PostgreSQL successfully!" });
+
+      default:
+        return res.status(400).json({ error: "Unsupported service type" });
+    }
+  } catch (error) {
+    handleError(res, error, `Failed to connect to ${service}`);
+  }
+});
+
 
 // Start HTTPS Server
 https.createServer(credentials, app).listen(PORT, () => {

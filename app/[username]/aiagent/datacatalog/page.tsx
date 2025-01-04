@@ -5,6 +5,7 @@ import { FaBars, FaEye, FaEyeSlash, FaTrash, FaEdit, FaKey } from "react-icons/f
 import { LockClosedIcon, HomeIcon } from "@heroicons/react/24/outline";
 import { Dialog } from "@headlessui/react";
 import ConnectServices from "@/app/ConnectServices/ConnectServices";
+import Chatbox  from "@/app/Chatbox/Chatbox";
 
 export default function ConnectServicesWithSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

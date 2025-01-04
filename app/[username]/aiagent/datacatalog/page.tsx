@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { FaBars, FaEye, FaEyeSlash, FaTrash, FaEdit, FaKey } from "react-icons/fa";
-import { LockClosedIcon, HomeIcon } from "@heroicons/react/24/outline";
+import { LockClosedIcon, HomeIcon,  ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { Dialog } from "@headlessui/react";
 import ConnectServices from "@/app/ConnectServices/ConnectServices";
 import Chatbox  from "@/app/Chatbox/Chatbox";
+import { useRouter } from 'next/navigation';
 
 export default function ConnectServicesWithSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -13,8 +14,17 @@ export default function ConnectServicesWithSidebar() {
   const [selectedModel, setSelectedModel] = useState<string | null>(null);
   const [secretKey, setSecretKey] = useState("");
   const [secrets, setSecrets] = useState<{ model: string; secret: string; isVisible: boolean }[]>([]);
-
+  const [username,setusername] = useState(""); 
+  const router = useRouter();
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setusername(storedUsername);
+    } else {
+      router.push('/login');
+    }
+  }, [username]);
 
   const isModelChecked = (model: string) =>
     secrets.some((secret) => secret.model === model);
@@ -74,6 +84,16 @@ export default function ConnectServicesWithSidebar() {
     });
     setSecrets(savedSecrets.filter(Boolean) as { model: string; secret: string; isVisible: boolean }[]);
   }, []);
+
+  const handleLogout = () => {
+    localStorage.clear(); // Clear all localStorage data
+    window.location.href = "/login"; // Redirect to login page
+  };
+
+  const handleBack = () => {
+    window.history.back(); // Navigate to the previous page
+  };
+
 
   return (
     <div className="flex h-screen">
@@ -160,6 +180,25 @@ export default function ConnectServicesWithSidebar() {
             )}
           </li>
         </ul>
+        {/* Sidebar Footer */}
+        <div className="mt-auto p-4 border-t border-gray-700 space-y-3">
+          <div className="text-center">
+            <p className="text-sm font-semibold">{username}</p>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600"
+          >
+            Logout
+          </button>
+          <button
+            onClick={handleBack}
+            className="w-full bg-gray-600 text-white py-2 rounded hover:bg-gray-700"
+          >
+            <ArrowLeftIcon className="h-5 w-5 inline mr-2" />
+            Back
+          </button>
+        </div>
       </div>
 
       {/* Main Content */}

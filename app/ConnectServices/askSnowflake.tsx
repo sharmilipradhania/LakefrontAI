@@ -16,54 +16,115 @@ const AskSnowflake: React.FC = () => {
   const [selectedDatabase, setSelectedDatabase] = useState<string | null>(null);
   const [selectedSchema, setSelectedSchema] = useState<string | null>(null);
   const [selectedTable, setSelectedTable] = useState<string | null>(null);
-
+  const [credentials, setCredentials] = useState<any>({});
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
-
-  // Fetch Dropdown Data from API
-  useEffect(() => {
-    const fetchDatabases = async () => {
-      try {
-        const response = await axios.get("https://your-backend-url.com/databases");
-        setDatabases(response.data.databases || []);
-      } catch (error) {
-        console.error("Error fetching databases:", error);
-      }
-    };
-
-    fetchDatabases();
-  }, []);
-
-  useEffect(() => {
-    if (selectedDatabase) {
-      const fetchSchemas = async () => {
-        try {
-          const response = await axios.get(`https://your-backend-url.com/schemas?database=${selectedDatabase}`);
-          setSchemas(response.data.schemas || []);
-        } catch (error) {
-          console.error("Error fetching schemas:", error);
+ 
+    // Retrieve credentials from localStorage
+    useEffect(() => {
+        const storedCredentials = localStorage.getItem("serviceActive");
+        if (storedCredentials) {
+        const parsedCredentials = JSON.parse(storedCredentials);
+        setCredentials(parsedCredentials);
+        console.log("Retrieved credentials:", parsedCredentials);
+        } else {
+        console.warn("No credentials found in localStorage.");
         }
-      };
+    }, []);
 
-      fetchSchemas();
-    }
-  }, [selectedDatabase]);
+    // Fetch Databases
+    useEffect(() => {
+        if (Object.keys(credentials).length > 0) {
+        const fetchDatabases = async () => {
+            try {
+            const response = await axios.post(
+                "https://lakefrontai.com:4000/anjulkumar001@gmail.com/aiagent/datacatalog/query",
+                credentials,
+                {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                }
+            );
+            // Extract 'data' key from the response and validate it's an array
+            if (response.status === 200 && Array.isArray(response.data.data)) {
+                setDatabases(response.data.data); // Update with the correct array
+            } else {
+                console.error("Unexpected response format:", response.data);
+                setDatabases([]); // Ensure it's reset to an empty array
+            }
+            } catch (error) {
+            console.error("Error fetching databases:", error);
+            setDatabases([]); // Reset to an empty array on error
+            }
+        };
 
-  useEffect(() => {
-    if (selectedSchema) {
-      const fetchTables = async () => {
-        try {
-          const response = await axios.get(
-            `https://your-backend-url.com/tables?database=${selectedDatabase}&schema=${selectedSchema}`
-          );
-          setTables(response.data.tables || []);
-        } catch (error) {
-          console.error("Error fetching tables:", error);
+        fetchDatabases();
         }
-      };
+    }, [credentials]);
 
-      fetchTables();
-    }
-  }, [selectedSchema]);
+    // Fetch Schemas whenever a database is selected
+    useEffect(() => {
+        if (selectedDatabase && Object.keys(credentials).length > 0) {
+        const fetchSchemas = async () => {
+            try {
+            const response = await axios.post(
+                `https://lakefrontai.com:4000/anjulkumar001@gmail.com/aiagent/datacatalog/query`,
+                {
+                ...credentials, // Spread credentials into the request body
+                database: selectedDatabase, // Pass the selected database
+                },
+                {
+                headers: { "Content-Type": "application/json" },
+                }
+            );
+
+            if (response.status === 200 && Array.isArray(response.data.data)) {
+                setSchemas(response.data.data); // Populate schema dropdown
+            } else {
+                console.error("Unexpected response format:", response.data);
+                setSchemas([]);
+            }
+            } catch (error) {
+            console.error("Error fetching schemas:", error);
+            setSchemas([]);
+            }
+        };
+
+        fetchSchemas();
+        }
+    }, [selectedDatabase, credentials]);
+
+    // Fetch Tables when a schema is selected
+    useEffect(() => {
+        if (selectedSchema && selectedDatabase && Object.keys(credentials).length > 0) {
+        const fetchTables = async () => {
+            try {
+            const response = await axios.post(
+                "https://lakefrontai.com:4000/anjulkumar001@gmail.com/aiagent/datacatalog/query",
+                {
+                ...credentials,
+                database: selectedDatabase, // Pass the selected database
+                schema: selectedSchema, // Pass the selected schema
+                },
+                {
+                headers: { "Content-Type": "application/json" },
+                }
+            );
+            if (response.status === 200 && Array.isArray(response.data.data)) {
+                setTables(response.data.data); // Populate table dropdown
+            } else {
+                console.error("Unexpected response format:", response.data);
+                setTables([]);
+            }
+            } catch (error) {
+            console.error("Error fetching tables:", error);
+            setTables([]);
+            }
+        };
+
+        fetchTables();
+        }
+    }, [selectedSchema, selectedDatabase, credentials]);
 
   const handleAskQuestion = async () => {
     if (!userQuestion.trim()) {

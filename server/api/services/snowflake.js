@@ -1,5 +1,6 @@
 const snowflake = require("snowflake-sdk");
 const axios = require("axios");
+const { OpenAI } = require("openai");
 snowflake.configure({ logLevel: "DEBUG" });
 
 /**
@@ -84,31 +85,40 @@ function querySnowflake({ account, username, password, warehouse, database, sche
  * Format the data for OpenAI training.
  */
 function formatDataForTraining(rows) {
-  return rows.map((row) => ({
-    prompt: `Input: ${JSON.stringify(row)}`,
-    completion: "Output: ",
-  }));
+  return `Create a data catalog entry for the following table:\n\n${JSON.stringify(rows, null, 2)}\n\nInclude details such as:
+          - Table name
+          - Owner
+          - Column names, data types, and whether nullable
+          - Primary keys (if any)
+          - Any additional metadata or constraints`;
 }
 
 /**
  * Send the formatted data to OpenAI for training.
  */
-async function trainOpenAIModel({ trainingData, openaiApiKey, modelEndpoint }) {
+async function trainOpenAIModel({ trainingData, openaiApiKey }) {
   try {
-    console.log("Sending data to OpenAI for training...");
-    const response = await axios.post(
-      modelEndpoint,
-      { training_data: trainingData },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${openaiApiKey}`,
-        },
-      }
-    );
+    console.log("Sending data to OpenAI for processing...");
 
-    console.log("OpenAI Training Response:", response.data);
-    return response.data;
+    // Configure OpenAI API
+    const openai = new OpenAI({ apiKey: openaiApiKey });
+
+    // Prepare messages for the chat completion
+    const messages = [
+      { role: "system", content: "You are an AI model trainer. Help process the training data." },
+      { role: "user", content: `Here is the training data: ${JSON.stringify(trainingData)}` },
+    ];
+
+    // Call OpenAI API for chat completion
+    const response = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: messages,
+      max_tokens: 300,
+    });
+
+    console.log("OpenAI Training Response:", response);
+
+    return response.choices[0].message;
   } catch (error) {
     console.error("Failed to send data to OpenAI:", error.message || error);
     throw error;
@@ -118,38 +128,39 @@ async function trainOpenAIModel({ trainingData, openaiApiKey, modelEndpoint }) {
 /**
  * Main function to connect to Snowflake, query data, and train OpenAI model.
  */
-async function connectAndTrain({
-  account,
-  username,
-  password,
-  warehouse,
-  database,
-  schema,
-  table,
-  openaiApiKey,
-  modelEndpoint,
-}) {
-  if (!account || !username || !password || !warehouse || !database || !schema || !table || !openaiApiKey || !modelEndpoint) {
+async function connectAndTrain({ account, username, password, warehouse, database, schema }, tableName, openaiApiKey) {
+  if (!account || !username || !password || !warehouse || !database || !schema || !tableName || !openaiApiKey) {
     throw new Error("Missing required credentials or parameters.");
   }
 
-  const query = `SELECT * FROM ${schema}.${table}`;
+  const query = `DESCRIBE TABLE ${database}.${schema}.${tableName}`;
   let connection;
 
   try {
+    console.log("Connecting to Snowflake...");
+
     // Step 1: Connect to Snowflake
     connection = await connectToSnowflake({ account, username, password, warehouse, database, schema });
+    console.log("Connected to Snowflake.");
 
     // Step 2: Query data from Snowflake
-    const rows = await querySnowflake(connection, query);
+    console.log(`Running query: ${query}`);
+    const rows = await querySnowflake({ account, username, password, warehouse, database, schema }, query);
+
+    if (!Array.isArray(rows)) {
+      throw new Error("Snowflake query did not return an array of rows.");
+    }
+    console.log(`Retrieved ${rows.length} rows from Snowflake.`);
 
     // Step 3: Format data for training
     const trainingData = formatDataForTraining(rows);
+    console.log("Formatted data for training.");
 
     // Step 4: Send data to OpenAI for training
-    const response = await trainOpenAIModel({ trainingData, openaiApiKey, modelEndpoint });
-
-    return response;
+    const data = await trainOpenAIModel({ trainingData, openaiApiKey });
+    console.log("Training data sent to OpenAI.");
+    console.log(data);
+    return data;
   } catch (error) {
     console.error("An error occurred:", error.message || error);
     throw error;

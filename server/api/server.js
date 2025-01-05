@@ -52,7 +52,7 @@ let privatekey;
 let certi;
 let dbConfig;
 
-const ENV = 'production'; // production environment and development environment
+const ENV = 'development'; // production environment and development environment
 if (ENV === 'development') {
 // development environment variables
   dbConfig = config.development;
@@ -638,6 +638,43 @@ app.post("/:username/aiagent/datacatalog/query", async (req, res) => {
   }
 });
 
+app.post("/:username/aiagent/datacatalog/modeltrain", async (req, res) => {
+  const { service, credentials, database, schema, tableName } = req.body;
+  console.log(service);
+  console.log(credentials);
+  console.log(req.body);
+  if (!service || !credentials) {
+    return res.status(400).json({ error: "Service and credentials are required" });
+  }
+  const openaiApiKey = dbConfig.OPENAI_API_KEY;
+
+  try {
+    switch (service) {
+      case "Looker":
+        await lookerService.query(credentials);
+        return res.status(200).json({ data: "Connected to Looker successfully!" });
+
+      case "Snowflake":
+          console.log("calling connect and")
+          const results = await snowflakeService.connectAndTrain(credentials, tableName, dbConfig.OPENAI_API_KEY);
+          console.log(results);
+          return res.status(200).json({ data: results });
+
+      case "MySQL":
+        await mysqlService.connect(credentials);
+        return res.status(200).json({ data: "Connected to MySQL successfully!" });
+
+      case "PostgreSQL":
+        await postgresService.connect(credentials);
+        return res.status(200).json({ data: "Connected to PostgreSQL successfully!" });
+
+      default:
+        return res.status(400).json({ error: "Unsupported service type" });
+    }
+  } catch (error) {
+    handleError(res, error, `Failed to connect to ${service}`);
+  }
+});
 
 // Start HTTPS Server
 https.createServer(credentials, app).listen(PORT, () => {

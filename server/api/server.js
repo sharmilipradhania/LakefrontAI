@@ -551,7 +551,7 @@ app.post("/:username/query", async (req, res) => {
 });
 
 // Handle connection requests aiagent, data
-app.post("/:username/aiagent/datacatalog", async (req, res) => {
+app.post("/:username/aiagent/datacatalog/connect", async (req, res) => {
   const { service, credentials } = req.body;
   console.log(service);
   console.log(credentials);
@@ -559,7 +559,6 @@ app.post("/:username/aiagent/datacatalog", async (req, res) => {
   if (!service || !credentials) {
     return res.status(400).json({ error: "Service and credentials are required" });
   }
-
   try {
     switch (service) {
       case "Looker":
@@ -578,6 +577,58 @@ app.post("/:username/aiagent/datacatalog", async (req, res) => {
       case "PostgreSQL":
         await postgresService.connect(credentials);
         return res.status(200).json({ message: "Connected to PostgreSQL successfully!" });
+
+      default:
+        return res.status(400).json({ error: "Unsupported service type" });
+    }
+  } catch (error) {
+    handleError(res, error, `Failed to connect to ${service}`);
+  }
+});
+
+app.post("/:username/aiagent/datacatalog/query", async (req, res) => {
+  const { service, credentials, database, schema, tableName } = req.body;
+  console.log(service);
+  console.log(credentials);
+  console.log(req.body);
+  if (!service || !credentials) {
+    return res.status(400).json({ error: "Service and credentials are required" });
+  }
+  let query;
+  if (!database) {
+    query = `SHOW DATABASES`; // Retrieves a list of databases
+  } else if (!schema) {
+    query = `SHOW SCHEMAS IN DATABASE ${database}`; // Retrieves schemas in the specified database
+  } else if (!tableName) {
+    query = `SHOW TABLES IN SCHEMA ${database}.${schema}`; // Retrieves tables in the specified schema
+  } else {
+    query = `SELECT * FROM ${database}.${schema}.${tableName} LIMIT 10`; // Retrieves sample rows from the specified table
+  }
+  console.log(query);
+  try {
+    switch (service) {
+      case "Looker":
+        await lookerService.query(credentials);
+        return res.status(200).json({ data: "Connected to Looker successfully!" });
+
+      case "Snowflake":
+          const results = await snowflakeService.querySnowflake(credentials, query);
+          console.log(results);
+          let names;
+          if (!tableName) {
+            names = results.map(item => item.name);
+          } else {
+            names = results
+          }
+          return res.status(200).json({ data: names });
+
+      case "MySQL":
+        await mysqlService.connect(credentials);
+        return res.status(200).json({ data: "Connected to MySQL successfully!" });
+
+      case "PostgreSQL":
+        await postgresService.connect(credentials);
+        return res.status(200).json({ data: "Connected to PostgreSQL successfully!" });
 
       default:
         return res.status(400).json({ error: "Unsupported service type" });

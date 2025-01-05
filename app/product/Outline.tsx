@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 const lakefrontaiServices = [
   "Model Training",
   "Document Summary",
-  "Data Catalog",
+  "Ask Anything",
   "AI Agent",
 ];
 

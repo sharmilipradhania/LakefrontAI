@@ -5,6 +5,7 @@ import { FaBars, FaEye, FaEyeSlash, FaTrash, FaEdit, FaKey } from "react-icons/f
 import { LockClosedIcon, HomeIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { Dialog } from "@headlessui/react";
 import ConnectServices from "@/app/ConnectServices/ConnectServices";
+import AskSnowflake from "@/app/ConnectServices/askSnowflake";
 import { useRouter } from "next/navigation";
 
 export default function ConnectServicesWithSidebar() {
@@ -14,6 +15,7 @@ export default function ConnectServicesWithSidebar() {
   const [secretKey, setSecretKey] = useState("");
   const [secrets, setSecrets] = useState<{ model: string; secret: string; isVisible: boolean }[]>([]);
   const [username, setUsername] = useState("");
+  const [activeService, setActiveService] = useState<string | null>(null);
   const router = useRouter();
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -24,6 +26,11 @@ export default function ConnectServicesWithSidebar() {
       setUsername(storedUsername);
     } else {
       router.push("/login");
+    }
+    const serviceActive = localStorage.getItem("serviceActive");
+    if (serviceActive) {
+      const parsedService = JSON.parse(serviceActive);
+      setActiveService(parsedService.service);
     }
   }, [username]);
 
@@ -92,7 +99,30 @@ export default function ConnectServicesWithSidebar() {
   };
 
   const handleBack = () => {
-    window.history.back();
+    console.log("Current activeService:", activeService);
+  
+    // Clear activeService and localStorage
+    setActiveService(null);
+    localStorage.removeItem("serviceActive");
+  
+    // Log changes
+    console.log("After clearing, serviceActive in localStorage:", localStorage.getItem("serviceActive"));
+    console.log("After clearing, activeService:", activeService);
+  
+    // Delay navigation to ensure state updates are reflected
+    setTimeout(() => {
+      window.history.back();
+    }, 100); // 100ms delay to allow state updates to propagate
+  };
+
+  const renderContent = () => {
+    if (activeService === "Snowflake") {
+      return <AskSnowflake  />;
+    }
+    return <ConnectServices
+              isSidebarOpen={isSidebarOpen} // Pass the isSidebarOpen prop
+              onServiceChange={setActiveService} // Pass the onServiceChange prop
+            />;
   };
 
   return (
@@ -237,8 +267,9 @@ export default function ConnectServicesWithSidebar() {
         </div>
 
       {/* Main Content */}
-      <div className="flex-1 ml-20 lg:ml-64 p-6 bg-gray-50">
-        <ConnectServices isSidebarOpen={isSidebarOpen}/>
+      {/* Main Content */}
+      <div className={`flex-1 ${isSidebarOpen ? "ml-64" : "ml-20"} p-6 bg-gray-50`}>
+        {renderContent()}
       </div>
 
       {/* Secret Input Popup */}

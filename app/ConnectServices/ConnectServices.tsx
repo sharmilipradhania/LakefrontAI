@@ -5,10 +5,12 @@ import axios from "axios";
 import { Dialog } from "@headlessui/react";
 import { CloudIcon, CubeIcon } from "@heroicons/react/24/outline";
 import { FaDatabase } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
 interface ConnectServicesProps {
   isSidebarOpen: boolean;
+  onServiceChange: (service: string | null) => void; // Prop to notify parent about active service
 }
-export default function ConnectServices({ isSidebarOpen }: { isSidebarOpen: boolean }) {
+const ConnectServices: React.FC<ConnectServicesProps> = ({ isSidebarOpen, onServiceChange }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [activeService, setActiveService] = useState<"Looker" | "Snowflake" | "MySQL" | "PostgreSQL" | null>(null);
 
@@ -27,7 +29,7 @@ export default function ConnectServices({ isSidebarOpen }: { isSidebarOpen: bool
   });
 
   const [connectionStatus, setConnectionStatus] = useState("");
-
+  const router = useRouter();
   const handleOpenPopup = (service: "Looker" | "Snowflake" | "MySQL" | "PostgreSQL") => {
     setActiveService(service);
     setIsPopupOpen(true);
@@ -55,35 +57,29 @@ export default function ConnectServices({ isSidebarOpen }: { isSidebarOpen: bool
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
+
   const handleConnect = async () => {
     const storedUsername = localStorage.getItem("username");
     try {
-      console.log(`Using ${storedUsername} to connect to ${activeService} with credentials:`, credentials);
-
-      const data = {
-        service: activeService,
-        credentials,
-      };
-
+      const data = { service: activeService, credentials };
       const response = await axios.post(
         `https://lakefrontai.com:4000/${storedUsername}/aiagent/datacatalog`,
         data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        { headers: { "Content-Type": "application/json" } }
       );
 
       if (response.status === 200) {
         setConnectionStatus(`Connected successfully to ${activeService}!`);
         localStorage.setItem("serviceActive", JSON.stringify(data));
+        if (activeService === "Snowflake") {
+          onServiceChange("Snowflake");
+        }
       } else {
-        setConnectionStatus(`Failed to connect to ${activeService}: ${response.data?.message || "Unknown error"}`);
+        setConnectionStatus(`Failed to connect to ${activeService}`);
       }
     } catch (error: any) {
-      console.error("Error while connecting:", error);
-      setConnectionStatus(`Failed to connect: ${error.response?.data?.message || error.message}`);
+      console.error("Error:", error);
+      setConnectionStatus(`Failed to connect: ${error.message}`);
     } finally {
       setTimeout(() => setConnectionStatus(""), 5000);
     }
@@ -291,3 +287,5 @@ export default function ConnectServices({ isSidebarOpen }: { isSidebarOpen: bool
     </div>
   );
 }
+
+export default ConnectServices;

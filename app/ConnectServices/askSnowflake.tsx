@@ -210,25 +210,31 @@ const AskSnowflake: React.FC = () => {
         )}
       </div>
 
-      {/* Fixed Input Box */}
-      <div className="bg-white p-4 border-t">
-        <textarea
-          rows={2}
-          placeholder="Ask a question about your data..."
-          value={userQuestion}
-          onChange={(e) => setUserQuestion(e.target.value)}
-          className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-        ></textarea>
-        <button
-          onClick={handleAskQuestion}
-          disabled={isLoading}
-          className={`w-full mt-2 py-2 rounded-md text-white font-semibold ${
-            isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-          } transition`}
-        >
-          {isLoading ? "Fetching Answer..." : "Ask Question"}
-        </button>
-      </div>
+        {/* Fixed Input Box */}
+        <div className="bg-white p-4 border-t flex items-center space-x-4">
+            <textarea
+                rows={2}
+                placeholder="Ask a question about your data..."
+                value={userQuestion}
+                onChange={(e) => setUserQuestion(e.target.value)}
+                onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault(); // Prevents adding a new line
+                    handleAskQuestion();
+                }
+                }}
+                className="flex-grow border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            ></textarea>
+            <button
+                onClick={handleAskQuestion}
+                disabled={isLoading}
+                className={`px-6 py-2 rounded-md text-white font-semibold ${
+                isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+                } transition`}
+            >
+                {isLoading ? "Fetching..." : "Ask"}
+            </button>
+        </div>
     </div>
   );
 };

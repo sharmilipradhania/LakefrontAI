@@ -63,7 +63,7 @@ const ConnectServices: React.FC<ConnectServicesProps> = ({ isSidebarOpen, onServ
     try {
       const data = { service: activeService, credentials };
       const response = await axios.post(
-        `https://lakefrontai.com:4000/${storedUsername}/aiagent/datacatalog`,
+        `https://lakefrontai.com:4000/${storedUsername}/aiagent/datacatalog/connect`,
         data,
         { headers: { "Content-Type": "application/json" } }
       );

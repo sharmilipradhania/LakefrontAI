@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 const AskSnowflake: React.FC = () => {
+  const [username, setUserName] = useState("");
   const [userQuestion, setUserQuestion] = useState("");
   const [chatHistory, setChatHistory] = useState<{ question: string; answer: string }[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +29,17 @@ const AskSnowflake: React.FC = () => {
         console.log("Retrieved credentials:", parsedCredentials);
         } else {
         console.warn("No credentials found in localStorage.");
+        }
+    }, []);
+
+    // Retrieve username from localStorage
+    useEffect(() => {
+        const storedusername = localStorage.getItem("username");
+        if (storedusername) {
+            setUserName(storedusername);
+            console.log("Retrieved username:", storedusername);
+        } else {
+            console.warn("No username found in localStorage.");
         }
     }, []);
 
@@ -168,22 +180,38 @@ const AskSnowflake: React.FC = () => {
   };
 
   const handleTrainModel = async () => {
-    if (!selectedDatabase || !selectedSchema || !selectedTable) {
-      alert("Please select a database, schema, and table.");
+    if (!selectedDatabase || !selectedSchema || !selectedTable ||  !credentials) {
+      alert("Please select a service, database, schema, table, and provide credentials.");
       return;
     }
-
+    console.log("credentials", credentials);
+    console.log("credentials.service", credentials.service);
+    console.log("credentials.account", credentials.credentials.account);
     try {
-      const response = await axios.post("https://your-backend-url.com/train-llm", {
-        database: selectedDatabase,
-        schema: selectedSchema,
-        table: selectedTable,
-      });
-
+      const response = await axios.post(`https://lakefrontai.com:4000/${username}/aiagent/datacatalog/modeltrain`, 
+            {
+                service: credentials.service,
+                credentials: {
+                account: credentials.credentials.account,
+                username: credentials.credentials.username,
+                password: credentials.credentials.password,
+                warehouse: credentials.credentials.warehouse,
+                database: selectedDatabase,
+                schema: selectedSchema
+                },
+                tableName: selectedTable
+            },
+            {
+            headers: { "Content-Type": "application/json" },
+            }
+        );
+  
       if (response.status === 200) {
         alert("LLM model trained successfully!");
+        console.log("Response Data:", response.data);
       } else {
         alert("Failed to train the model. Please try again.");
+        console.error("Response Status:", response.status);
       }
     } catch (error) {
       console.error("Error training model:", error);

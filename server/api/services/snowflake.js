@@ -1,7 +1,7 @@
 const snowflake = require("snowflake-sdk");
 const axios = require("axios");
 const { OpenAI } = require("openai");
-snowflake.configure({ logLevel: "DEBUG" });
+// snowflake.configure({ logLevel: "DEBUG" });
 
 /**
  * Establish a connection to Snowflake.
@@ -84,13 +84,63 @@ function querySnowflake({ account, username, password, warehouse, database, sche
 /**
  * Format the data for OpenAI training.
  */
-function formatDataForTraining(rows) {
-  return `Create a data catalog entry for the following table:\n\n${JSON.stringify(rows, null, 2)}\n\nInclude details such as:
-          - Table name
-          - Owner
-          - Column names, data types, and whether nullable
-          - Primary keys (if any)
-          - Any additional metadata or constraints`;
+
+function transformSchemaToTargetFormat(schemaArray, tableName) {
+  const transformedSchema = {
+    tableName: tableName,
+    columns: schemaArray.map(column => ({
+      name: column.name.toLowerCase(), // Convert name to lowercase if needed
+      type: column.type.toLowerCase(), // Adjust data type if necessary
+      constraint: [
+        column['primary key'] === 'Y' ? 'Primary key' : '',
+        column['null?'] === 'N' ? 'Not null' : '',
+        column['unique key'] === 'Y' ? 'Unique key' : '',
+      ]
+        .filter(Boolean) // Remove empty constraints
+        .join(', '),
+      default: column.default || null, // Include default value if present
+      comment: column.comment || null, // Include comment if present
+      uniqueKey: column['unique key'] === 'Y', // Include unique key flag
+    })),
+  };
+
+  return JSON.stringify(transformedSchema, null, 2); // Format as JSON with indentation
+}
+
+function formatDataForTraining(tableName, data_schema, data_rows) {
+  const transformedSchema = transformSchemaToTargetFormat(data_schema, tableName);
+
+  const hasDataRows = Array.isArray(data_rows) && data_rows.length > 0;
+  console.log("hasdata",hasDataRows);
+  const messages = [
+    {
+      role: "system",
+      content:
+        "You are a data analyst assistant. Your job is to create a data catalog that describes columns, data types, constraints, descriptions, and potential data distributions based on the provided Snowflake table schema.",
+    },
+    {
+      role: "user",
+      content: `Here is the Snowflake table schema:
+        {
+          "tableName": "${tableName}",
+          "Schema": ${transformedSchema},
+          "Data": ${hasDataRows ? JSON.stringify(data_rows) : "No data rows provided"}
+        }
+  
+        Generate a data catalog with the following details:
+        - Column Name
+        - Data Type
+        - Constraints
+        - Description (inferred based on the column name and data type)
+        - Data distributions ${
+          hasDataRows
+            ? "(based on the provided data rows)"
+            : "(unable to determine due to absence of data)"
+        }
+      `,
+    },
+  ];
+  return messages;
 }
 
 /**
@@ -104,10 +154,7 @@ async function trainOpenAIModel({ trainingData, openaiApiKey }) {
     const openai = new OpenAI({ apiKey: openaiApiKey });
 
     // Prepare messages for the chat completion
-    const messages = [
-      { role: "system", content: "You are an AI model trainer. Help process the training data." },
-      { role: "user", content: `Here is the training data: ${JSON.stringify(trainingData)}` },
-    ];
+    const messages = trainingData; 
 
     // Call OpenAI API for chat completion
     const response = await openai.chat.completions.create({
@@ -133,7 +180,8 @@ async function connectAndTrain({ account, username, password, warehouse, databas
     throw new Error("Missing required credentials or parameters.");
   }
 
-  const query = `DESCRIBE TABLE ${database}.${schema}.${tableName}`;
+  const query_schema = `DESCRIBE TABLE ${database}.${schema}.${tableName}`;
+  const query_data = `SELECT * FROM ${database}.${schema}.${tableName}`;
   let connection;
 
   try {
@@ -143,17 +191,34 @@ async function connectAndTrain({ account, username, password, warehouse, databas
     connection = await connectToSnowflake({ account, username, password, warehouse, database, schema });
     console.log("Connected to Snowflake.");
 
-    // Step 2: Query data from Snowflake
-    console.log(`Running query: ${query}`);
-    const rows = await querySnowflake({ account, username, password, warehouse, database, schema }, query);
-
-    if (!Array.isArray(rows)) {
-      throw new Error("Snowflake query did not return an array of rows.");
+    // Step 2.a: Query schema from Snowflake
+    console.log(`Running query to fetch schema: ${query_schema}`);
+    const data_schema = await querySnowflake(
+      { account, username, password, warehouse, database, schema },
+      query_schema
+    );
+    console.log("data schema", data_schema);
+    // Check if the query result is valid
+    if (!data_schema || !Array.isArray(data_schema)) {
+      throw new Error("Snowflake query did not return a valid array for data_schema.");
     }
-    console.log(`Retrieved ${rows.length} rows from Snowflake.`);
+    console.log(`Retrieved ${data_schema.length} rows from Snowflake for schema.`);
+
+    // Step 2.b: Query data from Snowflake
+    console.log(`Running query to fetch data: ${query_data}`);
+    const data_rows = await querySnowflake(
+      { account, username, password, warehouse, database, schema },
+      query_data
+    );
+    console.log("query data", data_rows)
+    // Check if the query result is valid
+    if (!data_rows || !Array.isArray(data_rows)) {
+      throw new Error("Snowflake query did not return a valid array for data_rows.");
+    }
+    console.log(`Retrieved ${data_rows.length} rows from Snowflake for data.`);
 
     // Step 3: Format data for training
-    const trainingData = formatDataForTraining(rows);
+    const trainingData = formatDataForTraining(`${database}.${schema}.${tableName}`, data_schema, data_rows);
     console.log("Formatted data for training.");
 
     // Step 4: Send data to OpenAI for training

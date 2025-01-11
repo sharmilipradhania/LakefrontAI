@@ -49,7 +49,7 @@ const AskSnowflake: React.FC = () => {
         const fetchDatabases = async () => {
             try {
             const response = await axios.post(
-                "https://lakefrontai.com:4000/anjulkumar001@gmail.com/aiagent/datacatalog/query",
+                `https://lakefrontai.com:4000/${username}/aiagent/datacatalog/query`,
                 credentials,
                 {
                 headers: {
@@ -80,7 +80,7 @@ const AskSnowflake: React.FC = () => {
         const fetchSchemas = async () => {
             try {
             const response = await axios.post(
-                `https://lakefrontai.com:4000/anjulkumar001@gmail.com/aiagent/datacatalog/query`,
+                `https://lakefrontai.com:4000/${username}/aiagent/datacatalog/query`,
                 {
                 ...credentials, // Spread credentials into the request body
                 database: selectedDatabase, // Pass the selected database
@@ -112,7 +112,7 @@ const AskSnowflake: React.FC = () => {
         const fetchTables = async () => {
             try {
             const response = await axios.post(
-                "https://lakefrontai.com:4000/anjulkumar001@gmail.com/aiagent/datacatalog/query",
+                `https://lakefrontai.com:4000/${username}/aiagent/datacatalog/query`,
                 {
                 ...credentials,
                 database: selectedDatabase, // Pass the selected database
@@ -179,105 +179,106 @@ const AskSnowflake: React.FC = () => {
     }
   };
 
-  const formatResponseData = (answer: string) => {
-    return (
-        <div
-        style={{
-          padding: "16px",
-          backgroundColor: "#f9f9f9",
-          borderRadius: "8px",
-          fontFamily: "monospace",
-          color: "#333",
-          lineHeight: "1.6",
-        }}
-      >
-        <h3 style={{ marginBottom: "16px" }}>Data Catalog</h3>
-        <table
-          style={{
-            borderCollapse: "collapse",
-            width: "100%",
-            tableLayout: "auto",
-          }}
+    const formatResponseData = (answer: string) => {
+        return (
+            <div
+            style={{
+            padding: "16px",
+            backgroundColor: "#f9f9f9",
+            borderRadius: "8px",
+            fontFamily: "monospace",
+            color: "#333",
+            lineHeight: "1.6",
+            }}
         >
-          <thead>
-            {answer
-              .split("\n") // Split by lines
-              .filter((line: string) => line.startsWith("|")) // Filter rows starting with '|'
-              .slice(0, 1) // Take the first row (header)
-              .map((line: string, index: number) => {
-                const headers: string[] = line
-                  .split("|")
-                  .filter((col: string) => col.trim() !== "") // Remove empty columns
-                  .map((col: string) => col.trim()); // Trim each header
-                return (
-                  <tr key={index}>
-                    {headers.map((header: string, headerIndex: number) => (
-                      <th
-                        key={headerIndex}
-                        style={{
-                          border: "1px solid #ccc",
-                          padding: "8px",
-                          textAlign: "left",
-                          backgroundColor: "#f1f1f1",
-                        }}
-                      >
-                        {header}
-                      </th>
-                    ))}
-                  </tr>
-                );
-              })}
-          </thead>
-          <tbody>
-            {answer
-              .split("\n") // Split by lines
-              .filter((line: string) => line.startsWith("|")) // Filter rows starting with '|'
-              .slice(1) // Skip the first row (header)
-              .map((dataRow: string, rowIndex: number) => {
-                const columns: string[] = dataRow
-                  .split("|")
-                  .filter((col: string) => col.trim() !== "") // Remove empty columns
-                  .map((col: string) => col.trim()); // Trim each column
-                return (
-                  <tr key={rowIndex}>
-                    {columns.map((col: string, colIndex: number) => (
-                      <td
-                        key={colIndex}
-                        style={{
-                          border: "1px solid #ccc",
-                          padding: "8px",
-                          wordWrap: "break-word",
-                          textAlign: colIndex === 0 ? "left" : "center",
-                        }}
-                      >
-                        {col}
-                      </td>
-                    ))}
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
-        <div style={{ marginTop: "16px" }}>
-          <h4 style={{ marginBottom: "8px" }}>Notes:</h4>
-          <ul style={{ paddingLeft: "20px" }}>
-            <li>
-              <strong>Constraints:</strong> The constraint column is  as
-              it was  provided in the schema.
-            </li>
-            <li>
-              <strong>Description:</strong> The description is inferred based on
-              the column name and data type.
-            </li>
-            <li>
-              <strong>Data Distributions:</strong> The data distributions are based
-              on the provided data rows.
-            </li>
-          </ul>
+            <h3 style={{ marginBottom: "16px" }}>Data Catalog</h3>
+            <table
+            style={{
+                borderCollapse: "collapse",
+                width: "100%",
+                tableLayout: "auto",
+            }}
+            >
+            <thead>
+                {answer
+                .split("\n") // Split by lines
+                .filter((line: string) => line.startsWith("|")) // Filter rows starting with '|'
+                .slice(0, 1) // Take the first row (header)
+                .map((line: string, index: number) => {
+                    const headers: string[] = line
+                    .split("|")
+                    .filter((col: string) => col.trim() !== "") // Remove empty columns
+                    .map((col: string) => col.trim()); // Trim each header
+                    return (
+                    <tr key={index}>
+                        {headers.map((header: string, headerIndex: number) => (
+                        <th
+                            key={headerIndex}
+                            style={{
+                            border: "1px solid #ccc",
+                            padding: "8px",
+                            textAlign: "left",
+                            backgroundColor: "#f1f1f1",
+                            }}
+                        >
+                            {header}
+                        </th>
+                        ))}
+                    </tr>
+                    );
+                })}
+            </thead>
+            <tbody>
+                {answer
+                .split("\n") // Split by lines
+                .filter((line: string) => line.startsWith("|")) // Filter rows starting with '|'
+                .slice(1) // Skip the first row (header)
+                .map((dataRow: string, rowIndex: number) => {
+                    const columns: string[] = dataRow
+                    .split("|")
+                    .filter((col: string) => col.trim() !== "") // Remove empty columns
+                    .map((col: string) => col.trim()); // Trim each column
+                    return (
+                    <tr key={rowIndex}>
+                        {columns.map((col: string, colIndex: number) => (
+                        <td
+                            key={colIndex}
+                            style={{
+                            border: "1px solid #ccc",
+                            padding: "8px",
+                            wordWrap: "break-word",
+                            textAlign: colIndex === 0 ? "left" : "center",
+                            }}
+                        >
+                            {col}
+                        </td>
+                        ))}
+                    </tr>
+                    );
+                })}
+            </tbody>
+            </table>
+            <div style={{ marginTop: "16px" }}>
+            <h4 style={{ marginBottom: "8px" }}>Notes:</h4>
+            <ul style={{ paddingLeft: "20px" }}>
+                <li>
+                <strong>Constraints:</strong> The constraint column is  as
+                it was  provided in the schema.
+                </li>
+                <li>
+                <strong>Description:</strong> The description is inferred based on
+                the column name and data type.
+                </li>
+                <li>
+                <strong>Data Distributions:</strong> The data distributions are based
+                on the provided data rows.
+                </li>
+            </ul>
+            </div>
         </div>
-      </div>
-    );
-};
+        );
+    };
+
   const handleTrainModel = async () => {
     if (!selectedDatabase || !selectedSchema || !selectedTable ||  !credentials) {
       alert("Please select a service, database, schema, table, and provide credentials.");
@@ -329,6 +330,45 @@ const AskSnowflake: React.FC = () => {
       alert("An error occurred while training the model. Please try again.");
     }
   };
+    const [columnName, setColumnName] = useState("");
+    const [isSearching, setIsSearching] = useState(false);
+
+    const handleSearch = async () => {
+        if (!columnName.trim()) {
+        alert("Please enter a column name to search.");
+        return;
+        }
+
+        setIsSearching(true); // Set button to "Searching..."
+
+        try {
+                const response = await axios.post(
+                    `https://lakefrontai.com:4000/${username}/aiagent/datacatalog/query`,
+                    {
+                    ...credentials,
+                    database: selectedDatabase, // Pass the selected database
+                    schema: selectedSchema, // Pass the selected schema
+                    columnName: columnName.trim(), // Include the column name
+                    },
+                    {
+                    headers: { "Content-Type": "application/json" },
+                    }
+                );
+
+            if (response.status === 200) {
+                console.log("Search Response:", response.data);
+                alert(`Search results: ${JSON.stringify(response.data)}`);
+            } else {
+                console.error("Error: Unexpected response status", response.status);
+                alert("Failed to fetch data. Please try again.");
+            }
+            } catch (error) {
+            console.error("Error during search:", error);
+            alert("An error occurred while searching. Please try again.");
+            } finally {
+            setIsSearching(false); // Reset button to "Search"
+            }
+    };
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
@@ -385,7 +425,42 @@ const AskSnowflake: React.FC = () => {
           Generate Catalog
         </button>
       </div>
-
+        {/* New Section: Search Column */}
+        <div style={{ marginTop: "24px", display: "flex", alignItems: "center" }}>
+                <label
+                htmlFor="columnNameInput"
+                style={{ marginRight: "8px", fontWeight: "bold" }}
+                >
+                Enter Column Name:
+                </label>
+                <input
+                id="columnNameInput"
+                type="text"
+                value={columnName}
+                onChange={(e) => setColumnName(e.target.value)}
+                placeholder="Column name"
+                style={{
+                    padding: "8px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    flex: 1,
+                    marginRight: "8px",
+                }}
+                />
+                <button
+                onClick={handleSearch}
+                style={{
+                    padding: "8px 16px",
+                    backgroundColor: "#007BFF",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                }}
+                >
+                {isSearching ? "Searching..." : "Search"}
+                </button>
+            </div>
       {/* Chat History */}
       <div
         ref={chatContainerRef}

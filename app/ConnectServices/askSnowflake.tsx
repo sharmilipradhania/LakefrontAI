@@ -223,52 +223,66 @@ const AskSnowflake: React.FC = () => {
                     lineHeight: "1.6",
                   }}
                 >
+                  <h3 style={{ marginBottom: "16px" }}>Data Catalog</h3>
                   <table
                     style={{
                       borderCollapse: "collapse",
                       width: "100%",
-                      tableLayout: "auto", // Dynamically adjust column widths
+                      tableLayout: "auto",
                     }}
                   >
                     <thead>
-                      <tr>
-                        {["Column Name", "Data Type", "Constraints", "Description", "Data Distribution"].map(
-                          (header, index) => (
-                            <th
-                              key={index}
-                              style={{
-                                border: "1px solid #ccc",
-                                padding: "8px",
-                                textAlign: "left",
-                                backgroundColor: "#f1f1f1",
-                              }}
-                            >
-                              {header}
-                            </th>
-                          )
-                        )}
-                      </tr>
+                      {answer
+                        .split("\n") // Split by lines
+                        .filter((line: string) => line.startsWith("|")) // Filter rows starting with '|'
+                        .slice(0, 1) // Take the first row (header)
+                        .map((line: string, index: number) => {
+                          const headers: string[] = line
+                            .split("|")
+                            .filter((col: string) => col.trim() !== "") // Remove empty columns
+                            .map((col: string) => col.trim()); // Trim each header
+                          return (
+                            <tr key={index}>
+                              {headers.map((header: string, headerIndex: number) => (
+                                <th
+                                  key={headerIndex}
+                                  style={{
+                                    border: "1px solid #ccc",
+                                    padding: "8px",
+                                    textAlign: "left",
+                                    backgroundColor: "#f1f1f1",
+                                  }}
+                                >
+                                  {header}
+                                </th>
+                              ))}
+                            </tr>
+                          );
+                        })}
                     </thead>
                     <tbody>
                       {answer
-                        .trim() // Clean any leading/trailing spaces
-                        .split("\n") // Split rows by newline
-                        .filter((row: string) => row.trim() !== "") // Remove empty rows
-                        .map((row: string, rowIndex: number) => {
-                          const columns = row.split("|").map((col) => col.trim()); // Split columns by '|'
+                        .split("\n") // Split by lines
+                        .filter((line: string) => line.startsWith("|")) // Filter rows starting with '|'
+                        .slice(1) // Skip the first row (header)
+                        .map((dataRow: string, rowIndex: number) => {
+                          const columns: string[] = dataRow
+                            .split("|")
+                            .filter((col: string) => col.trim() !== "") // Remove empty columns
+                            .map((col: string) => col.trim()); // Trim each column
                           return (
                             <tr key={rowIndex}>
-                              {columns.map((column: string, colIndex: number) => (
+                              {columns.map((col: string, colIndex: number) => (
                                 <td
                                   key={colIndex}
                                   style={{
                                     border: "1px solid #ccc",
                                     padding: "8px",
-                                    wordWrap: "break-word", // Handle long content
-                                    textAlign: colIndex === 0 ? "left" : "center", // Align first column left
+                                    wordWrap: "break-word",
+                                    textAlign: colIndex === 0 ? "left" : "center",
                                   }}
                                 >
-                                  {column}
+                                  {col}
                                 </td>
                               ))}
                             </tr>
@@ -276,6 +290,23 @@ const AskSnowflake: React.FC = () => {
                         })}
                     </tbody>
                   </table>
+                  <div style={{ marginTop: "16px" }}>
+                    <h4 style={{ marginBottom: "8px" }}>Notes:</h4>
+                    <ul style={{ paddingLeft: "20px" }}>
+                      <li>
+                        <strong>Constraints:</strong> The constraint column is  as
+                        it was  provided in the schema.
+                      </li>
+                      <li>
+                        <strong>Description:</strong> The description is inferred based on
+                        the column name and data type.
+                      </li>
+                      <li>
+                        <strong>Data Distributions:</strong> The data distributions are based
+                        on the provided data rows.
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               );
       

@@ -127,7 +127,7 @@ function formatDataForTraining(tableName, data_schema, data_rows) {
           "Data": ${hasDataRows ? JSON.stringify(data_rows) : "No data rows provided"}
         }
   
-        Generate a data catalog with the following details:
+        Generate a data catalog with the following details in the format of a table:
         - Column Name
         - Data Type
         - Constraints

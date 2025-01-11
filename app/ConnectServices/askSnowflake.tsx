@@ -6,7 +6,7 @@ import axios from "axios";
 const AskSnowflake: React.FC = () => {
   const [username, setUserName] = useState("");
   const [userQuestion, setUserQuestion] = useState("");
-  const [chatHistory, setChatHistory] = useState<{ question: string; answer: string }[]>([]);
+  const [chatHistory, setChatHistory] = useState<{ question: string; answer: string | React.ReactNode }[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState("");
 
@@ -207,8 +207,85 @@ const AskSnowflake: React.FC = () => {
         );
   
       if (response.status === 200) {
+            const answer =
+              response.data?.data?.content ??
+              "Sorry, I couldn't fetch the answer. Please try again.";
+      
+            // Format the answer content for structured display
+            const formattedAnswer = (
+                <div
+                  style={{
+                    padding: "16px",
+                    backgroundColor: "#f9f9f9",
+                    borderRadius: "8px",
+                    fontFamily: "monospace",
+                    color: "#333",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  <table
+                    style={{
+                      borderCollapse: "collapse",
+                      width: "100%",
+                      tableLayout: "auto", // Dynamically adjust column widths
+                    }}
+                  >
+                    <thead>
+                      <tr>
+                        {["Column Name", "Data Type", "Constraints", "Description", "Data Distribution"].map(
+                          (header, index) => (
+                            <th
+                              key={index}
+                              style={{
+                                border: "1px solid #ccc",
+                                padding: "8px",
+                                textAlign: "left",
+                                backgroundColor: "#f1f1f1",
+                              }}
+                            >
+                              {header}
+                            </th>
+                          )
+                        )}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {answer
+                        .trim() // Clean any leading/trailing spaces
+                        .split("\n") // Split rows by newline
+                        .filter((row: string) => row.trim() !== "") // Remove empty rows
+                        .map((row: string, rowIndex: number) => {
+                          const columns = row.split("|").map((col) => col.trim()); // Split columns by '|'
+                          return (
+                            <tr key={rowIndex}>
+                              {columns.map((column: string, colIndex: number) => (
+                                <td
+                                  key={colIndex}
+                                  style={{
+                                    border: "1px solid #ccc",
+                                    padding: "8px",
+                                    wordWrap: "break-word", // Handle long content
+                                    textAlign: colIndex === 0 ? "left" : "center", // Align first column left
+                                  }}
+                                >
+                                  {column}
+                                </td>
+                              ))}
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                  </table>
+                </div>
+              );
+      
+            // Update chat history
+            setChatHistory((prevChatHistory) => [
+              ...prevChatHistory,
+              { question: "Data Catalog", answer: formattedAnswer },
+            ]);
         alert("LLM model trained successfully!");
-        console.log("Response Data:", response.data);
+        console.log("Response Data:", response.data.data.content);
       } else {
         alert("Failed to train the model. Please try again.");
         console.error("Response Status:", response.status);
@@ -271,7 +348,7 @@ const AskSnowflake: React.FC = () => {
           onClick={handleTrainModel}
           className="px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
         >
-          Train LLM Model
+          Generate Catalog
         </button>
       </div>
 
@@ -288,7 +365,7 @@ const AskSnowflake: React.FC = () => {
             </div>
             <div className="bg-gray-200 text-gray-800 p-3 rounded-md shadow-md">
               <p className="font-medium">Snowflake:</p>
-              <p>{chat.answer}</p>
+              <div>{chat.answer}</div>
             </div>
           </div>
         ))}

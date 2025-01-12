@@ -660,7 +660,7 @@ app.post("/:username/aiagent/datacatalog/query", async (req, res) => {
   }
 });
 
-app.post("/:username/aiagent/datacatalog/modeltrain", async (req, res) => {
+app.post("/:username/aiagent/datacatalog/cataloging", async (req, res) => {
   const { service, credentials, database, schema, tableName } = req.body;
   if (!service || !credentials) {
     return res.status(400).json({ error: "Service and credentials are required" });

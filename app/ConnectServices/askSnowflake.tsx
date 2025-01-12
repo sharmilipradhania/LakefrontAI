@@ -300,7 +300,7 @@ const AskSnowflake: React.FC = () => {
     console.log("credentials.account", credentials.credentials.account);
     setIsCataloging(true);
     try {
-      const response = await axios.post(`https://lakefrontai.com:4000/${username}/aiagent/datacatalog/modeltrain`, 
+      const response = await axios.post(`https://lakefrontai.com:4000/${username}/aiagent/datacatalog/cataloging`, 
             {
                 service: credentials.service,
                 credentials: {
@@ -331,16 +331,16 @@ const AskSnowflake: React.FC = () => {
               ...prevChatHistory,
               { question: "Data Catalog", answer: formattedAnswer },
             ]);
-        alert("LLM model trained successfully!");
+        alert("Data cataloged successfully!");
         setIsCataloging(false);
         console.log("Response Data:", response.data.data.content);
       } else {
-        alert("Failed to train the model. Please try again.");
+        alert("Failed to catalog the data. Please try again.");
         console.error("Response Status:", response.status);
       }
     } catch (error) {
-      console.error("Error training model:", error);
-      alert("An error occurred while training the model. Please try again.");
+      console.error("Error cataloging:", error);
+      alert("An error occurred while cataloging the data. Please try again.");
     }
   };
 

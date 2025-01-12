@@ -587,7 +587,7 @@ app.post("/:username/aiagent/datacatalog/connect", async (req, res) => {
 });
 
 app.post("/:username/aiagent/datacatalog/query", async (req, res) => {
-  const { service, credentials, database, schema, tableName } = req.body;
+  const { service, credentials, database, schema, tableName, columnName, task } = req.body;
   console.log(service);
   console.log(credentials);
   console.log(req.body);
@@ -595,15 +595,29 @@ app.post("/:username/aiagent/datacatalog/query", async (req, res) => {
     return res.status(400).json({ error: "Service and credentials are required" });
   }
   let query;
-  if (!database) {
-    query = `SHOW DATABASES`; // Retrieves a list of databases
-  } else if (!schema) {
-    query = `SHOW SCHEMAS IN DATABASE ${database}`; // Retrieves schemas in the specified database
-  } else if (!tableName) {
-    query = `SHOW TABLES IN SCHEMA ${database}.${schema}`; // Retrieves tables in the specified schema
-  } else {
-    query = `SELECT * FROM ${database}.${schema}.${tableName} LIMIT 10`; // Retrieves sample rows from the specified table
-  }
+  if (task === "catalog") {
+        if (!database) {
+          query = `SHOW DATABASES`; // Retrieves a list of databases
+        } else if (!schema) {
+          query = `SHOW SCHEMAS IN DATABASE ${database}`; // Retrieves schemas in the specified database
+        } else if (!tableName) {
+          query = `SHOW TABLES IN SCHEMA ${database}.${schema}`; // Retrieves tables in the specified schema
+        } else {
+          query = `SELECT * FROM ${database}.${schema}.${tableName} LIMIT 10`; // Retrieves sample rows from the specified table
+        }
+      } else if ( task === "search") {
+        query = `SELECT TABLE_CATALOG AS DATABASE_NAME,
+                        TABLE_SCHEMA,
+                        TABLE_NAME,
+                        COLUMN_NAME
+                  FROM 
+                    SNOWFLAKE.ACCOUNT_USAGE.COLUMNS
+                  WHERE LOWER(COLUMN_NAME) LIKE LOWER('%${columnName}%')
+                        AND TABLE_SCHEMA NOT IN ('INFORMATION_SCHEMA')
+                        AND DELETED IS NULL
+                        `
+      };
+
   console.log(query);
   try {
     switch (service) {
@@ -613,13 +627,21 @@ app.post("/:username/aiagent/datacatalog/query", async (req, res) => {
 
       case "Snowflake":
           const results = await snowflakeService.querySnowflake(credentials, query);
-          console.log(results);
+          console.log("API Call",results);
           let names;
-          if (!tableName) {
-            names = results.map(item => item.name);
-          } else {
-            names = results
+          if (task === "search") {
+            names = results.map(item => ({
+              columnTableName: `${item.DATABASE_NAME || ""}.${item.TABLE_SCHEMA || ""}.${item.TABLE_NAME || ""}`,
+              columnName: item.COLUMN_NAME || "",
+            }));
+          } else if (task === "catalog") {
+            if (!tableName) {
+              names = results.map(item => item.name);
+            } else {
+              names = results
+            }
           }
+          console.log("names: " + names);
           return res.status(200).json({ data: names });
 
       case "MySQL":

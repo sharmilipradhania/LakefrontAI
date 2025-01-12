@@ -3,6 +3,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
+interface SearchResult {
+    columnTableName: string;
+    columnName: string;
+  }
+
 const AskSnowflake: React.FC = () => {
   const [username, setUserName] = useState("");
   const [userQuestion, setUserQuestion] = useState("");
@@ -50,7 +55,10 @@ const AskSnowflake: React.FC = () => {
             try {
             const response = await axios.post(
                 `https://lakefrontai.com:4000/${username}/aiagent/datacatalog/query`,
-                credentials,
+                {
+                    ...credentials,
+                    task: "catalog",
+                },
                 {
                 headers: {
                     "Content-Type": "application/json",
@@ -84,6 +92,7 @@ const AskSnowflake: React.FC = () => {
                 {
                 ...credentials, // Spread credentials into the request body
                 database: selectedDatabase, // Pass the selected database
+                task: "catalog",
                 },
                 {
                 headers: { "Content-Type": "application/json" },
@@ -117,6 +126,7 @@ const AskSnowflake: React.FC = () => {
                 ...credentials,
                 database: selectedDatabase, // Pass the selected database
                 schema: selectedSchema, // Pass the selected schema
+                task: "catalog",
                 },
                 {
                 headers: { "Content-Type": "application/json" },
@@ -278,6 +288,7 @@ const AskSnowflake: React.FC = () => {
         </div>
         );
     };
+  const [isCataloging, setIsCataloging] = useState(false);
 
   const handleTrainModel = async () => {
     if (!selectedDatabase || !selectedSchema || !selectedTable ||  !credentials) {
@@ -287,6 +298,7 @@ const AskSnowflake: React.FC = () => {
     console.log("credentials", credentials);
     console.log("credentials.service", credentials.service);
     console.log("credentials.account", credentials.credentials.account);
+    setIsCataloging(true);
     try {
       const response = await axios.post(`https://lakefrontai.com:4000/${username}/aiagent/datacatalog/modeltrain`, 
             {
@@ -299,7 +311,7 @@ const AskSnowflake: React.FC = () => {
                 database: selectedDatabase,
                 schema: selectedSchema
                 },
-                tableName: selectedTable
+                tableName: selectedTable,
             },
             {
             headers: { "Content-Type": "application/json" },
@@ -320,6 +332,7 @@ const AskSnowflake: React.FC = () => {
               { question: "Data Catalog", answer: formattedAnswer },
             ]);
         alert("LLM model trained successfully!");
+        setIsCataloging(false);
         console.log("Response Data:", response.data.data.content);
       } else {
         alert("Failed to train the model. Please try again.");
@@ -330,45 +343,49 @@ const AskSnowflake: React.FC = () => {
       alert("An error occurred while training the model. Please try again.");
     }
   };
-    const [columnName, setColumnName] = useState("");
-    const [isSearching, setIsSearching] = useState(false);
 
-    const handleSearch = async () => {
+        const [columnName, setColumnName] = useState("");
+        const [isSearching, setIsSearching] = useState(false);
+        const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+
+        const handleSearch = async () => {
         if (!columnName.trim()) {
-        alert("Please enter a column name to search.");
-        return;
+            alert("Please enter a column name to search.");
+            return;
         }
 
         setIsSearching(true); // Set button to "Searching..."
 
         try {
-                const response = await axios.post(
-                    `https://lakefrontai.com:4000/${username}/aiagent/datacatalog/query`,
-                    {
-                    ...credentials,
-                    database: selectedDatabase, // Pass the selected database
-                    schema: selectedSchema, // Pass the selected schema
-                    columnName: columnName.trim(), // Include the column name
-                    },
-                    {
-                    headers: { "Content-Type": "application/json" },
-                    }
-                );
+            const response = await axios.post(
+            `https://lakefrontai.com:4000/${username}/aiagent/datacatalog/query`,
+            {
+                ...credentials,
+                database: selectedDatabase, // Pass the selected database
+                schema: selectedSchema, // Pass the selected schema
+                columnName: columnName.trim(), // Include the column name
+                task: "search", // Backend task to execute when doing the column search
+            },
+            {
+                headers: { "Content-Type": "application/json" },
+            }
+            );
 
             if (response.status === 200) {
-                console.log("Search Response:", response.data);
-                alert(`Search results: ${JSON.stringify(response.data)}`);
+            console.log("Search Response:", response.data);
+            // Parse and store search results
+            setSearchResults(response.data.data || []);
             } else {
-                console.error("Error: Unexpected response status", response.status);
-                alert("Failed to fetch data. Please try again.");
+            console.error("Error: Unexpected response status", response.status);
+            alert("Failed to fetch data. Please try again.");
             }
-            } catch (error) {
+        } catch (error) {
             console.error("Error during search:", error);
             alert("An error occurred while searching. Please try again.");
-            } finally {
+        } finally {
             setIsSearching(false); // Reset button to "Search"
-            }
-    };
+        }
+        };
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
@@ -422,7 +439,7 @@ const AskSnowflake: React.FC = () => {
           onClick={handleTrainModel}
           className="px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
         >
-          Generate Catalog
+          {isCataloging ? "Generating..." : "Generate Catalog"} 
         </button>
       </div>
         {/* New Section: Search Column */}
@@ -460,7 +477,35 @@ const AskSnowflake: React.FC = () => {
                 >
                 {isSearching ? "Searching..." : "Search"}
                 </button>
-            </div>
+        </div>
+        {/* Dropdown Menu */}
+        {searchResults.length > 0 && (
+                <div style={{ marginTop: "16px" }}>
+                <label
+                    htmlFor="resultsDropdown"
+                    style={{ marginRight: "8px", fontWeight: "bold" }}
+                >
+                    Search Results:
+                </label>
+                <select
+                    id="resultsDropdown"
+                    style={{
+                    padding: "8px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    width: "100%",
+                    }}
+                >
+                    <option value="">Select a result</option>
+                    {searchResults.map((result, index) => (
+                    <option
+                        key={index}
+                        value={result.columnTableName}
+                    >{`TableName: ${result.columnTableName} - ColumnName: ${result.columnName}`}</option>
+                    ))}
+                </select>
+                </div>
+            )}
       {/* Chat History */}
       <div
         ref={chatContainerRef}
@@ -484,6 +529,7 @@ const AskSnowflake: React.FC = () => {
           </div>
         )}
       </div>
+
 
         {/* Fixed Input Box */}
         <div className="bg-white p-4 border-t flex items-center space-x-4">

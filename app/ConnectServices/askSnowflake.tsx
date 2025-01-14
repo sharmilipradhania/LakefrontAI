@@ -332,7 +332,7 @@ const AskSnowflake: React.FC = () => {
               { question: "Data Catalog", answer: formattedAnswer },
             ]);
         alert("Data cataloged successfully!");
-        setIsCataloging(false);
+
         console.log("Response Data:", response.data.data.content);
       } else {
         alert("Failed to catalog the data. Please try again.");
@@ -342,6 +342,7 @@ const AskSnowflake: React.FC = () => {
       console.error("Error cataloging:", error);
       alert("An error occurred while cataloging the data. Please try again.");
     }
+    setIsCataloging(false); 
   };
 
         const [columnName, setColumnName] = useState("");

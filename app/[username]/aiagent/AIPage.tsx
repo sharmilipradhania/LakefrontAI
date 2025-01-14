@@ -33,6 +33,13 @@ const agents = [
     image: "/images/ai-agents/customer-support.png",
     route: "aiagent/customer-support",
   },
+  {
+    name: "Api Testing",
+    description:
+      "Automated API Testing through an LLM.",
+    image: "/images/ai-agents/api_testing.png",
+    route: "aiagent/apitestingllm",
+  },
 ];
 
 export default function AIPage() {

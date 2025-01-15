@@ -22,7 +22,7 @@ interface Secret {
   isVisible: boolean; // For toggling secret visibility
 }
 
-const apiTesting: React.FC = () => {
+const ApiTesting: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isFileModalOpen, setIsFileModalOpen] = useState(false);
   const [isDatabaseModalOpen, setIsDatabaseModalOpen] = useState(false);
@@ -588,4 +588,4 @@ const apiTesting: React.FC = () => {
   );
 };
 
-export default apiTesting;
+export default ApiTesting;

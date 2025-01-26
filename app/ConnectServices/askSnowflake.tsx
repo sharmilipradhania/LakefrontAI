@@ -148,46 +148,64 @@ const AskSnowflake: React.FC = () => {
         }
     }, [selectedSchema, selectedDatabase, credentials]);
 
-  const handleAskQuestion = async () => {
-    if (!userQuestion.trim()) {
-      alert("Please enter a valid question.");
-      return;
-    }
-  
-    setIsLoading(true);
-  
-    try {
-      const res = await axios.post("https://your-backend-url.com/ask-snowflake", {
-        question: userQuestion,
-      });
-  
-      const answer =
-        res.status === 200 && res.data?.answer
-          ? res.data.answer
-          : "Sorry, I couldn't fetch the answer. Please try again.";
-  
-      setChatHistory((prev) => [...prev, { question: userQuestion, answer }]);
-    } catch (error: any) {
-      console.error("Error fetching response:", error);
-      setChatHistory((prev) => [
-        ...prev,
-        { question: userQuestion, answer: "An error occurred while fetching the answer. Please try again later." },
-      ]);
-    } finally {
-      setIsLoading(false);
-  
-      // Clear the text box after submission
-      setUserQuestion("");
-  
-      // Smooth scroll to the bottom of the chat
-      setTimeout(() => {
-        chatContainerRef.current?.scrollTo({
-          top: chatContainerRef.current.scrollHeight,
-          behavior: "smooth",
-        });
-      }, 100);
-    }
-  };
+    const handleAskQuestion = async () => {
+      if (!userQuestion.trim()) {
+        alert("Please enter a valid question.");
+        return;
+      }
+    
+      setIsLoading(true);
+    
+      try {
+        const response = await axios.post(`https://lakefrontai.com:4000/${username}/aiagent/datacatalog/askQuestion`, 
+          {
+              service: credentials.service,
+              credentials: {
+              account: credentials.credentials.account,
+              username: credentials.credentials.username,
+              password: credentials.credentials.password,
+              warehouse: credentials.credentials.warehouse,
+              database: selectedDatabase,
+              schema: selectedSchema
+              },
+              tableName: selectedTable,
+              question: userQuestion,
+          },
+          {
+          headers: { "Content-Type": "application/json" },
+          }
+      );
+
+    
+        // Extract and handle the response
+        const answer =
+        response.status === 200 && response.data?.answer
+            ? response.data.answer
+            : "Sorry, I couldn't fetch the answer. Please try again.";
+    
+        // Update chat history
+        setChatHistory((prev) => [...prev, { question: userQuestion, answer }]);
+      } catch (error) {
+        console.error("Error fetching response:", error);
+        setChatHistory((prev) => [
+          ...prev,
+          { question: userQuestion, answer: "An error occurred while fetching the answer. Please try again later." },
+        ]);
+      } finally {
+        setIsLoading(false);
+    
+        // Clear the input box after submission
+        setUserQuestion("");
+    
+        // Smooth scroll to the bottom of the chat
+        setTimeout(() => {
+          chatContainerRef.current?.scrollTo({
+            top: chatContainerRef.current.scrollHeight,
+            behavior: "smooth",
+          });
+        }, 100);
+      }
+    };
 
     const formatResponseData = (answer: string) => {
         return (

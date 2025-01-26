@@ -24,6 +24,9 @@ const snowflakeService = require("./services/snowflake");
 const mysqlService = require("./services/mysql");
 const postgresService = require("./services/postgres");
 const { handleError } = require("./utils/errorHandler");
+const { catalogAndStore } = require("./services/storeEmbedding");
+const {  generateAnswer } = require("./services/openaiService");
+const { retrieveContext } = require("./utils/retrieveContext");
 
 
 // Load environment variables
@@ -666,7 +669,7 @@ app.post("/:username/aiagent/datacatalog/cataloging", async (req, res) => {
     return res.status(400).json({ error: "Service and credentials are required" });
   }
   const openaiApiKey = dbConfig.OPENAI_API_KEY;
-
+  const { account, username } = credentials;
   try {
     switch (service) {
       case "Looker":
@@ -676,8 +679,49 @@ app.post("/:username/aiagent/datacatalog/cataloging", async (req, res) => {
       case "Snowflake":
           console.log("calling connect and")
           const results = await snowflakeService.connectAndTrain(credentials, tableName, dbConfig.OPENAI_API_KEY);
-          console.log(results);
+          console.log(`results: ${results}`);
+          const storeMetadata = await catalogAndStore(username, service, tableName, results, dbConfig.OPENAI_API_KEY); 
+          console.log(`storeMetadata: ${storeMetadata}`);
           return res.status(200).json({ data: results });
+
+      case "MySQL":
+        await mysqlService.connect(credentials);
+        return res.status(200).json({ data: "Connected to MySQL successfully!" });
+
+      case "PostgreSQL":
+        await postgresService.connect(credentials);
+        return res.status(200).json({ data: "Connected to PostgreSQL successfully!" });
+
+      default:
+        return res.status(400).json({ error: "Unsupported service type" });
+    }
+  } catch (error) {
+    handleError(res, error, `Failed to connect to ${service}`);
+  }
+});
+
+app.post("/:username/aiagent/datacatalog/askQuestion", async (req, res) => {
+  const { service, credentials, database, schema, tableName, question } = req.body;
+  if (!service || !credentials) {
+    return res.status(400).json({ error: "Service and credentials are required" });
+  }
+  const openaiApiKey = dbConfig.OPENAI_API_KEY;
+  const { account, username } = credentials;
+  try {
+    switch (service) {
+      case "Looker":
+        await lookerService.query(credentials);
+        return res.status(200).json({ data: "Connected to Looker successfully!" });
+
+      case "Snowflake":
+          try {
+            const context = await retrieveContext(username, question, openaiApiKey);
+            console.log(`context: ${JSON.stringify(context, null, 2)}`);
+            const answer = await generateAnswer(question, context, openaiApiKey);
+            return res.status(200).json({ answer });
+          } catch (error) {
+            return res.status(500).json({ error: "Failed to answer the question", details: error.message });
+          };
 
       case "MySQL":
         await mysqlService.connect(credentials);

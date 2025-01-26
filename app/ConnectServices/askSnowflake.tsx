@@ -360,7 +360,14 @@ const AskSnowflake: React.FC = () => {
       console.error("Error cataloging:", error);
       alert("An error occurred while cataloging the data. Please try again.");
     }
-    setIsCataloging(false); 
+    setIsCataloging(false);
+    // Smooth scroll to the bottom of the chat
+    setTimeout(() => {
+      chatContainerRef.current?.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }, 100); 
   };
 
         const [columnName, setColumnName] = useState("");

@@ -5,41 +5,22 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const agents = [
-  {
-    name: "Data Analytics",
-    description:
-      "Empowers businesses with actionable insights by analyzing structured and unstructured data for better decision-making.",
-    image: "/images/aiagent/data-analytics.png",
-    route: "aiagent/data-analytics",
-  },
+
   {
     name: "DevOps",
     description:
       "Streamlines DevOps workflows by optimizing CI/CD pipelines, monitoring infrastructure, and enhancing collaboration.",
-    image: "/images/ai-agents/devops.png",
+    image: "/images/aiagent/devops.png",
     route: "aiagent/devops",
   },
   {
     name: "Data Catalog",
     description:
       "Create, manage, and search data catalogs",
-    image: "/images/ai-agents/financial-analyst.png",
+    image: "/images/aiagent/data-catalog1.png",
     route: "aiagent/datacatalog",
   },
-  {
-    name: "Customer Support",
-    description:
-      "Enhances customer service by providing instant responses, resolving issues efficiently, and ensuring customer satisfaction.",
-    image: "/images/ai-agents/customer-support.png",
-    route: "aiagent/customer-support",
-  },
-  {
-    name: "Api Testing",
-    description:
-      "Automated API Testing through an LLM.",
-    image: "/images/ai-agents/api_testing.png",
-    route: "aiagent/apitestingllm",
-  },
+
 ];
 
 export default function AIPage() {

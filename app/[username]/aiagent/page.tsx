@@ -32,8 +32,8 @@ import AIPage from './AIPage';
 
 const navigation = [
   { name: 'Dashboard', href: '/{username}/dashboard', icon: HomeIcon, current: true },
-  { name: 'Collaboration', href: '#', icon: UsersIcon, current: false },
-  { name: 'Products', href: '#', icon: FolderIcon, current: false },
+  { name: 'Database', href: '#', icon: UsersIcon, current: false },
+  { name: 'Connections', href: '#', icon: FolderIcon, current: false },
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ]

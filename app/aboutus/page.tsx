@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Footer from '../components/Footer';
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -22,28 +23,20 @@ const services = [
     title: 'GenAI',
     description:
       'Leverage advanced LLM models to provide advanceed GenAi solutions',
-    imageUrl: '/ai-ml.jpg',
+    imageUrl: '/images/aiagent/genai.jpg',
   },
   {
     title: 'AI & Machine Learning',
     description:
       'Leverage advanced AI models to automate processes, predict outcomes, and drive business growth.',
-    imageUrl: '/ai-ml.jpg',
+    imageUrl: '/images/aiagent/machine_learning.jpg',
   },
   {
-    title: 'Data Analytics',
+    title: 'Data Analytics and BI',
     description:
       'Transform raw data into actionable insights. Leverage our expertise in statistical modeling, visualization, and predictive analytics.',
-    imageUrl: '/data-analytics.jpg',
+    imageUrl: '/images/aiagent/DABI.jpg',
   },
-  {
-    title: 'Business Intelligence',
-    description:
-      'Empower decision-makers with real-time dashboards and reporting tools tailored to your business needs.',
-    imageUrl: '/business-intelligence.jpg',
-  },
-
-
 ];
 
 
@@ -64,12 +57,12 @@ export default function HomePage() {
       </header>
 
       {/* Services Section */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-20 bg-gray-200">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-8">
             Our Expertise
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-24">
             {services.map((service) => (
               <div key={service.title} className="bg-white rounded-lg shadow-md overflow-hidden">
                 <img src={service.imageUrl} alt={service.title} className="h-48 w-full object-cover" />
@@ -84,7 +77,7 @@ export default function HomePage() {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-16">
+      <section className="py-16  bg-blue-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {stats.map((stat) => (
@@ -99,12 +92,9 @@ export default function HomePage() {
 
 
 
+
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p>&copy; 2024 LakeFrontAI. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

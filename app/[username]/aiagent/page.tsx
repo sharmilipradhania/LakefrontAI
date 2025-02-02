@@ -26,7 +26,6 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import Outline from '@/app/product/Outline';
 import RecentActivity from '../recentActivity/page';
 import AIPage from './AIPage';
 

@@ -33,20 +33,6 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                 <a href="#" className="relative block  lg:p-3 lg:text-1xl  hover:bg-gray-100 hover:text-red-900">Services</a>
                 <div className="p-9 mega-menu mb-20 sm:mb-0 shadow-xxl bg-gray-100">
                   <div className="container mx-auto w-full flex flex-wrap justify-between mx-2">
-                  <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r-0 lg:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
-                      <div className="flex items-center">
-
-                        <h3 className="font-bold text-l text-black text-bold mb-2">Strategy and Consulting
-
-                        </h3>
-                      </div>
-                      <div className="flex items-center py-3">
-                        <svg className="h-6 pr-3 fill-current text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                          <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
-                        </svg>
-                        <a href="/services/strategy" className="text-black bold border-b-2 border-black hover:text-teal-900">Find out more...</a>
-                      </div>
-                    </ul>
                     <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r-0 lg:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
                       <div className="flex items-center">
 
@@ -66,30 +52,11 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                         <h3 className="font-bold text-l text-black text-bold mb-2">Drive Innovation with GenAI and Machine learning
                         </h3>
                       </div>
-
-
-
-
                       <div className="flex items-center py-3">
                         <svg className="h-6 pr-3 fillcurrent text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                           <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
                         </svg>
                         <a href="/services/aiml" className="text-black bold border-b-2 border-black hover:text-teal-900">Find out more...</a>
-                      </div>
-                    </ul>
-                    <ul className="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 pb-6 pt-6 lg:pt-3">
-                      <div className="flex items-center">
-
-                        <h3 className="font-bold text-l text-black text-bold mb-2">Actionable Insights
-                        </h3>
-                      </div>
-
-
-                      <div className="flex items-center py-3">
-                        <svg className="h-6 pr-3 fill-current text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                          <path d="M20 10a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-8 2H5V8h5V5l5 5-5 5v-3z" />
-                        </svg>
-                        <a href="/services/analytics" className="text-black bold border-b-2 border-black hover:text-teal-900">Find out more...</a>
                       </div>
                     </ul>
                   </div>

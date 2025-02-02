@@ -1,46 +1,45 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
+interface Feature {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  href: string;
+  actionText: string;
+}
 
-const features = [
+const features: Feature[] = [
   {
     id: 1,
-    title: "LLM Model Training Using Your Own Data",
+    title: "AI Underwriter",
     description:
       "Leverage your proprietary data to fine-tune large language models (LLMs). Achieve unmatched accuracy and relevance in AI-driven solutions tailored to your unique needs.",
-    imageUrl: "/images/llm-training.png",
-    href: "#",
-    actionText: "Learn More",
+    imageUrl: "/images/aiagent/devops.png",
+    href: "/login",
+    actionText: "Login to explore now",
   },
   {
     id: 2,
     title: "Data Catalog",
     description:
       "Organize, manage, and discover your data assets effortlessly. Our intuitive data catalog empowers you with deep insights and simplifies data governance.",
-    imageUrl: "/images/data-catalog.png",
-    href: "#",
-    actionText: "Explore Now",
+    imageUrl: "/images/aiagent/data-catalog1.png",
+    href: "/login",
+    actionText: "Login to explore now",
   },
   {
     id: 3,
-    title: "Document Summarization",
+    title: "AI Analytics Platform",
     description:
-      "Summarize lengthy documents into concise, actionable insights. Save time and make informed decisions with AI-powered document summarization.",
-    imageUrl: "/images/document-summarization.png",
-    href: "#",
-    actionText: "Try It Out",
-  },
-  {
-    id: 4,
-    title: "Ask Any Question",
-    description:
-      "Interact with your data like never before. Ask questions in plain language and get accurate, real-time answers with our advanced AI solutions.",
-    imageUrl: "/images/ask-question.png",
-    href: "#",
-    actionText: "Start Asking",
+      "Unified platform to collect, organize, transform, generate insights and dashboard using LLMs.",
+    imageUrl: "/dbmgr.png",
+    href: "/login",
+    actionText: "Login to explore now",
   },
 ];
 
-export default function ProductPage() {
+const ProductPage: React.FC = () => {
   return (
     <div className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -50,7 +49,7 @@ export default function ProductPage() {
             Drive Innovation with LakeFrontAI
           </h1>
           <p className="mt-4 text-lg text-gray-600">
-            Explore cutting-edge AI solutions tailored to elevate your business. From training LLMs with your data to real-time answers for any question, LakeFrontAI empowers you every step of the way.
+            Explore cutting-edge AI solutions tailored to elevate your business.
           </p>
         </header>
 
@@ -86,4 +85,6 @@ export default function ProductPage() {
       </div>
     </div>
   );
-}
+};
+
+export default ProductPage;

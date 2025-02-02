@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 const agents = [
 
   {
-    name: "DevOps",
+    name: "Conversational AI",
     description:
-      "Streamlines DevOps workflows by optimizing CI/CD pipelines, monitoring infrastructure, and enhancing collaboration.",
+      "Conversation AI to answer questions base workflows by optimizing CI/CD pipelines, monitoring infrastructure, and enhancing collaboration.",
     image: "/images/aiagent/devops.png",
-    route: "aiagent/devops",
+    route: "aiagent/conversationai",
   },
   {
     name: "Data Catalog",

@@ -71,13 +71,6 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                 </div>
               </li>
               {/* second */}
-              <li className="hoverable hover:bg-gray-100 hover:text-white">
-                <a href="/blog" className="relative block  lg:p-3 lg:text-1xl hover:bg-gray-100 hover:text-red-900">Blog</a>
-                <div className="p-6 mega-menu mb-16 sm:mb-0 shadow-xl bg-gray-100">
-                  <div className="container mx-auto w-full flex flex-wrap justify-between mx-2"> 
-                  </div>
-                </div>
-              </li>
               {/* third */}
               <li className="hoverable hover:bg-gray-100 hover:text-white">
                 <a href="/aboutus" className="relative block  lg:p-3 lg:text-1xl hover:bg-gray-100 hover:text-red-900">About Us</a>

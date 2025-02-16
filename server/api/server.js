@@ -14,6 +14,7 @@ const { Configuration, OpenAIApi } = require('openai');
 const multer = require('multer');
 const csvParser = require("csv-parser");
 const xlsx = require("xlsx");
+const { App } = require("@slack/bolt");
 require("dotenv").config();
 
 const { callOpenAI, callGemini } = require("./apiUtils");
@@ -27,7 +28,7 @@ const { handleError } = require("./utils/errorHandler");
 const { catalogAndStore } = require("./services/storeEmbedding");
 const {  generateAnswer } = require("./services/openaiService");
 const { retrieveContext } = require("./utils/retrieveContext");
-
+const slackRoutes = require("./routes/slackRoutes"); // Import Slack routes
 
 // Load environment variables
 const app = express();
@@ -37,6 +38,8 @@ const PORT = 4000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Use Slack Routes
+
 
 // Token Authentication
 const JWT_SECRET = 'secret';
@@ -54,20 +57,94 @@ const config = ini.parse(fs.readFileSync(configPath, "utf-8"));
 let privatekey;
 let certi;
 let dbConfig;
+let slackBotToken;
+let slackSigningSecret;
+let slackChannel;
 
-const ENV = 'production'; // production environment and development environment
+const ENV = 'development'; // production environment and development environment
 if (ENV === 'development') {
 // development environment variables
   dbConfig = config.development;
   privatekey = dbConfig.privatekey;
   certi = dbConfig.certificate;
+  slackBotToken = dbConfig.SLACK_BOT_TOKEN;
+  slackSigningSecret = dbConfig.SLACK_SIGNING_SECRET;
+  slackChannel = dbConfig.SLACK_CHANNEL;
+  slackAppToken = dbConfig.SLACK_APP_TOKEN;
 } else if (ENV === 'production') {
 // Production  environments
   dbConfig = config.production;
   privatekey = "/etc/letsencrypt/live/lakefrontai.com/privkey.pem";
   certi = "/etc/letsencrypt/live/lakefrontai.com/fullchain.pem";
+  slackBotToken = dbConfig.SLACK_BOT_TOKEN;
+  slackSigningSecret = dbConfig.SLACK_SIGNING_SECRET;
+  slackChannel = dbConfig.SLACK_CHANNEL;
+  slackAppToken = dbConfig.SLACK_APP_TOKEN;
 }
 
+// ✅ Middleware to fetch Slack credentials dynamically for each org
+const slackMiddleware = async (req, res, next) => {
+  const orgId = req.params.org_id; // Assuming `org_id` is passed in the request
+
+  if (!orgId) {
+    return res.status(400).json({ error: "Missing organization ID in request" });
+  }
+
+  try {
+//    const credentials = await getSlackCredentials(orgId); // Fetch from DB or config file
+
+    if (!credentials) {
+//      return res.status(404).json({ error: "Slack credentials not found for this organization" });
+    }
+
+    req.slackBotToken = slackBotToken // credentials.slack_bot_token;
+    req.slackSigningSecret = slackSigningSecret // credentials.slack_signing_secret;
+    req.slackChannel = slackChannel // credentials.slack_channel_id;
+
+    console.log(`✅ Loaded Slack credentials for org: ${orgId}`);
+    next();
+  } catch (error) {
+    console.error("❌ Error fetching Slack credentials:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+// ✅ Apply middleware before using Slack routes
+app.use("/api/:org_id", slackMiddleware, slackRoutes);
+
+// ✅ Initialize Slack App with Socket Mode for real-time updates
+const slackApp = new App({
+  token: slackBotToken,  // General token, each request will have org-specific tokens
+  signingSecret: slackSigningSecret,
+  socketMode: true,  // ✅ Enables real-time updates
+  appToken: slackAppToken  // Required for Socket Mode
+});
+
+slackApp.event("app_home_opened", async ({ event, client }) => {
+  console.log(`🔄 User ${event.user} opened Slack App Home`);
+
+  await client.views.publish({
+    user_id: event.user,
+    view: {
+      type: "home",
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "🔄 *Your Slack Bot UI has been refreshed!*"
+          }
+        }
+      ]
+    }
+  });
+});
+
+// ✅ Start Slack Socket Mode
+(async () => {
+  await slackApp.start();
+  console.log("⚡️ Slack bot with Socket Mode is running!");
+})();
 
 // SSL Certificates
 const privateKey = fs.readFileSync(privatekey,"utf8");

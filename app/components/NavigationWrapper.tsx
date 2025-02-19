@@ -10,7 +10,7 @@ export default function NavigationWrapper() {
   const hiddenNavbarRoutes = ["/dashboard", "/datacatalog","/documentsummary"];
 
   // Regular expression to match dynamic routes like /[username]/dashboard
-  const dynamicRouteRegex = /^\/[^/]+\/(dashboard|askanything|documentsummary|modeltraining|aiagent(?:\/(?:data-analytics|devops|datacatalog|apitestingllm|conversationai))?)$/;
+  const dynamicRouteRegex = /^\/[^/]+\/(dashboard|askanything|documentsummary|modeltraining|aiagent(?:\/(?:data-analytics|analytics-platform|devops|datacatalog|apitestingllm|conversationai))?)$/;
 
   // Check if the current path matches a static route or dynamic route
   const isNavbarHidden =

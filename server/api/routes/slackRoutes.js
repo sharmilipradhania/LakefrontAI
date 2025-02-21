@@ -71,7 +71,7 @@ router.post("/:username/aiagent/datacatalog/slackMessage", async (req, res) => {
 });
 
 // ✅ Route for handling Slack form data
-router.post("/:username/:email/aiagent/datacatalog/slackFormData", async (req, res) => {
+router.post("/:username/aiagent/datacatalog/slackFormData", async (req, res) => {
   try {
     // ✅ Extract form data sent from Slack
     const { user_name, text, response_url, channel_id, team_id } = req.body;

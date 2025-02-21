@@ -148,7 +148,7 @@ router.post("/slack/interactions", async (req, res) => {
     console.log("✅ Received modal submission:", payload);
 
     // Extract form data
-    const { type, view, response_url } = payload;
+    const { type, view, response_url, actions } = payload;
     
     // Extract selected values
     const stateValues = view.state.values;
@@ -158,9 +158,10 @@ router.post("/slack/interactions", async (req, res) => {
     const startDate = stateValues["actionId-0"]?.datepicker_action?.selected_date || "Not Selected";
     const endDate = stateValues["actionId-1"]?.datepicker_action?.selected_date || "Not Selected";
 
-    // Check if this is a form submission
-    if (type === "view_submission") {
-      console.log("✅ Modal was submitted.");
+    // Check if it's a button click with action_id 'submit_experiment'
+    if (actions && actions.length > 0 && actions[0].action_id === "submit_experiment") {
+        
+      console.log("✅ Experiment inputs was submitted.");
       
       // Send an immediate response to Slack to prevent timeout
       res.status(200).send();

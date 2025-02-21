@@ -143,46 +143,45 @@ router.post("/:username/aiagent/datacatalog/slackExperiment", async (req, res) =
 
 
 router.post("/slack/interactions", async (req, res) => {
-  res.status(200).send();
   try {
     const payload = JSON.parse(req.body.payload);
     console.log("✅ Received modal submission:", payload);
 
-    // ✅ Extract Slack data from request
-//    const {  response_url } = req.body.payload; // Extract Slack's response_url
-    const response_url = 'https://hooks.slack.com/services/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';
+    // ✅ Extract Slack data from payload
+    const { response_url } = payload;
     console.log("✅ Response Url:", response_url);
-    if (payload.type === "view_submission") {
-      const selectedExperiment = payload.view.state.values.experiment_select.selected_option.value;
-      const selectedRegion = payload.view.state.values.region_select.selected_option.value;
-      const selectedCountry = payload.view.state.values.country_select.selected_option.value;
-      const selectedDate1 = payload.view.state.values["actionId-0"].datepicker_action.selected_date;
-      const selectedDate2 = payload.view.state.values["actionId-1"].datepicker_action.selected_date;
 
-      console.log(`📝 Submitted: Experiment=${selectedExperiment}, Region=${selectedRegion}, Country=${selectedCountry}, Dates: ${selectedDate1}, ${selectedDate2}`);
+    // ✅ Immediately respond to Slack to prevent timeouts
+    res.status(200).send();
 
-      // ✅ Respond to Slack IMMEDIATELY to prevent timeout
-      res.status(200).json({ response_action: "clear" });
+    // ✅ Process asynchronously to avoid blocking response
+    await handleSlackModalSubmission(payload, response_url);
 
-      // ✅ (Optional) Send a follow-up message
-      const followUpMessage = {
-        response_type: "in_channel",
-        text: `🌍 Experiment: *${selectedExperiment}*, Region: *${selectedRegion}*, Country: *${selectedCountry}*, Dates: *${selectedDate1}* & *${selectedDate2}*`
-      };
-
-      await axios.post(response_url, followUpMessage, {
-        headers: { "Content-Type": "application/json" }
-      });
-
-      console.log("✅ Follow-up message sent successfully!");
-    } else {
-      res.status(400).json({ error: "Invalid interaction type" });
-    }
   } catch (error) {
-    console.error("❌ Error handling modal submission:", error);
-    res.status(500).send("Internal server error");
+    console.error("❌ Error processing Slack interaction:", error);
+    
+    // ✅ Check if headers were already sent before trying to send a response
+    if (!res.headersSent) {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   }
 });
 
+async function handleSlackModalSubmission(payload, response_url ) {
+  try {
+    // Simulated processing logic
+    console.log("Processing Slack payload:", payload);
+    
+    // If needed, send a message back to Slack using response_url
+    await fetch(response_url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: "Thanks for your submission!" }),
+    });
+
+  } catch (error) {
+    console.error("❌ Error handling modal submission:", error);
+  }
+}
 
 module.exports = router;

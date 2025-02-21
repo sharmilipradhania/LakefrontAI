@@ -108,4 +108,96 @@ router.post("/:username/aiagent/datacatalog/slackFormData", async (req, res) => 
   }
 });
 
+// ✅ Route to handle Slack interactions & open a modal
+router.post("/:username/aiagent/datacatalog/slackExperiment", async (req, res) => {
+  try {
+    // ✅ Extract form data sent from Slack
+    const { user_name, text, response_url, channel_id, team_id, trigger_id } = req.body;
+
+    if (!trigger_id) {
+      return res.status(400).json({ error: "trigger_id is required for interactive modals!" });
+    }
+
+    console.log("✅ Received Interaction from Slack:");
+    console.log(`👤 User: ${user_name}`);
+    console.log(`💬 Text: ${text}`);
+    console.log(`📡 Channel ID: ${channel_id}`);
+    console.log(`🏢 Team ID: ${team_id}`);
+    console.log(`🔗 Response URL: ${response_url}`);
+    console.log(`🎯 Trigger ID: ${trigger_id}`);
+
+    // ✅ Call Slack API to Open a Modal
+    const slackToken = "xoxb-8414593201270-8420243535637-7Aor6CE3dGlJV6KBMAl55XCO"; // Replace with your bot token
+    const modalRequest = {
+      trigger_id: trigger_id,
+      view: {
+        type: "modal",
+        callback_id: "ai_modal_submission",
+        title: {
+          type: "plain_text",
+          text: "Lakefront AI Modal"
+        },
+        blocks: [
+          {
+            type: "input",
+            block_id: "user_input",
+            element: {
+              type: "plain_text_input",
+              action_id: "input_text"
+            },
+            label: {
+              type: "plain_text",
+              text: "Enter something"
+            }
+          }
+        ],
+        submit: {
+          type: "plain_text",
+          text: "Submit"
+        }
+      }
+    };
+
+    const slackResponse = await axios.post("https://slack.com/api/views.open", modalRequest, {
+      headers: {
+        Authorization: `Bearer ${slackToken}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    console.log("✅ Modal Open Response:", slackResponse.data);
+
+    // ✅ Send an immediate response to Slack
+    res.status(200).json({ message: "Modal opened successfully!" });
+
+  } catch (error) {
+    console.error("❌ Error handling Slack interaction:", error.response?.data || error.message);
+    res.status(500).send("Internal server error");
+  }
+});
+
+// ✅ Route to handle modal submissions
+router.post("/slack/interactions", async (req, res) => {
+  try {
+    const payload = JSON.parse(req.body.payload);
+    console.log("✅ Modal Submission Payload:", payload);
+
+    if (payload.type === "view_submission") {
+      const userInput = payload.view.state.values.user_input.input_text.value;
+      const userId = payload.user.id;
+
+      console.log(`📝 User ${userId} submitted: ${userInput}`);
+
+      // ✅ Respond to Slack user with acknowledgment
+      return res.status(200).json({ response_action: "clear" }); // Clears the modal
+    }
+
+    return res.status(400).send("Invalid interaction type");
+
+  } catch (error) {
+    console.error("❌ Error handling modal submission:", error.response?.data || error.message);
+    res.status(500).send("Internal server error");
+  }
+});
+
 module.exports = router;

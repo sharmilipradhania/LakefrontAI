@@ -148,9 +148,9 @@ router.post("/slack/interactions", async (req, res) => {
     console.log("✅ Received modal submission:", payload);
 
     // ✅ Extract Slack data from payload
-    const { response_url } = payload;
+    const response_url  = 'https://hooks.slack.com/services/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';
     console.log("✅ Response Url:", response_url);
-
+    console.log("payload:", payload)
     // ✅ Immediately respond to Slack to prevent timeouts
     res.status(200).send();
 

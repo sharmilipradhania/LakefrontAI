@@ -147,41 +147,50 @@ router.post("/slack/interactions", async (req, res) => {
     const payload = JSON.parse(req.body.payload);
     console.log("✅ Received modal submission:", payload);
 
-    // ✅ Extract Slack data from payload
-    const response_url  = 'https://hooks.slack.com/services/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';
-    console.log("✅ Response Url:", response_url);
-    console.log("payload:", payload)
-    // ✅ Immediately respond to Slack to prevent timeouts
-    res.status(200).send();
+    // Extract form data
+    const { type, view, response_url } = payload;
+    
+    // Extract selected values
+    const stateValues = view.state.values;
+    const experiment = stateValues.experiment_select?.selected_option?.value || "Not Selected";
+    const region = stateValues.region_select?.selected_option?.value || "Not Selected";
+    const country = stateValues.country_select?.selected_option?.value || "Not Selected";
+    const startDate = stateValues["actionId-0"]?.datepicker_action?.selected_date || "Not Selected";
+    const endDate = stateValues["actionId-1"]?.datepicker_action?.selected_date || "Not Selected";
 
-    // ✅ Process asynchronously to avoid blocking response
-    await handleSlackModalSubmission(payload, response_url);
+    // Check if this is a form submission
+    if (type === "view_submission") {
+      console.log("✅ Modal was submitted.");
+      
+      // Send an immediate response to Slack to prevent timeout
+      res.status(200).send();
+
+      // Send acknowledgment to the user via response_url
+      await fetch(response_url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: "Thanks for your submission!" }),
+      });
+
+      console.log(`📊 Submitted Data:
+        Experiment: ${experiment}
+        Region: ${region}
+        Country: ${country}
+        Start Date: ${startDate}
+        End Date: ${endDate}`);
+    } else {
+      // If it's not a submission, just acknowledge receipt
+      res.status(200).send();
+    }
 
   } catch (error) {
     console.error("❌ Error processing Slack interaction:", error);
-    
-    // ✅ Check if headers were already sent before trying to send a response
+
     if (!res.headersSent) {
       res.status(500).json({ error: "Internal Server Error" });
     }
   }
 });
 
-async function handleSlackModalSubmission(payload, response_url ) {
-  try {
-    // Simulated processing logic
-    console.log("Processing Slack payload:", payload);
-    
-    // If needed, send a message back to Slack using response_url
-    await fetch(response_url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: "Thanks for your submission!" }),
-    });
-
-  } catch (error) {
-    console.error("❌ Error handling modal submission:", error);
-  }
-}
 
 module.exports = router;

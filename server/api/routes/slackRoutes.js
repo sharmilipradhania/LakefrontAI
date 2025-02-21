@@ -141,28 +141,43 @@ router.post("/:username/aiagent/datacatalog/slackExperiment", async (req, res) =
   }
 });
 
-// ✅ Route to handle modal submissions
+
 router.post("/slack/interactions", async (req, res) => {
   try {
     const payload = JSON.parse(req.body.payload);
-    console.log("✅ Modal Submission Payload:", payload);
+    console.log("✅ Received modal submission:", payload);
 
     if (payload.type === "view_submission") {
-      const userInput = payload.view.state.values.user_input.input_text.value;
-      const userId = payload.user.id;
+      const selectedExperiment = payload.view.state.values.experiment_select.selected_option.value;
+      const selectedRegion = payload.view.state.values.region_select.selected_option.value;
+      const selectedCountry = payload.view.state.values.country_select.selected_option.value;
+      const selectedDate1 = payload.view.state.values["actionId-0"].datepicker_action.selected_date;
+      const selectedDate2 = payload.view.state.values["actionId-1"].datepicker_action.selected_date;
 
-      console.log(`📝 User ${userId} submitted: ${userInput}`);
+      console.log(`📝 Submitted: Experiment=${selectedExperiment}, Region=${selectedRegion}, Country=${selectedCountry}, Dates: ${selectedDate1}, ${selectedDate2}`);
 
-      // ✅ Respond to Slack user with acknowledgment
-      return res.status(200).json({ response_action: "clear" }); // Clears the modal
+      // ✅ Respond to Slack IMMEDIATELY to prevent timeout
+      res.status(200).json({ response_action: "clear" });
+
+      // ✅ (Optional) Send a follow-up message
+      const followUpMessage = {
+        response_type: "in_channel",
+        text: `🌍 Experiment: *${selectedExperiment}*, Region: *${selectedRegion}*, Country: *${selectedCountry}*, Dates: *${selectedDate1}* & *${selectedDate2}*`
+      };
+
+      await axios.post(payload.response_url, followUpMessage, {
+        headers: { "Content-Type": "application/json" }
+      });
+
+      console.log("✅ Follow-up message sent successfully!");
+    } else {
+      res.status(400).json({ error: "Invalid interaction type" });
     }
-
-    return res.status(400).send("Invalid interaction type");
-
   } catch (error) {
-    console.error("❌ Error handling modal submission:", error.response?.data || error.message);
+    console.error("❌ Error handling modal submission:", error);
     res.status(500).send("Internal server error");
   }
 });
+
 
 module.exports = router;

@@ -141,6 +141,12 @@ router.post("/:username/aiagent/datacatalog/slackExperiment", async (req, res) =
   }
 });
 
+// Initialize variables to store parsed values
+let startDate = "Not Selected";
+let endDate = "Not Selected";
+let experiment = "Not Selected";
+let region = "Not Selected";
+let country = "Not Selected";
 
 router.post("/slack/interactions", async (req, res) => {
   try {
@@ -149,13 +155,6 @@ router.post("/slack/interactions", async (req, res) => {
 
     // Extract form data
     const { type, view, response_url, actions } = payload;
-    
-    // Initialize variables to store parsed values
-    let startDate = "Not Selected";
-    let endDate = "Not Selected";
-    let experiment = "Not Selected";
-    let region = "Not Selected";
-    let country = "Not Selected";
 
     // Parse action values dynamically
     actions.forEach(action => {
@@ -180,7 +179,7 @@ router.post("/slack/interactions", async (req, res) => {
       }
     });
 
-    console.log("actions :", actions);
+//    console.log("actions :", actions);
     // Check if it's a button click with action_id 'submit_experiment'
     if (actions && actions.length > 0 && actions[0].action_id === "submit_experiment") {
         

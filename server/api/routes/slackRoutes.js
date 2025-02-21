@@ -1,43 +1,58 @@
 const express = require("express");
-const SlackService = require("../services/slackService");
+const axios = require("axios");
 
 const router = express.Router();
 
 router.post("/:username/aiagent/datacatalog/slack", async (req, res) => {
   try {
-    // ✅ Extract Slack credentials from `req`
-    const { slackBotToken, slackChannel } = req;
-    console.log(req);
-    console.log(`✅ Using Slack Token: ${slackBotToken}`);
-    console.log(`✅ Sending to Slack Channel: ${slackChannel}`);
+    // ✅ Extract Slack credentials from request body
+    const { slackWebhookUrl } = req.body; // Webhook URL should be passed in the request body
 
-    const slackService = new SlackService(slackBotToken, slackChannel);
+    if (!slackWebhookUrl) {
+      return res.status(400).json({ error: "Slack Webhook URL is required!" });
+    }
 
-    // ✅ Send the message and capture the timestamp (`ts`)
-    const messageTS = await slackService.sendMessage("Lakefront AI after commenting update");
+    console.log(`✅ Using Slack Webhook: ${slackWebhookUrl}`);
 
-    console.log(`✅ Message Sent with Timestamp: ${messageTS}`);
+    // ✅ Block Kit Message
+    const slackMessage = {
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "*Lakefront AI after commenting update*"
+          }
+        },
+        {
+          type: "divider"
+        },
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "🚀 *Status:* The AI agent has been updated successfully!"
+          }
+        }
+      ]
+    };
 
-    // ✅ Wait 5 seconds and then update the message using `ts`
-//    setTimeout(async () => {
-//      try {
- //       const updateResponse = await slackService.updateMessage(messageTS, "Updated: Lakefront AI!");
-//        console.log(`✅ Message updated: ${updateResponse}`);
-//      } catch (updateError) {
-//        console.error("❌ Failed to update message:", updateError);
-//      }
-//    }, 5000);
+    // ✅ Send cURL request using Axios
+    const response = await axios.post(slackWebhookUrl, slackMessage, {
+      headers: { "Content-Type": "application/json" }
+    });
+
+    console.log(`✅ Slack Response: ${response.status} ${response.statusText}`);
 
     return res.status(200).json({
-      message: "Message sent and will be updated in Slack!",
-      timestamp: messageTS,
+      message: "Message sent to Slack successfully!",
+      slackResponse: response.data
     });
 
   } catch (error) {
-    console.error("❌ Error handling request:", error);
+    console.error("❌ Error sending message to Slack:", error.response?.data || error.message);
     return res.status(500).json({ error: "Internal server error" });
   }
 });
 
-// ✅ Ensure router is properly exported
 module.exports = router;

@@ -145,7 +145,7 @@ router.post("/:username/aiagent/datacatalog/slackExperiment", async (req, res) =
 router.post("/slack/interactions", async (req, res) => {
   try {
     const payload = JSON.parse(req.body.payload);
-    console.log("✅ Received modal submission:", payload);
+//    console.log("✅ Received modal submission:", payload);
 
     // Extract form data
     const { type, view, response_url, actions } = payload;
@@ -157,17 +157,18 @@ router.post("/slack/interactions", async (req, res) => {
     const country = stateValues.country_select?.selected_option?.value || "Not Selected";
     const startDate = stateValues["actionId-0"]?.datepicker_action?.selected_date || "Not Selected";
     const endDate = stateValues["actionId-1"]?.datepicker_action?.selected_date || "Not Selected";
-
+    console.log("actions :", actions);
+    console.log("actions[0].action_id :", actions[0].action_id);
     // Check if it's a button click with action_id 'submit_experiment'
     if (actions && actions.length > 0 && actions[0].action_id === "submit_experiment") {
         
       console.log("✅ Experiment inputs was submitted.");
-      
+      console.log("payload:", payload);
       // Send an immediate response to Slack to prevent timeout
       res.status(200).send();
-
+      const resp_url = 'https://hooks.slack.com/services/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';
       // Send acknowledgment to the user via response_url
-      await fetch(response_url, {
+      await fetch(resp_url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: "Thanks for your submission!" }),

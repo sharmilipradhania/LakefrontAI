@@ -61,7 +61,7 @@ let slackBotToken;
 let slackSigningSecret;
 let slackChannel;
 
-const ENV = 'development'; // production environment and development environment
+const ENV = 'production'; // production environment and development environment
 if (ENV === 'development') {
 // development environment variables
   dbConfig = config.development;

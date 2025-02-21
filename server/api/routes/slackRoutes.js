@@ -7,7 +7,7 @@ router.post("/:username/aiagent/datacatalog/slack", async (req, res) => {
   try {
     // ✅ Extract Slack credentials from `req`
     const { slackBotToken, slackChannel } = req;
-
+    console.log(req);
     console.log(`✅ Using Slack Token: ${slackBotToken}`);
     console.log(`✅ Sending to Slack Channel: ${slackChannel}`);
 

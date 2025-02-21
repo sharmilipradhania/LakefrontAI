@@ -1,27 +1,41 @@
 const express = require("express");
 const axios = require("axios");
+const bodyParser = require("body-parser");
 
 const router = express.Router();
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
 router.post("/:username/aiagent/datacatalog/slack", async (req, res) => {
   try {
-    // ✅ Extract Slack credentials from request body
-    const { slackWebhookUrl } = req.body; // Webhook URL should be passed in the request body
+    // ✅ Extract Slack data from request
+    const { user_name, text, response_url } = req.body; // Extract Slack's response_url
 
-    if (!slackWebhookUrl) {
-      return res.status(400).json({ error: "Slack Webhook URL is required!" });
+    if (!response_url) {
+      return res.status(400).json({ error: "Invalid Slack request: response_url missing" });
     }
 
-    console.log(`✅ Using Slack Webhook: ${slackWebhookUrl}`);
+    console.log(`✅ Received data from Slack`);
+    console.log(`👤 User: ${user_name}`);
+    console.log(`💬 Message: ${text}`);
+    console.log(`🔗 Response URL: ${response_url}`);
 
-    // ✅ Block Kit Message
-    const slackMessage = {
+    // ✅ Create a Block Kit message response
+    const slackResponse = {
+      response_type: "in_channel", // Make response visible to all users
       blocks: [
         {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: "*Lakefront AI after commenting update*"
+            text: `👋 *Hello, ${user_name}!*`
+          }
+        },
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: `💡 *You said:* "${text}"`
           }
         },
         {
@@ -31,26 +45,26 @@ router.post("/:username/aiagent/datacatalog/slack", async (req, res) => {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: "🚀 *Status:* The AI agent has been updated successfully!"
+            text: `🚀 *Lakefront AI is processing your request...*`
           }
         }
       ]
     };
 
-    // ✅ Send cURL request using Axios
-    const response = await axios.post(slackWebhookUrl, slackMessage, {
+    // ✅ Send response back to Slack using response_url
+    const slackPostResponse = await axios.post(response_url, slackResponse, {
       headers: { "Content-Type": "application/json" }
     });
 
-    console.log(`✅ Slack Response: ${response.status} ${response.statusText}`);
+    console.log(`✅ Slack Response Status: ${slackPostResponse.status} ${slackPostResponse.statusText}`);
 
     return res.status(200).json({
-      message: "Message sent to Slack successfully!",
-      slackResponse: response.data
+      message: "Response sent back to Slack successfully!",
+      slackResponse: slackPostResponse.data
     });
 
   } catch (error) {
-    console.error("❌ Error sending message to Slack:", error.response?.data || error.message);
+    console.error("❌ Error sending response to Slack:", error.response?.data || error.message);
     return res.status(500).json({ error: "Internal server error" });
   }
 });

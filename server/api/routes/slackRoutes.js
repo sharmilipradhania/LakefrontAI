@@ -143,6 +143,7 @@ router.post("/:username/aiagent/datacatalog/slackExperiment", async (req, res) =
 
 
 router.post("/slack/interactions", async (req, res) => {
+  res.status(200).send();
   try {
     const payload = JSON.parse(req.body.payload);
     console.log("✅ Received modal submission:", payload);

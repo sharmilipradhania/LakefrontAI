@@ -148,7 +148,7 @@ router.post("/slack/interactions", async (req, res) => {
     console.log("✅ Received modal submission:", payload);
 
     // ✅ Extract Slack data from request
-    const {  response_url } = req.body; // Extract Slack's response_url
+    const {  response_url } = req.body.payload; // Extract Slack's response_url
 
     console.log("✅ Response Url:", response_url);
     if (payload.type === "view_submission") {

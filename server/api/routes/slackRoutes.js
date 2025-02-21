@@ -147,6 +147,13 @@ router.post("/slack/interactions", async (req, res) => {
     const payload = JSON.parse(req.body.payload);
     console.log("✅ Received modal submission:", payload);
 
+    // ✅ Extract Slack data from request
+    const {  response_url } = req.body; // Extract Slack's response_url
+
+    if (!response_url) {
+      return res.status(400).json({ error: "Invalid Slack request: response_url missing" });
+    }
+    console.log("✅ Response Url:", response_url);
     if (payload.type === "view_submission") {
       const selectedExperiment = payload.view.state.values.experiment_select.selected_option.value;
       const selectedRegion = payload.view.state.values.region_select.selected_option.value;
@@ -165,7 +172,7 @@ router.post("/slack/interactions", async (req, res) => {
         text: `🌍 Experiment: *${selectedExperiment}*, Region: *${selectedRegion}*, Country: *${selectedCountry}*, Dates: *${selectedDate1}* & *${selectedDate2}*`
       };
 
-      await axios.post(payload.response_url, followUpMessage, {
+      await axios.post(response_url, followUpMessage, {
         headers: { "Content-Type": "application/json" }
       });
 

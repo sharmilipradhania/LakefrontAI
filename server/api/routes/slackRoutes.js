@@ -222,11 +222,14 @@ router.post("/slack/interactions", async (req, res) => {
       };
 
       // Send the Block Kit message to Slack
-      await fetch(resp_url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(messagePayload)
-      });
+      try {
+        await axios.post(resp_url, messagePayload, {
+          headers: { "Content-Type": "application/json" }
+        });
+        console.log("✅ Message successfully sent to Slack");
+      } catch (error) {
+        console.error("❌ Error sending message to Slack:", error.response?.data || error.message);
+      }
 
       console.log(`📊 Submitted Data:
         Experiment: ${experiment}

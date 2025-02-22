@@ -190,7 +190,6 @@ router.post("/slack/interactions", async (req, res) => {
       // Response URL (your webhook endpoint)
       const resp_url = 'https://hooks.slack.com/services/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';
 
-      // Construct the Block Kit message payload simulating a table
       const messagePayload = {
         text: "📊 Submitted Data",  // Fallback text for notifications
         blocks: [
@@ -198,28 +197,55 @@ router.post("/slack/interactions", async (req, res) => {
             type: "header",
             text: {
               type: "plain_text",
-              text: "📊 Submitted Data"
+              text: "📊 Submitted Data",
+              emoji: true
             }
           },
           {
             type: "section",
             fields: [
               { type: "mrkdwn", text: "*Field*" },
-              { type: "mrkdwn", text: "*Value*" },
-              { type: "mrkdwn", text: "*Experiment*" },
-              { type: "mrkdwn", text: experiment },
-              { type: "mrkdwn", text: "*Region*" },
-              { type: "mrkdwn", text: region },
-              { type: "mrkdwn", text: "*Country*" },
-              { type: "mrkdwn", text: country },
-              { type: "mrkdwn", text: "*Start Date*" },
-              { type: "mrkdwn", text: startDate },
-              { type: "mrkdwn", text: "*End Date*" },
+              { type: "mrkdwn", text: "*Value*" }
+            ]
+          },
+          {
+            type: "section",
+            fields: [
+              { type: "mrkdwn", text: "*Experiment:*" },
+              { type: "mrkdwn", text: experiment }
+            ]
+          },
+          {
+            type: "section",
+            fields: [
+              { type: "mrkdwn", text: "*Region:*" },
+              { type: "mrkdwn", text: region }
+            ]
+          },
+          {
+            type: "section",
+            fields: [
+              { type: "mrkdwn", text: "*Country:*" },
+              { type: "mrkdwn", text: country }
+            ]
+          },
+          {
+            type: "section",
+            fields: [
+              { type: "mrkdwn", text: "*Start Date:*" },
+              { type: "mrkdwn", text: startDate }
+            ]
+          },
+          {
+            type: "section",
+            fields: [
+              { type: "mrkdwn", text: "*End Date:*" },
               { type: "mrkdwn", text: endDate }
             ]
           }
         ]
       };
+      
 
       // Send the Block Kit message to Slack
       try {

@@ -192,12 +192,18 @@ router.post("/slack/interactions", async (req, res) => {
       await fetch(resp_url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: `📊 Submitted Data:
-                                      Experiment: ${experiment}
-                                      Region: ${region}
-                                      Country: ${country}
-                                      Start Date: ${startDate}
-                                      End Date: ${endDate}` })
+        body: JSON.stringify({ text:
+                                    ```
+                                    📊 Submitted Data:
+                                      | Field      | Value         |
+                                      |------------|---------------|
+                                      | Experiment | ${experiment} |
+                                      | Region     | ${region}     |
+                                      | Country    | ${country}    |
+                                      | Start Date | ${startDate}  |
+                                      | End Date   | ${endDate}    |
+                                      ```
+                                      })
       });
 
       console.log(`📊 Submitted Data:

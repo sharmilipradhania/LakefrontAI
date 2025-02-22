@@ -151,7 +151,7 @@ let country = "Not Selected";
 router.post("/slack/interactions", async (req, res) => {
   try {
     const payload = JSON.parse(req.body.payload);
-//    console.log("✅ Received modal submission:", payload);
+    // console.log("✅ Received modal submission:", payload);
 
     // Extract form data
     const { type, view, response_url, actions } = payload;
@@ -179,31 +179,52 @@ router.post("/slack/interactions", async (req, res) => {
       }
     });
 
-//    console.log("actions :", actions);
     // Check if it's a button click with action_id 'submit_experiment'
     if (actions && actions.length > 0 && actions[0].action_id === "submit_experiment") {
-        
-      console.log("✅ Experiment inputs was submitted.");
+      console.log("✅ Experiment inputs were submitted.");
       console.log("payload:", payload);
+
       // Send an immediate response to Slack to prevent timeout
       res.status(200).send();
+
+      // Response URL (your webhook endpoint)
       const resp_url = 'https://hooks.slack.com/services/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';
-      // Send acknowledgment to the user via response_url
+
+      // Construct the Block Kit message payload simulating a table
+      const messagePayload = {
+        blocks: [
+          {
+            type: "header",
+            text: {
+              type: "plain_text",
+              text: "📊 Submitted Data"
+            }
+          },
+          {
+            type: "section",
+            fields: [
+              { type: "mrkdwn", text: "*Field*" },
+              { type: "mrkdwn", text: "*Value*" },
+              { type: "mrkdwn", text: "*Experiment*" },
+              { type: "mrkdwn", text: experiment },
+              { type: "mrkdwn", text: "*Region*" },
+              { type: "mrkdwn", text: region },
+              { type: "mrkdwn", text: "*Country*" },
+              { type: "mrkdwn", text: country },
+              { type: "mrkdwn", text: "*Start Date*" },
+              { type: "mrkdwn", text: startDate },
+              { type: "mrkdwn", text: "*End Date*" },
+              { type: "mrkdwn", text: endDate }
+            ]
+          }
+        ]
+      };
+
+      // Send the Block Kit message to Slack
       await fetch(resp_url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text:
-                                    ```
-                                    📊 Submitted Data:
-                                      | Field      | Value         |
-                                      |------------|---------------|
-                                      | Experiment | ${experiment} |
-                                      | Region     | ${region}     |
-                                      | Country    | ${country}    |
-                                      | Start Date | ${startDate}  |
-                                      | End Date   | ${endDate}    |
-                                      ```
-                                      })
+        body: JSON.stringify(messagePayload)
       });
 
       console.log(`📊 Submitted Data:
@@ -216,15 +237,14 @@ router.post("/slack/interactions", async (req, res) => {
       // If it's not a submission, just acknowledge receipt
       res.status(200).send();
     }
-
   } catch (error) {
     console.error("❌ Error processing Slack interaction:", error);
-
     if (!res.headersSent) {
       res.status(500).json({ error: "Internal Server Error" });
     }
   }
 });
+
 
 
 module.exports = router;

@@ -192,6 +192,7 @@ router.post("/slack/interactions", async (req, res) => {
 
       // Construct the Block Kit message payload simulating a table
       const messagePayload = {
+        text: "📊 Submitted Data",  // Fallback text for notifications
         blocks: [
           {
             type: "header",
